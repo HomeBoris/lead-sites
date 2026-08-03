@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автосервис на Клубной | Профессиональная диагностика и чип-тюнинг</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0F2C59',
+                            dark: '#1E2022',
+                            accent: '#F9B208',
+                            light: '#F8F9FA'
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2070&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-panel-dark {
+            background: rgba(15, 44, 89, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #F9B208, #FF8C00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans antialiased overflow-x-hidden">
+
+    <!-- Watermark -->
+    <a href="https://t.me/pootlord" target="_blank" class="fixed bottom-4 left-4 z-50 glass-panel-dark text-white text-xs md:text-sm font-medium px-4 py-2 rounded-full shadow-2xl hover:scale-105 hover:shadow-[0_0_15px_rgba(249,178,8,0.5)] transition-all duration-300 flex items-center gap-2 group cursor-pointer">
+        <i class="fa-brands fa-telegram text-brand-accent group-hover:animate-bounce"></i>
+        <span>Заказать сайт</span>
+    </a>
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-40 transition-all duration-300" id="navbar">
+        <div class="absolute inset-0 glass-panel shadow-sm"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="https://victortun.ru/wp-content/uploads/2022/10/clipart4800351.png" alt="Logo" class="w-10 h-10 object-contain group-hover:rotate-180 transition-transform duration-700">
+                    <div class="flex flex-col">
+                        <span class="font-heading font-bold text-xl md:text-2xl text-brand-blue leading-none tracking-tight">На Клубной</span>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-accent font-semibold mt-1">Автосервис с 1997</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-brand-blue">
+                    <a href="#services" class="hover:text-brand-accent transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-accent hover:after:w-full after:transition-all">Услуги</a>
+                    <a href="#about" class="hover:text-brand-accent transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-accent hover:after:w-full after:transition-all">О нас</a>
+                    <a href="#contacts" class="hover:text-brand-accent transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-accent hover:after:w-full after:transition-all">Контакты</a>
+                </nav>
+
+                <!-- Phone & CTA -->
+                <div class="hidden lg:flex items-center gap-6">
+                    <div class="flex flex-col text-right">
+                        <a href="tel:+79172735885" class="font-bold text-brand-blue hover:text-brand-accent transition-colors">+7 (917) 273-58-85</a>
+                    </div>
+                    <a href="#booking" class="bg-brand-accent hover:bg-yellow-400 text-brand-dark font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                        Записаться
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden text-brand-blue hover:text-brand-accent focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full glass-panel-dark border-t border-white/10 shadow-2xl overflow-hidden transition-all duration-300">
+            <div class="px-4 py-6 space-y-4 flex flex-col items-center">
+                <a href="#services" class="text-white text-lg font-medium hover:text-brand-accent transition-colors mobile-link">Наши услуги</a>
+                <a href="#about" class="text-white text-lg font-medium hover:text-brand-accent transition-colors mobile-link">О сервисе</a>
+                <a href="#contacts" class="text-white text-lg font-medium hover:text-brand-accent transition-colors mobile-link">Контакты</a>
+                
+                <div class="w-full h-px bg-white/20 my-4"></div>
+                
+                <a href="tel:+79172735885" class="text-white font-bold text-xl">+7 (917) 273-58-85</a>
+                <a href="tel:+79600670015" class="text-white/80 font-medium">+7 (960) 067-00-15</a>
+                <a href="tel:+79950075660" class="text-white/80 font-medium">+7 (995) 007-56-60</a>
+                
+                <a href="#booking" class="w-full text-center mt-4 bg-brand-accent text-brand-dark font-bold py-3 rounded-xl shadow-lg active:scale-95 transition-transform mobile-link">
+                    Записаться на диагностику
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-brand-blue">
+        <!-- Background elements -->
+        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center opacity-20"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-blue via-brand-blue/90 to-transparent"></div>
+        
+        <!-- Floating abstract image -->
+        <img src="https://victortun.ru/wp-content/uploads/2022/10/pngwing.com_.png" alt="Engine Element" class="absolute -right-20 md:right-10 top-1/4 w-96 opacity-10 blur-sm animate-pulse pointer-events-none mix-blend-screen">
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-white/20 mb-6 transform hover:scale-105 transition-transform cursor-default">
+                    <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
+                    <span class="text-white text-xs md:text-sm font-semibold tracking-wide uppercase">Работаем в Бугульме с 1997 года</span>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight mb-6">
+                    Инженерный подход к <br class="hidden md:block"/>
+                    <span class="gradient-text">ремонту и тюнингу</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl font-light leading-relaxed">
+                    Профессиональная диагностика, индивидуальный чип-тюнинг и сложный ремонт автоэлектроники. Оборудование дилерского уровня и непревзойденный опыт.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#booking" class="bg-brand-accent hover:bg-yellow-400 text-brand-dark font-bold text-center px-8 py-4 rounded-xl shadow-[0_0_20px_rgba(249,178,8,0.3)] hover:shadow-[0_0_30px_rgba(249,178,8,0.5)] hover:-translate-y-1 transition-all duration-300 flex justify-center items-center gap-3">
+                        <i class="fa-solid fa-wrench"></i> Записаться на сервис
+                    </a>
+                    <a href="#services" class="glass-panel text-white hover:bg-white/10 font-medium text-center px-8 py-4 rounded-xl transition-all duration-300 flex justify-center items-center gap-3">
+                        Смотреть услуги <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 lg:mt-24">
+                <div class="glass-panel p-4 md:p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300">
+                    <div class="text-brand-accent text-3xl mb-2"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="text-white font-bold text-xl md:text-2xl mb-1">Alientech</div>
+                    <div class="text-gray-400 text-xs md:text-sm">Официальное ПО</div>
+                </div>
+                <div class="glass-panel p-4 md:p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300">
+                    <div class="text-brand-accent text-3xl mb-2"><i class="fa-solid fa-globe"></i></div>
+                    <div class="text-white font-bold text-xl md:text-2xl mb-1">5+ Городов</div>
+                    <div class="text-gray-400 text-xs md:text-sm">Доверие всего Юго-Востока РТ</div>
+                </div>
+                <div class="glass-panel p-4 md:p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300">
+                    <div class="text-brand-accent text-3xl mb-2"><i class="fa-solid fa-car-burst"></i></div>
+                    <div class="text-white font-bold text-xl md:text-2xl mb-1">SRS Crash</div>
+                    <div class="text-gray-400 text-xs md:text-sm">Удаление данных об аварии</div>
+                </div>
+                <div class="glass-panel p-4 md:p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300">
+                    <div class="text-brand-accent text-3xl mb-2"><i class="fa-solid fa-key"></i></div>
+                    <div class="text-white font-bold text-xl md:text-2xl mb-1">Immo & Ключи</div>
+                    <div class="text-gray-400 text-xs md:text-sm">Прошивка, в т.ч. Mercedes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 md:py-28 relative">
+        <!-- Floating decorative images -->
+        <img src="https://victortun.ru/wp-content/uploads/2022/10/pngwing.com_.png" class="absolute left-[-10%] top-[20%] w-64 opacity-5 rotate-45 pointer-events-none" alt="">
+        <img src="https://victortun.ru/wp-content/uploads/2022/10/pngwing.com_.png" class="absolute right-[-5%] bottom-[10%] w-72 opacity-5 -rotate-12 pointer-events-none" alt="">
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-heading text-3xl md:text-5xl font-bold text-brand-blue mb-4">Комплексные решения для вашего авто</h2>
+                <div class="w-24 h-1 bg-brand-accent mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 text-lg">Применяем профессиональные приборы и информационные базы для каждой конкретной марки автомобиля.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_40px_rgba(15,44,89,0.1)] hover:-translate-y-2 transition-all duration-300 group border border-gray-100">
+                    <div class="w-16 h-16 rounded-xl bg-blue-50 flex items-center justify-center text-brand-blue text-2xl mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-laptop-medical"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3 font-heading">Глубокая диагностика</h3>
+                    <p class="text-gray-600 leading-relaxed">Полный анализ двигателя, систем управления и всей кузовной электроники с использованием дилерских сканеров.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_40px_rgba(15,44,89,0.1)] hover:-translate-y-2 transition-all duration-300 group border border-gray-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-brand-accent text-brand-dark text-xs font-bold px-3 py-1 rounded-bl-lg z-10">ХИТ</div>
+                    <div class="w-16 h-16 rounded-xl bg-blue-50 flex items-center justify-center text-brand-blue text-2xl mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3 font-heading">Чип-тюнинг</h3>
+                    <p class="text-gray-600 leading-relaxed">Индивидуальная настройка (EVC, Swiftec). Повышение мощности, оптимизация расхода, отключение экологии.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_40px_rgba(15,44,89,0.1)] hover:-translate-y-2 transition-all duration-300 group border border-gray-100">
+                    <div class="w-16 h-16 rounded-xl bg-blue-50 flex items-center justify-center text-brand-blue text-2xl mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3 font-heading">Автоэлектрика</h3>
+                    <p class="text-gray-600 leading-relaxed">Ремонт сложной электроники. Радиомастерская: ремонт ЭБУ, щитков приборов, восстановление иммобилайзеров.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_40px_rgba(15,44,89,0.1)] hover:-translate-y-2 transition-all duration-300 group border border-gray-100">
+                    <div class="w-16 h-16 rounded-xl bg-blue-50 flex items-center justify-center text-brand-blue text-2xl mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-spray-can-sparkles"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3 font-heading">Чистка форсунок</h3>
+                    <p class="text-gray-600 leading-relaxed">Проверка и ультразвуковая чистка форсунок на специализированных стендах для идеального распыла.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_40px_rgba(15,44,89,0.1)] hover:-translate-y-2 transition-all duration-300 group border border-gray-100">
+                    <div class="w-16 h-16 rounded-xl bg-blue-50 flex items-center justify-center text-brand-blue text-2xl mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3 font-heading">Тюнинг выхлопа</h3>
+                    <p class="text-gray-600 leading-relaxed">Подготовка к удалению катализатора, сажевого фильтра. Использование компонентов Stinger.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_40px_rgba(15,44,89,0.1)] hover:-translate-y-2 transition-all duration-300 group border border-gray-100">
+                    <div class="w-16 h-16 rounded-xl bg-blue-50 flex items-center justify-center text-brand-blue text-2xl mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-oil-can"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3 font-heading">Техническое обслуживание</h3>
+                    <p class="text-gray-600 leading-relaxed">Плановое ТО, замена жидкостей, фильтров и расходных материалов с гарантией качества работ.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (Premium Glass Layout) -->
+    <section id="about" class="py-20 bg-brand-blue relative overflow-hidden">
+        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-fixed opacity-10"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                        Лидеры на юго-востоке Татарстана
+                    </h2>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Наш автосервис находится в городе Бугульма. Зарекомендовав себя как один из лучших центров по инженерно-техническому оснащению, мы ежедневно принимаем клиентов из окрестных городов:
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <span class="glass-panel text-brand-accent px-4 py-2 rounded-lg font-medium text-sm">Альметьевск</span>
+                        <span class="glass-panel text-brand-accent px-4 py-2 rounded-lg font-medium text-sm">Лениногорск</span>
+                        <span class="glass-panel text-brand-accent px-4 py-2 rounded-lg font-medium text-sm">Бавлы</span>
+                        <span class="glass-panel text-brand-accent px-4 py-2 rounded-lg font-medium text-sm">Азнакаево</span>
+                        <span class="glass-panel text-brand-accent px-4 py-2 rounded-lg font-medium text-sm">Октябрьский</span>
+                    </div>
+
+                    <p class="text-gray-300 leading-relaxed pt-4">
+                        Каждая модификация прошивки проходит строгий выходной контроль качества. Мы работаем с комплексами <strong class="text-white">Alientech, EVC, Swiftec, Almisoft</strong>, чтобы гарантировать безупречную работу вашего двигателя после оптимизации.
+                    </p>
+                </div>
+
+                <div class="w-full lg:w-1/2 relative">
+                    <div class="glass-panel-dark p-8 md:p-10 rounded-3xl relative z-10 border border-white/20 shadow-2xl">
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-brand-accent rounded-full blur-2xl opacity-50"></div>
+                        <h3 class="text-2xl font-bold text-white mb-6 font-heading border-b border-white/10 pb-4">Особые компетенции</h3>
+                        
+                        <ul class="space-y-4">
+                            <li class="flex gap-4">
+                                <div class="mt-1 w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent shrink-0">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-lg">Удаление CrashData</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Очистка записей об авариях из блоков SRS любых автомобилей.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <div class="mt-1 w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent shrink-0">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-lg">Программный тюнинг</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Подготовка авто к удалению катализатора и сажевого фильтра.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <div class="mt-1 w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent shrink-0">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-lg">Работа с иммобилайзерами</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Прописывание ключей, включая сложные системы Mercedes.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section id="booking" class="py-20 md:py-28 relative bg-brand-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto glass-panel-dark rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row border border-gray-200">
+                
+                <!-- Info Column -->
+                <div class="w-full md:w-5/12 bg-brand-blue p-8 md:p-10 text-white relative overflow-hidden">
+                    <img src="https://victortun.ru/wp-content/uploads/2022/10/Maps-Icon.png" alt="Map" class="absolute -bottom-10 -right-10 w-48 opacity-10">
+                    
+                    <h3 class="font-heading text-2xl font-bold mb-6">Ждем вас на диагностику</h3>
+                    <p class="text-gray-300 mb-8 text-sm leading-relaxed">Оставьте заявку, и наш инженер свяжется с вами для уточнения деталей и записи на удобное время.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-accent">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase tracking-wider">Адрес</p>
+                                <p class="font-medium">г. Бугульма, ул. Клубная</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-accent">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="text-xs text-gray-400 uppercase tracking-wider">Телефоны</p>
+                                <a href="tel:+79172735885" class="font-medium hover:text-brand-accent transition-colors">+7 (917) 273-58-85</a>
+                                <a href="tel:+79600670015" class="font-medium hover:text-brand-accent transition-colors">+7 (960) 067-00-15</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="w-full md:w-7/12 bg-white p-8 md:p-10">
+                    <h3 class="font-heading text-2xl font-bold text-brand-dark mb-6">Записаться на сервис</h3>
+                    <form action="#" method="POST" class="space-y-5" onsubmit="event.preventDefault(); alert('Заявка отправлена!');">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Ваше имя</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all bg-gray-50 focus:bg-white" placeholder="Иван Иванов">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Телефон</label>
+                            <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all bg-gray-50 focus:bg-white" placeholder="+7 (999) 000-00-00">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Марка и модель авто</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all bg-gray-50 focus:bg-white" placeholder="Например: KIA Optima 2018">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Что вас беспокоит?</label>
+                            <textarea rows="3" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all bg-gray-50 focus:bg-white resize-none" placeholder="Кратко опишите проблему или нужную услугу..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-blue hover:bg-brand-dark text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 mt-2">
+                            Отправить заявку
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark pt-16 pb-8 border-t-4 border-brand-accent">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <a href="#" class="flex items-center gap-3 mb-6">
+                        <img src="https://victortun.ru/wp-content/uploads/2022/10/clipart4800351.png" alt="Logo" class="w-10 h-10 object-contain filter grayscale brightness-200">
+                        <div class="flex flex-col">
+                            <span class="font-heading font-bold text-xl text-white leading-none tracking-tight">На Клубной</span>
+                            <span class="text-[10px] uppercase tracking-widest text-brand-accent font-semibold mt-1">Автосервис</span>
+                        </div>
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-xs">
+                        Профессиональный автосервис в Бугульме. Качественная диагностика двигателя, систем управления и кузовной электроники.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-heading font-bold mb-6 text-lg">Быстрые ссылки</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="text-gray-400 hover:text-brand-accent transition-colors text-sm">Наши услуги</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-brand-accent transition-colors text-sm">О сервисе</a></li>
+                        <li><a href="#booking" class="text-gray-400 hover:text-brand-accent transition-colors text-sm">Записаться на прием</a></li>
+                        <li><a href="#contacts" class="text-gray-400 hover:text-brand-accent transition-colors text-sm">Схема проезда</a></li>
+                    </ul>
+                </div>
+
+                <div id="contacts">
+                    <h4 class="text-white font-heading font-bold mb-6 text-lg">Контакты</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-map-location-dot text-brand-accent mt-1"></i>
+                            <span class="text-gray-400 text-sm">Республика Татарстан,<br>г. Бугульма, ул. Клубная</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-brand-accent"></i>
+                            <div class="flex flex-col">
+                                <a href="tel:+79172735885" class="text-gray-400 hover:text-white transition-colors text-sm">+7 (917) 273-58-85</a>
+                                <a href="tel:+79950075660" class="text-gray-400 hover:text-white transition-colors text-sm">+7 (995) 007-56-60</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">Copyright © 1997 - 2026 Автосервис на Клубной.</p>
+                <p class="text-gray-500 text-sm">Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+        const icon = btn.querySelector('i');
+
+        function toggleMenu() {
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+        links.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Header Scroll Effect
+        const header = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('py-0');
+                header.querySelector('.absolute.inset-0').classList.add('bg-white/95', 'shadow-md');
+                header.querySelector('.absolute.inset-0').classList.remove('bg-white/80');
+            } else {
+                header.classList.remove('py-0');
+                header.querySelector('.absolute.inset-0').classList.remove('bg-white/95', 'shadow-md');
+                header.querySelector('.absolute.inset-0').classList.add('bg-white/80');
+            }
+        });
+    </script>
+</body>
+</html>
