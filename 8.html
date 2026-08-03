@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>БестВей | Премиальный Автотехцентр в Нижнем Новгороде</title>
+    <meta name="description" content="Пожалуй, лучшие автосервисы Нижнего Новгорода. Ремонт, ТО, кузовной ремонт и детейлинг.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Outfit', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                        },
+                        dark: {
+                            900: '#070a13',
+                            800: '#0f172a',
+                            700: '#1e293b',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1613214149922-f1809c99b414?q=80&w=1920&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Utilities for Glassmorphism & Animations */
+        body { background-color: #070a13; color: #e2e8f0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.1);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #070a13; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+        
+        /* Checkbox customization */
+        input[type="checkbox"] { accent-color: #0ea5e9; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50 glass-panel border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer hover:scale-105 transition-transform">
+                    <span class="text-3xl font-heading font-extrabold tracking-tighter text-white">БЕСТ<span class="text-gradient">ВЕЙ</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#promos" class="text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors">Акции</a>
+                    <a href="#services" class="text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors">Услуги</a>
+                    <a href="#prices" class="text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors">Прайс</a>
+                    <a href="#team" class="text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors">Команда</a>
+                    <a href="#contacts" class="text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors">Контакты</a>
+                </nav>
+
+                <!-- Contacts & CTA -->
+                <div class="hidden lg:flex items-center space-x-6">
+                    <div class="text-right">
+                        <a href="tel:+78312341143" class="block text-lg font-bold hover:text-brand-400 transition-colors">+7 (831) 234-11-43</a>
+                        <span class="text-xs text-gray-400">ПН-ВС 8:00 - 20:00</span>
+                    </div>
+                    <a href="#booking" class="bg-gradient-to-r from-brand-600 to-brand-400 text-white px-6 py-2.5 rounded-full font-medium hover:shadow-[0_0_20px_rgba(14,165,233,0.4)] hover:scale-105 transition-all duration-300">
+                        Позвоните мне
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-fixed opacity-20"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-dark-900/80 via-dark-900/95 to-dark-900"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-block px-4 py-1.5 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-sm font-semibold mb-6">
+                        <i class="fa-solid fa-star mr-2"></i>Премиум автосервис в Нижнем Новгороде
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold font-heading leading-tight mb-6">
+                        Безупречный уход для вашего авто.<br>
+                        <span class="text-gradient">С гарантией качества.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0">
+                        Более 10 лет опыта, 40 000+ успешно отремонтированных автомобилей и передовое оборудование. Доверьте свой автомобиль профессионалам БестВей.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6">
+                        <a href="#booking" class="w-full sm:w-auto text-center bg-brand-500 hover:bg-brand-400 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_25px_rgba(14,165,233,0.5)] hover:-translate-y-1 transition-all duration-300">
+                            Записаться в сервис
+                        </a>
+                        <div class="flex items-center text-gray-400 text-sm">
+                            <i class="fa-solid fa-shield-halved text-brand-500 text-2xl mr-3"></i>
+                            <span class="text-left">Гарантия на ремонт<br>до 12 месяцев</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Booking Glass Widget -->
+                <div class="hidden lg:block relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-brand-400 rounded-2xl blur opacity-20"></div>
+                    <div class="relative glass-panel rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold mb-6 font-heading text-white">Индивидуальное предложение</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4 p-4 rounded-xl bg-white/5 border border-white/5">
+                                <div class="w-12 h-12 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400">
+                                    <i class="fa-solid fa-gift text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Скидка 1000 ₽</h4>
+                                    <p class="text-sm text-gray-400">На первый ремонт для новых клиентов</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 p-4 rounded-xl bg-white/5 border border-white/5">
+                                <div class="w-12 h-12 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400">
+                                    <i class="fa-solid fa-stethoscope text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Диагностика бесплатно</h4>
+                                    <p class="text-sm text-gray-400">Проверка иномарок по 18 пунктам</p>
+                                </div>
+                            </div>
+                            <a href="#booking" class="block w-full text-center bg-white/10 hover:bg-white/20 border border-white/10 text-white px-6 py-3 rounded-xl font-medium transition-colors mt-4">
+                                Забрать бонусы
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats & Trust Section -->
+    <section class="py-12 border-y border-white/5 bg-white/[0.02]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4 hover:-translate-y-1 transition-transform">
+                    <div class="text-4xl text-brand-400 mb-2"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="text-3xl font-heading font-bold text-white mb-1">> 10</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Лет опыта</div>
+                </div>
+                <div class="p-4 hover:-translate-y-1 transition-transform">
+                    <div class="text-4xl text-brand-400 mb-2"><i class="fa-solid fa-car-side"></i></div>
+                    <div class="text-3xl font-heading font-bold text-white mb-1">40 000+</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Отремонтированных авто</div>
+                </div>
+                <div class="p-4 hover:-translate-y-1 transition-transform">
+                    <div class="text-4xl text-brand-400 mb-2"><i class="fa-solid fa-certificate"></i></div>
+                    <div class="text-3xl font-heading font-bold text-white mb-1">12 мес</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Официальная гарантия</div>
+                </div>
+                <div class="p-4 hover:-translate-y-1 transition-transform">
+                    <div class="text-4xl text-brand-400 mb-2"><i class="fa-solid fa-building-user"></i></div>
+                    <div class="text-3xl font-heading font-bold text-white mb-1">6 СТО</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">В Нижнем Новгороде</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions Section -->
+    <section id="promos" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-5xl font-heading font-bold mb-4">Актуальные <span class="text-gradient">Акции</span></h2>
+                <p class="text-gray-400 text-lg">Выгодные предложения для обслуживания вашего автомобиля.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Promo 1 -->
+                <div class="glass-panel rounded-2xl p-8 glass-card transition-all duration-300 group cursor-pointer">
+                    <div class="w-14 h-14 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-oil-can text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Замена масла со скидкой 50%</h3>
+                    <p class="text-gray-400 mb-6 line-clamp-3">Скидка распространяется на весь заказ-наряд. Меняем масло выгодно для всех новых клиентов!</p>
+                    <span class="text-brand-400 font-medium group-hover:text-brand-300 flex items-center">
+                        Подробнее <i class="fa-solid fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-2"></i>
+                    </span>
+                </div>
+                
+                <!-- Promo 2 -->
+                <div class="glass-panel rounded-2xl p-8 glass-card transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-brand-500 text-xs font-bold px-3 py-1 rounded-bl-xl text-white">ХИТ</div>
+                    <div class="w-14 h-14 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wrench text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Полное ТО с сохранением гарантии</h3>
+                    <p class="text-gray-400 mb-6 line-clamp-3">Обслуживание по регламенту дилера. Сохраняем гарантию, используем оригинальные запчасти или качественные аналоги.</p>
+                    <span class="text-brand-400 font-medium group-hover:text-brand-300 flex items-center">
+                        Подробнее <i class="fa-solid fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-2"></i>
+                    </span>
+                </div>
+
+                <!-- Promo 3 -->
+                <div class="glass-panel rounded-2xl p-8 glass-card transition-all duration-300 group cursor-pointer">
+                    <div class="w-14 h-14 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-car text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Для владельцев китайских авто</h3>
+                    <p class="text-gray-400 mb-6 line-clamp-3">Специальные условия на обслуживание марок Chery, Haval, Geely, Changan, Exeed, Omoda и других.</p>
+                    <span class="text-brand-400 font-medium group-hover:text-brand-300 flex items-center">
+                        Подробнее <i class="fa-solid fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-2"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-20 relative bg-dark-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-5xl font-heading font-bold mb-4">Наши <span class="text-gradient">Компетенции</span></h2>
+                    <p class="text-gray-400 text-lg">Предоставляем полный спектр услуг от планового ТО до сложного кузовного ремонта.</p>
+                </div>
+                <a href="#booking" class="mt-6 md:mt-0 text-brand-400 hover:text-white transition-colors border-b border-brand-400 pb-1 font-medium">Смотреть весь прайс</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service Item -->
+                <div class="glass-panel rounded-2xl p-6 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/5 hover:border-brand-500/30">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="bg-dark-900 rounded-xl p-3 text-brand-400 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-gears text-2xl"></i>
+                        </div>
+                        <span class="text-sm font-bold text-gray-500 bg-white/5 px-3 py-1 rounded-full">от 5 290 ₽</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white group-hover:text-brand-400 transition-colors">Техническое обслуживание</h3>
+                    <ul class="text-gray-400 text-sm space-y-2 mb-6">
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Замена масел и фильтров</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Свой склад запчастей</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Тех. жидкости в наличии</li>
+                    </ul>
+                </div>
+
+                <!-- Service Item -->
+                <div class="glass-panel rounded-2xl p-6 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/5 hover:border-brand-500/30">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="bg-dark-900 rounded-xl p-3 text-brand-400 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-dharmachakra text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white group-hover:text-brand-400 transition-colors">Развал-схождение</h3>
+                    <ul class="text-gray-400 text-sm space-y-2 mb-6">
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Новый 3D стенд</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Сертифицированные мастера</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Спец. инструмент</li>
+                    </ul>
+                </div>
+
+                <!-- Service Item -->
+                <div class="glass-panel rounded-2xl p-6 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/5 hover:border-brand-500/30">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="bg-dark-900 rounded-xl p-3 text-brand-400 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-engine-warning text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white group-hover:text-brand-400 transition-colors">Ремонт двигателя</h3>
+                    <ul class="text-gray-400 text-sm space-y-2 mb-6">
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Капитальный ремонт</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Замена ГБЦ и ремня ГРМ</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Гарантия до 12 месяцев</li>
+                    </ul>
+                </div>
+
+                <!-- Service Item -->
+                <div class="glass-panel rounded-2xl p-6 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/5 hover:border-brand-500/30">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="bg-dark-900 rounded-xl p-3 text-brand-400 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-spray-can text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white group-hover:text-brand-400 transition-colors">Кузовной ремонт</h3>
+                    <ul class="text-gray-400 text-sm space-y-2 mb-6">
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Профессиональная камера</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>100% попадание в цвет</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Улица Чонгарская, 28А</li>
+                    </ul>
+                </div>
+                
+                <!-- Service Item -->
+                <div class="glass-panel rounded-2xl p-6 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/5 hover:border-brand-500/30">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="bg-dark-900 rounded-xl p-3 text-brand-400 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-car-burst text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white group-hover:text-brand-400 transition-colors">Ремонт подвески</h3>
+                    <ul class="text-gray-400 text-sm space-y-2 mb-6">
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Ведущие диагносты отрасли</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Расходные материалы в наличии</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Точная документация</li>
+                    </ul>
+                </div>
+
+                <!-- Service Item -->
+                <div class="glass-panel rounded-2xl p-6 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/5 hover:border-brand-500/30">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="bg-dark-900 rounded-xl p-3 text-brand-400 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-wand-magic-sparkles text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white group-hover:text-brand-400 transition-colors">Детейлинг и уход</h3>
+                    <ul class="text-gray-400 text-sm space-y-2 mb-6">
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Защитная полировка</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Химчистка салона</li>
+                        <li><i class="fa-solid fa-check text-brand-500 mr-2 text-xs"></i>Премиальная автохимия</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Brands Marquee (Static simulation for premium feel) -->
+            <div class="mt-16 pt-10 border-t border-white/5">
+                <p class="text-center text-gray-500 text-sm uppercase tracking-widest mb-6">Обслуживаем более 40 марок автомобилей</p>
+                <div class="flex flex-wrap justify-center gap-4 text-gray-400 font-medium text-sm md:text-base">
+                    <span class="px-4 py-2 glass-panel rounded-full hover:text-white transition-colors cursor-default">Audi</span>
+                    <span class="px-4 py-2 glass-panel rounded-full hover:text-white transition-colors cursor-default">BMW</span>
+                    <span class="px-4 py-2 glass-panel rounded-full hover:text-white transition-colors cursor-default">Mercedes</span>
+                    <span class="px-4 py-2 glass-panel rounded-full hover:text-white transition-colors cursor-default">Toyota</span>
+                    <span class="px-4 py-2 glass-panel rounded-full hover:text-white transition-colors cursor-default">Lexus</span>
+                    <span class="px-4 py-2 glass-panel rounded-full hover:text-white transition-colors cursor-default">Geely</span>
+                    <span class="px-4 py-2 glass-panel rounded-full hover:text-white transition-colors cursor-default">Haval</span>
+                    <span class="px-4 py-2 glass-panel rounded-full hover:text-white transition-colors cursor-default">Chery</span>
+                    <span class="px-4 py-2 glass-panel rounded-full text-brand-400 border-brand-500/30">и другие...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Generation Form -->
+    <section id="booking" class="py-20 relative">
+        <div class="absolute inset-0 bg-brand-900/10 mix-blend-overlay"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-panel rounded-3xl p-8 md:p-12 shadow-2xl border-t border-white/10 relative overflow-hidden">
+                <!-- Decorative elements -->
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-brand-500 rounded-full blur-[100px] opacity-30"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-600 rounded-full blur-[100px] opacity-30"></div>
+                
+                <div class="grid md:grid-cols-2 gap-12 relative z-10">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 text-white">Записаться на <span class="text-gradient">Обслуживание</span></h2>
+                        <p class="text-gray-400 mb-8">Наш консультант свяжется с вами в течение 5 минут для уточнения деталей и удобного времени визита.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 text-brand-400">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white mb-1">6 СТО по всему городу</h4>
+                                    <p class="text-sm text-gray-400">Выберите ближайшую к вам станцию</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 text-brand-400">
+                                    <i class="fa-solid fa-credit-card"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white mb-1">Любые формы оплаты</h4>
+                                    <p class="text-sm text-gray-400">Нал, безнал, работа с физ. и юр. лицами, рассрочка</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="space-y-5 bg-dark-900/50 p-6 rounded-2xl border border-white/5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Ваше имя</label>
+                            <input type="text" placeholder="Иван Иванов" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Телефон</label>
+                            <input type="tel" placeholder="+7 (___) ___-__-__" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Выберите СТО</label>
+                            <select class="w-full bg-[#111827] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-all appearance-none">
+                                <option disabled selected>Выберите удобную станцию</option>
+                                <option>Академика Сахарова, 3</option>
+                                <option>Куйбышева, 32</option>
+                                <option>Родионова, 163</option>
+                                <option>Бринского, 8</option>
+                                <option>Коминтерна, 47а1</option>
+                                <option>Чонгарская, 28а (слесарный ремонт)</option>
+                                <option>Чонгарская, 28а (кузовной ремонт)</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-3 pt-2">
+                            <label class="flex items-start cursor-pointer group">
+                                <input type="checkbox" checked class="mt-1 mr-3 rounded bg-dark-800 border-gray-600 text-brand-500 focus:ring-brand-500">
+                                <span class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">Даю согласие на обработку персональных данных</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer group">
+                                <input type="checkbox" checked class="mt-1 mr-3 rounded bg-dark-800 border-gray-600 text-brand-500 focus:ring-brand-500">
+                                <span class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">Ознакомлен с Политикой в области обработки персональных данных</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer group">
+                                <input type="checkbox" class="mt-1 mr-3 rounded bg-dark-800 border-gray-600 text-brand-500 focus:ring-brand-500">
+                                <span class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">Даю согласие на получение информационных материалов</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 mt-4 shadow-[0_0_15px_rgba(14,165,233,0.3)] hover:shadow-[0_0_25px_rgba(14,165,233,0.5)]">
+                            Записаться в БестВей
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="py-20 relative bg-dark-800/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-heading font-bold mb-4">Честные <span class="text-gradient">Отзывы</span></h2>
+                <p class="text-gray-400 text-lg">Что говорят о нас клиенты. Оценка 5/5 на Яндекс Картах.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col relative group hover:border-brand-500/30 transition-colors">
+                    <div class="text-brand-400 mb-4 flex space-x-1 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm mb-6 flex-grow line-clamp-6">
+                        Хочу выразить огромную благодарность сервису «Бест Вей» на улице Родионова и лично управляющей Анжеле за обслуживание моего Hyundai Tucson! Никакого «впаривания»! Только честная диагностика и прозрачная смета. Скорость и качество- сделали всё четко. Теперь только сюда!
+                    </p>
+                    <div class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto">
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Александр</h4>
+                            <p class="text-xs text-gray-500">04.07.2026</p>
+                        </div>
+                        <i class="fa-brands fa-yandex text-red-500 text-2xl opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col relative group hover:border-brand-500/30 transition-colors">
+                    <div class="text-brand-400 mb-4 flex space-x-1 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm mb-6 flex-grow line-clamp-6">
+                        В самую жару отказался работать кондиционер, обзвонила несколько автосервисов, быстро ответил только БЕСТВЕЙ на Бринского. Консультант озвучил цену, через полтора часа получила авто с работающим кондиционером. Благодарю за отличную работу!
+                    </p>
+                    <div class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto">
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Куприянова Марина</h4>
+                            <p class="text-xs text-gray-500">Лето 2026</p>
+                        </div>
+                        <i class="fa-brands fa-yandex text-red-500 text-2xl opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col relative group hover:border-brand-500/30 transition-colors">
+                    <div class="text-brand-400 mb-4 flex space-x-1 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm mb-6 flex-grow line-clamp-6">
+                        Сегодня были в сервисе на Родионова. Машине провели диагностику, получили рекомендации для ремонта. Услуги не навязывают, говорят всё чётко и по факту. Цены достаточно доступные. Спасибо за качественное обслуживание.
+                    </p>
+                    <div class="flex items-center justify-between border-t border-white/10 pt-4 mt-auto">
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Колганов Андрей</h4>
+                            <p class="text-xs text-gray-500">04.04.2026</p>
+                        </div>
+                        <i class="fa-brands fa-yandex text-red-500 text-2xl opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center text-gray-400 hover:text-brand-400 transition-colors">
+                    Посмотреть все отзывы <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacts" class="bg-dark-900 border-t border-white/10 pt-16 pb-8 relative overflow-hidden">
+        <div class="absolute -top-[200px] left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-[400px] bg-brand-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                
+                <!-- Brand & Info -->
+                <div>
+                    <div class="mb-6">
+                        <span class="text-3xl font-heading font-extrabold tracking-tighter text-white">БЕСТ<span class="text-gradient">ВЕЙ</span></span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-6">Автосервис по ремонту иномарок в Нижнем Новгороде. С 2014 года заботимся о безопасности и комфорте автовладельцев.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://vk.com/bestwayservice" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#0077FF] hover:text-white transition-all">
+                            <i class="fa-brands fa-vk"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand-500 hover:text-white transition-all">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Навигация</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">О компании</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Акции и скидки</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Услуги и прайс-лист</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Бонусная программа</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Личный кабинет</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Полезные статьи</a></li>
+                    </ul>
+                </div>
+
+                <!-- Addresses -->
+                <div class="lg:col-span-2">
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Наши автотехцентры</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4 text-sm text-gray-400">
+                        <div class="flex items-start space-x-2">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-500/70"></i>
+                            <span>Бринского, 8</span>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-500/70"></i>
+                            <span>Родионова, 163</span>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-500/70"></i>
+                            <span>Куйбышева, 32</span>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-500/70"></i>
+                            <span>Академика Сахарова, 3</span>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-500/70"></i>
+                            <span>Коминтерна, 47а1</span>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-500/70"></i>
+                            <span>Чонгарская, 28а (Слесарный / Кузовной)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:space-x-8 text-sm">
+                        <div class="mb-2 sm:mb-0">
+                            <p class="text-white font-medium">Режим работы СТО:</p>
+                            <p class="text-gray-400">ПН-ПТ: 8:00-20:00, СБ-ВС: 9:00-18:00</p>
+                        </div>
+                        <div>
+                            <p class="text-white font-medium">Кузовной ремонт:</p>
+                            <p class="text-gray-400">ПН-ПТ: 9:00-18:00, СБ: 9:00-16:00, ВС: Выходной</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Bottom line -->
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-xs text-gray-500">
+                <p>&copy; 2014-2026 Автосервис «БестВей». Все права защищены.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white transition-colors">Политика конфиденциальности</a>
+                    <a href="#" class="hover:text-white transition-colors">Пользовательское соглашение</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
