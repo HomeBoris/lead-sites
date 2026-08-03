@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Альпина | Премиальное строительство и ремонт</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config for Custom Colors & Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            white: '#ffffff',
+                            lightGray: '#f3f4f6',
+                            darkGray: '#1f2937',
+                            accent: '#065f46', // Dark emerald
+                            accentHover: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom Utilities for smooth animations and glassmorphism fallbacks */
+        body {
+            background-color: #f3f4f6;
+            background-image: radial-gradient(circle at top right, #e5e7eb 0%, #f3f4f6 100%);
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .glass-dark {
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="text-brand-darkGray antialiased flex flex-col min-h-screen relative selection:bg-brand-accent selection:text-white">
+
+    <!-- Developer Watermark -->
+    <a href="https://t.me/pootlord" target="_blank" rel="noopener noreferrer" 
+       class="fixed bottom-4 left-4 z-50 glass-dark text-white px-5 py-2.5 rounded-full shadow-2xl flex items-center gap-2 hover:scale-105 hover:shadow-brand-accent/20 transition-all duration-300 group">
+        <i class="fa-brands fa-telegram text-brand-accent group-hover:text-white transition-colors"></i>
+        <span class="text-sm font-semibold tracking-wide">Заказать сайт</span>
+    </a>
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full top-0 z-40 glass-panel shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-xl bg-brand-accent text-white flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform duration-300">
+                        <i class="fa-solid fa-building text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold tracking-tight text-brand-darkGray group-hover:text-brand-accent transition-colors">АЛЬПИНА</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#services" class="text-sm font-semibold text-gray-600 hover:text-brand-accent transition-colors">Услуги</a>
+                    <a href="#about" class="text-sm font-semibold text-gray-600 hover:text-brand-accent transition-colors">О компании</a>
+                    <a href="#contact" class="text-sm font-semibold text-gray-600 hover:text-brand-accent transition-colors">Контакты</a>
+                    <a href="#contact" class="bg-brand-accent text-white px-6 py-2.5 rounded-full font-medium shadow-lg shadow-brand-accent/30 hover:bg-brand-accentHover hover:-translate-y-0.5 transition-all duration-300">
+                        Оставить заявку
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="md:hidden text-brand-darkGray hover:text-brand-accent focus:outline-none p-2 transition-colors">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/20 absolute w-full left-0 origin-top animate-fade-in-down shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
+                <a href="#services" class="mobile-link block px-4 py-3 text-base font-medium text-gray-800 hover:bg-brand-accent/10 hover:text-brand-accent rounded-xl transition-colors">Услуги</a>
+                <a href="#about" class="mobile-link block px-4 py-3 text-base font-medium text-gray-800 hover:bg-brand-accent/10 hover:text-brand-accent rounded-xl transition-colors">О компании</a>
+                <a href="#contact" class="mobile-link block px-4 py-3 text-base font-medium text-gray-800 hover:bg-brand-accent/10 hover:text-brand-accent rounded-xl transition-colors">Контакты</a>
+                <a href="#contact" class="mobile-link mt-4 text-center block w-full bg-brand-accent text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:bg-brand-accentHover transition-colors">
+                    Оставить заявку
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://alpinashop.ru/.abcp-show-bimg/JtrZEgEQAgTv6R7n6fPpJdAxKsxwyG2P3exizapLR8PkbrMwvVREr9yZRoe1PpRGfBJ9HAAyWtV37K8tPnba2crjaKgAs9qMpXDnL4jnZAnG38NLiJmm2UkBhP1Bduj2Dd1sydhzbKHgKvEsPoVQMQtsu8J3pMeJ6AkGTZaPGnZ6ovtxvxXVRSKJfK3CK679caZCmwB2qowjGuuZZocWhCFz6" 
+                 alt="Фон Альпина" 
+                 class="w-full h-full object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite] blur-sm opacity-90" />
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-darkGray/80 via-brand-darkGray/60 to-brand-lightGray"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10 lg:px-8 mt-12 md:mt-0">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="glass-dark p-8 md:p-16 rounded-[2rem] md:rounded-[3rem] shadow-2xl border border-white/10 transform transition-all duration-700 hover:shadow-brand-accent/20">
+                    <span class="inline-block py-1.5 px-4 rounded-full bg-brand-accent/20 text-brand-accentLight border border-brand-accent/30 text-xs md:text-sm font-bold uppercase tracking-widest mb-6 backdrop-blur-md">
+                        Элитные решения
+                    </span>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 tracking-tight">
+                        Создаем пространства,<br/>в которых <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-200">хочется жить</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                        Безупречное качество, строгий контроль и премиальные материалы. «Альпина» — ваш надежный партнер в мире капитального строительства и элитного ремонта.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <a href="#services" class="w-full sm:w-auto bg-brand-accent text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg shadow-brand-accent/40 hover:-translate-y-1 hover:bg-brand-accentHover transition-all duration-300 flex items-center justify-center gap-2">
+                            Наши услуги <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="#contact" class="w-full sm:w-auto glass-panel text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:-translate-y-1 hover:bg-white/20 transition-all duration-300 !bg-white/10 !border-white/20">
+                            Обсудить проект
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats / Trust Section -->
+    <section class="relative z-20 -mt-12 md:-mt-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="glass-panel rounded-3xl p-8 md:p-12 shadow-2xl grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                <div class="pt-4 md:pt-0 hover:scale-105 transition-transform duration-300">
+                    <div class="text-4xl font-black text-brand-accent mb-2">15+</div>
+                    <div class="text-sm text-gray-500 font-medium uppercase tracking-wider">Лет на рынке</div>
+                </div>
+                <div class="pt-4 md:pt-0 hover:scale-105 transition-transform duration-300">
+                    <div class="text-4xl font-black text-brand-accent mb-2">300+</div>
+                    <div class="text-sm text-gray-500 font-medium uppercase tracking-wider">Успешных проектов</div>
+                </div>
+                <div class="pt-4 md:pt-0 hover:scale-105 transition-transform duration-300">
+                    <div class="text-4xl font-black text-brand-accent mb-2">100%</div>
+                    <div class="text-sm text-gray-500 font-medium uppercase tracking-wider">Сдача в срок</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative z-10">
+        <div class="container mx-auto px-4 lg:px-8 max-w-7xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-brand-darkGray mb-4">Комплексный подход</h2>
+                <div class="w-24 h-1.5 bg-brand-accent mx-auto rounded-full"></div>
+                <p class="mt-6 text-gray-500 text-lg max-w-2xl mx-auto">Мы берем на себя все этапы работы: от создания архитектурного проекта до финальной уборки перед вашим переездом.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/10 transition-all duration-300 cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-3xl mb-6 group-hover:scale-110 group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-brand-darkGray">Проектирование</h3>
+                    <p class="text-gray-600 leading-relaxed">Индивидуальные архитектурные и дизайн-проекты. Детальная проработка каждого квадратного метра с учетом ваших пожеланий.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/10 transition-all duration-300 cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-3xl mb-6 group-hover:scale-110 group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-hammer"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-brand-darkGray">Капитальный ремонт</h3>
+                    <p class="text-gray-600 leading-relaxed">Полная реконструкция объектов, замена инженерных сетей, перепланировка и создание надежного фундамента для вашего комфорта.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/10 transition-all duration-300 cursor-pointer">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-3xl mb-6 group-hover:scale-110 group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-brand-darkGray">Премиум-отделка</h3>
+                    <p class="text-gray-600 leading-relaxed">Использование эксклюзивных материалов, идеальная геометрия стен и ювелирная точность в реализации дизайнерских решений.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white/40 backdrop-blur-sm border-y border-white/50">
+        <div class="container mx-auto px-4 lg:px-8 max-w-7xl">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="w-full lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-brand-accent/20 blur-2xl rounded-full"></div>
+                        <img src="https://alpinashop.ru/.abcp-show-bimg/JtrZEgEQAgTv6R7n6fPpJdAxKsxwyG2P3exizapLR8PkbrMwvVREr9yZRoe1PpRGfBJ9HAAyWtV37K8tPnba2crjaKgAs9qMpXDnL4jnZAnG38NLiJmm2UkBhP1Bduj2Dd1sydhzbKHgKvEsPoVQMQtsu8J3pMeJ6AkGTZaPGnZ6ovtxvxXVRSKJfK3CK679caZCmwB2qowjGuuZZocWhCFz6" 
+                             alt="Альпина в работе" 
+                             class="relative z-10 w-full h-[500px] object-cover rounded-[3rem] shadow-2xl border-4 border-white" />
+                        
+                        <!-- Floating badge -->
+                        <div class="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 z-20 glass-panel p-6 rounded-3xl shadow-xl max-w-[200px] animate-bounce hover:animate-none transition-all duration-300">
+                            <i class="fa-solid fa-shield-halved text-3xl text-brand-accent mb-2"></i>
+                            <div class="font-bold text-gray-800">Гарантия 5 лет</div>
+                            <div class="text-xs text-gray-500">На все виды работ</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 space-y-8">
+                    <div>
+                        <h2 class="text-3xl md:text-5xl font-bold text-brand-darkGray mb-4">Больше, чем просто стройка</h2>
+                        <div class="w-24 h-1.5 bg-brand-accent rounded-full mb-6"></div>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            Компания «Альпина» разрушает стереотипы о ремонте. Мы создали систему, при которой процесс строительства становится для клиента прозрачным, предсказуемым и спокойным.
+                        </p>
+                    </div>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4 p-4 glass-panel rounded-2xl hover:bg-white/80 transition-colors">
+                            <div class="w-10 h-10 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0 mt-1">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-lg">Строгий технадзор</h4>
+                                <p class="text-gray-500 text-sm mt-1">Каждый этап контролируется независимым инженером.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4 p-4 glass-panel rounded-2xl hover:bg-white/80 transition-colors">
+                            <div class="w-10 h-10 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0 mt-1">
+                                <i class="fa-solid fa-file-contract"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-lg">Фиксированная смета</h4>
+                                <p class="text-gray-500 text-sm mt-1">Цена закрепляется в договоре и не меняется в процессе.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4 p-4 glass-panel rounded-2xl hover:bg-white/80 transition-colors">
+                            <div class="w-10 h-10 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0 mt-1">
+                                <i class="fa-solid fa-video"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-lg">Онлайн-отчетность</h4>
+                                <p class="text-gray-500 text-sm mt-1">Регулярные фото и видео отчеты с объекта в ваш мессенджер.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-accent/10 blur-[100px] rounded-full"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-300/10 blur-[100px] rounded-full"></div>
+
+        <div class="container mx-auto px-4 lg:px-8 max-w-5xl relative z-10">
+            <div class="glass-dark rounded-[3rem] p-8 md:p-16 shadow-2xl flex flex-col md:flex-row gap-12 items-center">
+                
+                <div class="w-full md:w-5/12 text-white">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">Готовы обсудить ваш проект?</h2>
+                    <p class="text-gray-300 mb-8">Оставьте заявку, и наш ведущий инженер свяжется с вами для бесплатной консультации и расчета стоимости.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-accentLight">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-400">Телефон</div>
+                                <a href="tel:+70000000000" class="text-lg font-bold hover:text-brand-accentLight transition-colors">+7 (495) 000-00-00</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-accentLight">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-400">Email</div>
+                                <a href="mailto:info@alpina-build.ru" class="text-lg font-bold hover:text-brand-accentLight transition-colors">info@alpina-build.ru</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-7/12">
+                    <form class="glass-panel p-8 rounded-3xl space-y-6 shadow-xl">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Оставить заявку</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Ваше имя</label>
+                                <input type="text" placeholder="Иван Иванов" class="w-full px-5 py-4 rounded-xl bg-white/50 border border-white focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 outline-none transition-all placeholder-gray-400">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Телефон</label>
+                                <input type="tel" placeholder="+7 (999) 000-00-00" class="w-full px-5 py-4 rounded-xl bg-white/50 border border-white focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 outline-none transition-all placeholder-gray-400">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Тип работ</label>
+                                <select class="w-full px-5 py-4 rounded-xl bg-white/50 border border-white focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 outline-none transition-all text-gray-700">
+                                    <option>Капитальный ремонт</option>
+                                    <option>Строительство дома</option>
+                                    <option>Проектирование</option>
+                                    <option>Другое</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-accent text-white font-bold text-lg py-4 rounded-xl shadow-lg hover:bg-brand-accentHover hover:shadow-brand-accent/30 hover:-translate-y-1 transition-all duration-300">
+                            Отправить заявку
+                        </button>
+                        
+                        <p class="text-xs text-gray-500 text-center mt-4">
+                            Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
+                        </p>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-darkGray text-gray-400 py-12 border-t border-white/10 mt-auto">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <div class="flex items-center gap-2 group cursor-pointer">
+                    <div class="w-8 h-8 rounded-lg bg-brand-accent text-white flex items-center justify-center">
+                        <i class="fa-solid fa-building text-sm"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-white group-hover:text-brand-accentLight transition-colors">АЛЬПИНА</span>
+                </div>
+
+                <div class="text-sm text-center md:text-left">
+                    &copy; 2026 Компания «Альпина». Все права защищены. <br class="md:hidden"/> Профессиональное строительство и ремонт.
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent hover:text-white transition-all duration-300">
+                        <i class="fa-brands fa-vk"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent hover:text-white transition-all duration-300">
+                        <i class="fa-brands fa-telegram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent hover:text-white transition-all duration-300">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            const icon = btn.querySelector('i');
+
+            function toggleMenu() {
+                menu.classList.toggle('hidden');
+                if(menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            }
+
+            btn.addEventListener('click', toggleMenu);
+
+            // Close menu when clicking a link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if(!menu.classList.contains('hidden')) {
+                        toggleMenu();
+                    }
+                });
+            });
+        });
+
+        // Add smooth style for mobile menu appearance
+        tailwind.config.theme.extend.animation = {
+            'fade-in-down': 'fadeInDown 0.3s ease-out',
+        };
+        tailwind.config.theme.extend.keyframes = {
+            fadeInDown: {
+                '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+        };
+    </script>
+</body>
+</html>
