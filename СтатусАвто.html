@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статус Авто | Элитный автосервис в Тушино</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            purple: '#6A0DAD',
+                            darkpurple: '#4B0082',
+                            neon: '#7CFC00',
+                            dark: '#05030A',
+                            surface: 'rgba(255, 255, 255, 0.03)',
+                            border: 'rgba(255, 255, 255, 0.08)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right bottom, rgba(5, 3, 10, 0.9), rgba(75, 0, 130, 0.7)), url('https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for premium feel */
+        body {
+            background-color: #05030A;
+            color: #ffffff;
+        }
+        
+        .glass-panel {
+            background: var(--tw-colors-brand-surface);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--tw-colors-brand-border);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-neon {
+            background: linear-gradient(135deg, #7CFC00 0%, #4ade80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Neon Glow Button */
+        .btn-neon {
+            background: #7CFC00;
+            color: #05030A;
+            box-shadow: 0 0 15px rgba(124, 252, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-neon:hover {
+            box-shadow: 0 0 25px rgba(124, 252, 0, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            border-color: #7CFC00;
+            color: #7CFC00;
+            box-shadow: 0 0 15px rgba(124, 252, 0, 0.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #05030A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4B0082;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6A0DAD;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-brand-neon selection:text-black">
+
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b-0 border-white/5 transition-all duration-300" id="header">
+        <div class="container mx-auto px-4 md:px-8 py-4">
+            <div class="flex justify-between items-center">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-purple to-brand-darkpurple flex items-center justify-center shadow-[0_0_15px_rgba(106,13,173,0.5)] group-hover:shadow-[0_0_20px_rgba(124,252,0,0.4)] transition-all duration-300">
+                        <i class="fa-solid fa-car text-brand-neon"></i>
+                    </div>
+                    <span class="font-display font-bold text-xl md:text-2xl tracking-wide">СТАТУС<span class="text-brand-neon">АВТО</span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex items-center gap-8 font-sans text-sm font-medium">
+                    <a href="#services" class="text-gray-300 hover:text-brand-neon transition-colors">Услуги</a>
+                    <a href="#about" class="text-gray-300 hover:text-brand-neon transition-colors">О нас</a>
+                    <a href="#stats" class="text-gray-300 hover:text-brand-neon transition-colors">Статистика</a>
+                    <a href="#contacts" class="text-gray-300 hover:text-brand-neon transition-colors">Контакты</a>
+                </nav>
+
+                <!-- Contacts & CTA (Desktop) -->
+                <div class="hidden lg:flex items-center gap-6">
+                    <div class="text-right">
+                        <a href="tel:+74959480101" class="block font-display font-bold text-lg hover:text-brand-neon transition-colors">+7 495 948 01 01</a>
+                        <span class="text-xs text-gray-400">Тушино, без выходных</span>
+                    </div>
+                    <a href="#callback" class="btn-neon font-sans font-semibold px-6 py-2.5 rounded-md text-sm">
+                        Заказать звонок
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-2xl text-white hover:text-brand-neon transition-colors focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-brand-dark/95 backdrop-blur-xl border-b border-brand-border py-6 px-4 flex-col gap-6 shadow-2xl">
+            <nav class="flex flex-col gap-4 font-display text-lg">
+                <a href="#services" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors border-b border-white/5 pb-2">Услуги</a>
+                <a href="#about" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors border-b border-white/5 pb-2">О нас</a>
+                <a href="#stats" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors border-b border-white/5 pb-2">Статистика</a>
+                <a href="#contacts" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors border-b border-white/5 pb-2">Контакты</a>
+            </nav>
+            <div class="flex flex-col gap-4 pt-2">
+                <a href="tel:+74959480101" class="font-display font-bold text-2xl text-center">+7 495 948 01 01</a>
+                <a href="#callback" class="mobile-link btn-neon font-sans font-semibold w-full py-3 rounded-md text-center text-lg">
+                    Заказать звонок
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed">
+        <!-- Overlay elements -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/50 to-brand-dark"></div>
+        <div class="absolute top-1/4 right-0 w-96 h-96 bg-brand-purple/30 rounded-full blur-[120px] mix-blend-screen pointer-events-none"></div>
+        <div class="absolute bottom-1/4 left-0 w-96 h-96 bg-brand-neon/10 rounded-full blur-[120px] mix-blend-screen pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <div class="inline-block px-4 py-1.5 rounded-full glass-panel mb-6 border-brand-neon/30 text-brand-neon font-medium text-sm md:text-base animate-[pulse_3s_ease-in-out_infinite]">
+                    <i class="fa-solid fa-shield-halved mr-2"></i> Сертифицированная станция в Тушино
+                </div>
+                
+                <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-white drop-shadow-lg">
+                    БЕЗУПРЕЧНЫЙ СЕРВИС <br>
+                    <span class="text-gradient">ДЛЯ ВАШЕГО АВТО</span>
+                </h1>
+                
+                <p class="font-sans text-lg md:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed">
+                    Премиальное техническое обслуживание и кузовной ремонт любой сложности. С отметкой в сервисной книжке — <span class="text-white font-medium border-b border-brand-neon">без потери дилерской гарантии</span>.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 sm:items-center">
+                    <a href="#callback" class="btn-neon text-center font-display font-bold text-lg px-8 py-4 rounded-lg flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        Записаться онлайн
+                    </a>
+                    <a href="#services" class="btn-outline text-center font-display font-semibold text-white px-8 py-4 rounded-lg flex items-center justify-center gap-3">
+                        Смотреть прайс
+                    </a>
+                </div>
+
+                <div class="mt-12 flex items-center gap-4 text-sm font-sans text-gray-400">
+                    <div class="flex -space-x-3">
+                        <img class="w-10 h-10 rounded-full border-2 border-brand-dark" src="https://images.unsplash.com/photo-1534330207526-8e81f10ece37?auto=format&fit=crop&w=100&q=80" alt="Клиент">
+                        <img class="w-10 h-10 rounded-full border-2 border-brand-dark" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Клиент">
+                        <div class="w-10 h-10 rounded-full border-2 border-brand-dark bg-brand-purple flex items-center justify-center text-white text-xs font-bold">+5k</div>
+                    </div>
+                    <p>Более 5000 постоянных клиентов <br>доверяют нам свои авто</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages -->
+    <section class="py-12 bg-brand-dark -mt-10 relative z-20">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <!-- Adv 1 -->
+                <div class="glass-panel p-6 rounded-2xl flex items-start gap-4 group hover:-translate-y-2 transition-transform duration-300 hover:border-brand-purple">
+                    <div class="w-12 h-12 rounded-xl bg-brand-purple/20 flex items-center justify-center flex-shrink-0 text-brand-neon group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-percent text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-lg mb-1">Скидка 10%</h4>
+                        <p class="text-sm text-gray-400">На первое посещение нашего сервиса</p>
+                    </div>
+                </div>
+                <!-- Adv 2 -->
+                <div class="glass-panel p-6 rounded-2xl flex items-start gap-4 group hover:-translate-y-2 transition-transform duration-300 hover:border-brand-purple">
+                    <div class="w-12 h-12 rounded-xl bg-brand-purple/20 flex items-center justify-center flex-shrink-0 text-brand-neon group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-boxes-stacked text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-lg mb-1">Свой склад</h4>
+                        <p class="text-sm text-gray-400">Собственный склад-магазин запчастей</p>
+                    </div>
+                </div>
+                <!-- Adv 3 -->
+                <div class="glass-panel p-6 rounded-2xl flex items-start gap-4 group hover:-translate-y-2 transition-transform duration-300 hover:border-brand-purple">
+                    <div class="w-12 h-12 rounded-xl bg-brand-purple/20 flex items-center justify-center flex-shrink-0 text-brand-neon group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-user-gear text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-lg mb-1">Профи</h4>
+                        <p class="text-sm text-gray-400">Сертифицированные мастера с опытом</p>
+                    </div>
+                </div>
+                <!-- Adv 4 -->
+                <div class="glass-panel p-6 rounded-2xl flex items-start gap-4 group hover:-translate-y-2 transition-transform duration-300 hover:border-brand-purple">
+                    <div class="w-12 h-12 rounded-xl bg-brand-purple/20 flex items-center justify-center flex-shrink-0 text-brand-neon group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-stopwatch text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-lg mb-1">Без очередей</h4>
+                        <p class="text-sm text-gray-400">Строгое соблюдение сроков и времени записи</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-brand-dark relative">
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-2/3 bg-gradient-radial from-brand-purple/10 to-transparent blur-3xl pointer-events-none"></div>
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                
+                <div class="relative group">
+                    <div class="absolute -inset-2 bg-gradient-to-r from-brand-purple to-brand-neon rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+                    <img src="https://images.unsplash.com/photo-1613214149922-f1809c99b414?auto=format&fit=crop&w=800&q=80" alt="Мастер за работой" class="relative rounded-2xl object-cover h-[500px] w-full shadow-2xl grayscale-[30%] group-hover:grayscale-0 transition-all duration-500">
+                    
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-6 -left-6 glass-panel p-5 rounded-xl flex items-center gap-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                        <div class="text-brand-neon text-4xl"><i class="fa-solid fa-award"></i></div>
+                        <div>
+                            <div class="font-display font-bold text-2xl">25 лет</div>
+                            <div class="text-sm text-gray-400 uppercase tracking-wider">экспертности</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">
+                        ОБСЛУЖИВАНИЕ УРОВНЯ <span class="text-neon">ПРЕМИУМ</span> В ТУШИНО
+                    </h2>
+                    <p class="text-gray-300 mb-6 font-sans leading-relaxed text-lg">
+                        Специалисты <span class="text-white font-semibold">«Статус-авто»</span> обладают колоссальным опытом в техническом обслуживании, сложной диагностике и ремонте иномарок всех классов. Мы не просто чиним автомобили — мы обеспечиваем вашу безопасность на дороге.
+                    </p>
+                    <p class="text-gray-400 mb-8 font-sans leading-relaxed">
+                        Мы являемся доверенным партнером ведущих страховых компаний: <strong class="text-white">«АльфаСтрахование», «Согласие», «ВТБ-Страхование», «Росгосстрах»</strong>, осуществляя все виды ремонта застрахованных автомобилей по самым высоким стандартам качества с использованием профессионального оборудования.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-check-double text-brand-neon mt-1"></i>
+                            <div>
+                                <h5 class="font-display font-bold text-white mb-1">Точный расчёт</h5>
+                                <p class="text-sm text-gray-400">Прозрачные и демократичные цены без скрытых накруток.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-check-double text-brand-neon mt-1"></i>
+                            <div>
+                                <h5 class="font-display font-bold text-white mb-1">Официальные гарантии</h5>
+                                <p class="text-sm text-gray-400">60 дней на работы, 30 дней на оригинальные запчасти.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-[#080514] border-t border-brand-border relative overflow-hidden">
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-neon font-display font-bold tracking-widest uppercase text-sm mb-2 block">Комплексный подход</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">НАШИ <span class="text-gradient">УСЛУГИ</span></h2>
+                <p class="text-gray-400 text-lg">Полный спектр услуг по ремонту и обслуживанию автомобилей на сертифицированном оборудовании.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Service Card -->
+                <div class="glass-panel p-8 rounded-2xl group hover:bg-brand-purple/10 hover:border-brand-purple/50 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-full bg-brand-dark flex items-center justify-center border border-white/10 mb-6 group-hover:scale-110 group-hover:border-brand-neon transition-all">
+                        <i class="fa-solid fa-oil-can text-2xl text-gray-300 group-hover:text-brand-neon"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-3 text-white">Работы по ТО</h3>
+                    <p class="text-gray-400 text-sm mb-6">Регулярное техническое обслуживание, замена масел, фильтров и технических жидкостей по регламенту.</p>
+                    <a href="#callback" class="text-brand-neon font-medium text-sm flex items-center gap-2 group/link">
+                        Узнать цену <i class="fa-solid fa-arrow-right group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card -->
+                <div class="glass-panel p-8 rounded-2xl group hover:bg-brand-purple/10 hover:border-brand-purple/50 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-full bg-brand-dark flex items-center justify-center border border-white/10 mb-6 group-hover:scale-110 group-hover:border-brand-neon transition-all">
+                        <i class="fa-solid fa-temperature-arrow-down text-2xl text-gray-300 group-hover:text-brand-neon"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-3 text-white">Система охлаждения</h3>
+                    <p class="text-gray-400 text-sm mb-6">Промывка радиаторов, замена антифриза, помп и термостатов для защиты ДВС от перегрева.</p>
+                    <a href="#callback" class="text-brand-neon font-medium text-sm flex items-center gap-2 group/link">
+                        Узнать цену <i class="fa-solid fa-arrow-right group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card -->
+                <div class="glass-panel p-8 rounded-2xl group hover:bg-brand-purple/10 hover:border-brand-purple/50 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-full bg-brand-dark flex items-center justify-center border border-white/10 mb-6 group-hover:scale-110 group-hover:border-brand-neon transition-all">
+                        <i class="fa-solid fa-laptop-medical text-2xl text-gray-300 group-hover:text-brand-neon"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-3 text-white">Компьютерная диагностика</h3>
+                    <p class="text-gray-400 text-sm mb-6">Чтение ошибок, адаптация узлов, глубокая проверка электронных систем дилерским сканером.</p>
+                    <a href="#callback" class="text-brand-neon font-medium text-sm flex items-center gap-2 group/link">
+                        Узнать цену <i class="fa-solid fa-arrow-right group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card -->
+                <div class="glass-panel p-8 rounded-2xl group hover:bg-brand-purple/10 hover:border-brand-purple/50 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-full bg-brand-dark flex items-center justify-center border border-white/10 mb-6 group-hover:scale-110 group-hover:border-brand-neon transition-all">
+                        <i class="fa-solid fa-car-side text-2xl text-gray-300 group-hover:text-brand-neon"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-3 text-white">Ходовая часть и сход-развал</h3>
+                    <p class="text-gray-400 text-sm mb-6">Ремонт подвески любой сложности. 3D сход-развал для идеальной управляемости.</p>
+                    <a href="#callback" class="text-brand-neon font-medium text-sm flex items-center gap-2 group/link">
+                        Узнать цену <i class="fa-solid fa-arrow-right group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card -->
+                <div class="glass-panel p-8 rounded-2xl group hover:bg-brand-purple/10 hover:border-brand-purple/50 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-full bg-brand-dark flex items-center justify-center border border-white/10 mb-6 group-hover:scale-110 group-hover:border-brand-neon transition-all">
+                        <i class="fa-solid fa-circle-exclamation text-2xl text-gray-300 group-hover:text-brand-neon"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-3 text-white">Тормозная система и рулевое</h3>
+                    <p class="text-gray-400 text-sm mb-6">Замена колодок, дисков, реек. Ваша безопасность — наш главный приоритет.</p>
+                    <a href="#callback" class="text-brand-neon font-medium text-sm flex items-center gap-2 group/link">
+                        Узнать цену <i class="fa-solid fa-arrow-right group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card -->
+                <div class="glass-panel p-8 rounded-2xl group hover:bg-brand-purple/10 hover:border-brand-purple/50 transition-all duration-300 relative overflow-hidden">
+                    <!-- Accent background for body repair -->
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-brand-purple/20 rounded-full blur-2xl"></div>
+                    
+                    <div class="w-14 h-14 rounded-full bg-brand-dark flex items-center justify-center border border-white/10 mb-6 group-hover:scale-110 group-hover:border-brand-neon transition-all relative z-10">
+                        <i class="fa-solid fa-spray-can-sparkles text-2xl text-gray-300 group-hover:text-brand-neon"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-3 text-white relative z-10">Кузовной ремонт и окрас</h3>
+                    <p class="text-gray-400 text-sm mb-6 relative z-10">Восстановление геометрии, удаление вмятин и профессиональная покраска в камере.</p>
+                    <a href="#callback" class="text-brand-neon font-medium text-sm flex items-center gap-2 group/link relative z-10">
+                        Узнать цену <i class="fa-solid fa-arrow-right group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-20 relative bg-brand-dark">
+        <!-- Background Image overlay with parallax feel -->
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1590496794008-383c8070b257?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-fixed opacity-10 mix-blend-luminosity"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark"></div>
+
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">НАША <span class="text-neon">СТАТИСТИКА</span></h2>
+                <p class="text-gray-400">Факты, которые говорят сами за себя</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
+                <div class="glass-panel p-6 md:p-8 rounded-2xl border-brand-purple/30 shadow-[0_0_30px_rgba(75,0,130,0.15)]">
+                    <div class="text-4xl md:text-5xl font-display font-bold text-white mb-2">25</div>
+                    <div class="text-brand-neon text-sm md:text-base font-medium uppercase tracking-wider">Лет опыта</div>
+                </div>
+                <div class="glass-panel p-6 md:p-8 rounded-2xl border-brand-purple/30 shadow-[0_0_30px_rgba(75,0,130,0.15)]">
+                    <div class="text-4xl md:text-5xl font-display font-bold text-white mb-2">27</div>
+                    <div class="text-brand-neon text-sm md:text-base font-medium uppercase tracking-wider">Специалистов</div>
+                </div>
+                <div class="glass-panel p-6 md:p-8 rounded-2xl border-brand-purple/30 shadow-[0_0_30px_rgba(75,0,130,0.15)]">
+                    <div class="text-4xl md:text-5xl font-display font-bold text-white mb-2">5000+</div>
+                    <div class="text-brand-neon text-sm md:text-base font-medium uppercase tracking-wider">Клиентов</div>
+                </div>
+                <div class="glass-panel p-6 md:p-8 rounded-2xl border-brand-purple/30 shadow-[0_0_30px_rgba(75,0,130,0.15)]">
+                    <div class="text-4xl md:text-5xl font-display font-bold text-white mb-2">19к+</div>
+                    <div class="text-brand-neon text-sm md:text-base font-medium uppercase tracking-wider">Авто с 2016г</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts & Form Section -->
+    <section id="contacts" class="py-20 bg-[#080514] border-t border-brand-border">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+                
+                <!-- Contact Info -->
+                <div>
+                    <span class="text-brand-neon font-display font-bold tracking-widest uppercase text-sm mb-2 block">Ждем вас</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-8">КОНТАКТЫ И <span class="text-gradient">АДРЕС</span></h2>
+                    
+                    <div class="space-y-6 mb-10">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center flex-shrink-0 text-brand-neon">
+                                <i class="fa-solid fa-location-dot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Адрес</h4>
+                                <p class="text-gray-400">г. Москва, ул. Саломеи Нерис, д.4 к.3<br>(район Тушино)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center flex-shrink-0 text-brand-neon">
+                                <i class="fa-solid fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Режим работы</h4>
+                                <p class="text-gray-400">Пн-Пт: 09:00 - 21:00<br>Сб-Вс: 10:00 - 20:00</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center flex-shrink-0 text-brand-neon">
+                                <i class="fa-solid fa-phone text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Телефоны</h4>
+                                <a href="tel:+74959480101" class="block text-gray-400 hover:text-white transition-colors">+7 (495) 948-01-01</a>
+                                <a href="tel:+79654493399" class="block text-gray-400 hover:text-white transition-colors">+7 (965) 449-33-99</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center flex-shrink-0 text-brand-neon">
+                                <i class="fa-solid fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">E-mail</h4>
+                                <a href="mailto:Priemka@statusavto-service.ru" class="block text-gray-400 hover:text-brand-neon transition-colors">Priemka@statusavto-service.ru</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder for Map, using styled div -->
+                    <div class="w-full h-64 rounded-2xl bg-brand-dark border border-brand-border overflow-hidden relative group">
+                        <!-- Simulate map visual -->
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-30 grayscale group-hover:grayscale-0 transition-all duration-500"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <a href="#" class="btn-neon font-sans font-semibold px-6 py-2 rounded-md shadow-lg flex items-center gap-2">
+                                <i class="fa-solid fa-map-location-dot"></i> Открыть в картах
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Callback Form -->
+                <div id="callback" class="relative">
+                    <!-- Glow effect behind form -->
+                    <div class="absolute -inset-1 bg-gradient-to-r from-brand-purple to-brand-neon rounded-3xl blur opacity-20"></div>
+                    
+                    <div class="glass-panel p-8 md:p-10 rounded-3xl relative z-10 h-full flex flex-col justify-center bg-brand-dark/80">
+                        <div class="mb-8">
+                            <h3 class="font-display text-3xl font-bold mb-2">ЗАКАЗАТЬ ЗВОНОК</h3>
+                            <p class="text-gray-400 text-sm">Оставьте заявку, и наш мастер-приемщик перезвонит вам в течение 5 минут для консультации и расчета стоимости.</p>
+                        </div>
+                        
+                        <form action="#" class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Ваше имя</label>
+                                <input type="text" placeholder="Иван Иванов" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brand-neon focus:ring-1 focus:ring-brand-neon transition-colors">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Телефон</label>
+                                <input type="tel" placeholder="+7 (___) ___-__-__" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brand-neon focus:ring-1 focus:ring-brand-neon transition-colors">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Интересующая услуга (необязательно)</label>
+                                <select class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-brand-neon focus:ring-1 focus:ring-brand-neon transition-colors appearance-none">
+                                    <option value="" disabled selected>Выберите услуга</option>
+                                    <option value="to">Техническое обслуживание (ТО)</option>
+                                    <option value="kuzov">Кузовной ремонт и окрас</option>
+                                    <option value="diagnostika">Диагностика</option>
+                                    <option value="hodovaya">Ремонт ходовой части</option>
+                                    <option value="other">Другое</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="w-full btn-neon font-display font-bold text-lg py-4 rounded-lg mt-4 flex items-center justify-center gap-2 group">
+                                ОТПРАВИТЬ ЗАЯВКУ 
+                                <i class="fa-solid fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                            </button>
+
+                            <p class="text-xs text-gray-500 text-center mt-4">
+                                Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#030206] py-8 border-t border-white/5">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-car text-brand-neon text-xl"></i>
+                    <span class="font-display font-bold text-lg tracking-wide">СТАТУС<span class="text-brand-purple">АВТО</span></span>
+                </div>
+
+                <div class="text-gray-500 text-sm text-center md:text-left">
+                    © 2016-2026 "Статус-авто". Все права защищены.
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-gray-400 hover:text-brand-neon hover:border-brand-neon transition-all">
+                        <i class="fa-brands fa-vk text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-gray-400 hover:text-brand-neon hover:border-brand-neon transition-all">
+                        <i class="fa-brands fa-telegram text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-gray-400 hover:text-brand-neon hover:border-brand-neon transition-all">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Mobile Menu Toggle Script
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = btn.querySelector('i');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            // Toggle menu on button click
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('flex');
+                
+                if(menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+
+            // Close menu when a link is clicked
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    menu.classList.remove('flex');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            // Header background on scroll
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-lg');
+                    header.style.backgroundColor = 'rgba(5, 3, 10, 0.95)';
+                } else {
+                    header.classList.remove('shadow-lg');
+                    header.style.backgroundColor = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
