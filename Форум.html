@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форум-Авто | Премиальный автотехцентр и магазин запчастей</title>
+    <meta name="description" content="Форум-Авто — современный автосервис, автотехцентр и магазин автозапчастей в Альметьевске. Высший стандарт качества.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            900: '#061121', // Deep corporate navy
+                            800: '#0b1d3a', // Scandinavian blue
+                            700: '#15315b',
+                        },
+                        cyan: {
+                            accent: '#00e5ff', // Accent cyan/turquoise
+                            hover: '#00b3cc',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': 'linear-gradient(to right bottom, #061121, #0b1d3a)',
+                        'glass': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(21, 49, 91, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #00e5ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #061121; }
+        ::-webkit-scrollbar-thumb { background: #15315b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00e5ff; }
+    </style>
+</head>
+<body class="bg-hero-pattern min-h-screen text-slate-200 antialiased selection:bg-cyan-accent selection:text-navy-900">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass-panel mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-4 rounded-2xl transition-all duration-300 mx-4" id="nav-container">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="relative w-12 h-12 rounded-full overflow-hidden border-2 border-cyan-accent/50 group-hover:border-cyan-accent transition-colors duration-300">
+                        <img src="https://avatars.mds.yandex.net/get-yapic/25358/0d-5/islands-middle" alt="Форум-Авто Лого" class="object-cover w-full h-full">
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-white tracking-wider">ФОРУМ<span class="text-cyan-accent">-АВТО</span></h1>
+                        <p class="text-[10px] text-cyan-accent uppercase tracking-[0.2em] font-light">Автотехцентр</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-sm font-medium text-slate-300 hover:text-cyan-accent transition-colors">Каталог</a>
+                    <a href="#rating" class="text-sm font-medium text-slate-300 hover:text-cyan-accent transition-colors">Отзывы</a>
+                    <a href="#photos" class="text-sm font-medium text-slate-300 hover:text-cyan-accent transition-colors">Фото</a>
+                    <a href="#contacts" class="text-sm font-medium text-slate-300 hover:text-cyan-accent transition-colors">Контакты</a>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="https://yandex.ru/maps?ll=52.28813892806373786470430786721408367156982421875%2C54.8839749961407363798571168445050716400146484375&rtext=~54.8839749961407363798571168445050716400146484375%2C52.28813892806373786470430786721408367156982421875&mode=route&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D150235012174" 
+                       target="_blank"
+                       class="px-5 py-2.5 text-sm font-semibold rounded-full border border-slate-500/30 hover:border-cyan-accent text-white hover:text-cyan-accent transition-all duration-300">
+                        <i class="fa-solid fa-route mr-2"></i> Маршрут
+                    </a>
+                    <a href="https://wa.me/79874099185" 
+                       target="_blank"
+                       class="px-5 py-2.5 text-sm font-bold rounded-full bg-cyan-accent text-navy-900 hover:bg-cyan-hover hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all duration-300 transform hover:-translate-y-0.5">
+                        <i class="fa-brands fa-whatsapp text-lg mr-1"></i> WhatsApp
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-cyan-accent focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-navy-900/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center">
+            <button id="mobile-menu-close" class="absolute top-8 right-8 text-slate-300 hover:text-cyan-accent text-3xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex flex-col items-center space-y-8 text-2xl font-light">
+                <a href="#services" class="mobile-link text-white hover:text-cyan-accent transition-colors">Каталог</a>
+                <a href="#rating" class="mobile-link text-white hover:text-cyan-accent transition-colors">Отзывы</a>
+                <a href="#photos" class="mobile-link text-white hover:text-cyan-accent transition-colors">Фото</a>
+                <a href="#contacts" class="mobile-link text-white hover:text-cyan-accent transition-colors">Контакты</a>
+                <div class="h-px w-24 bg-white/10 my-4"></div>
+                <a href="https://wa.me/79874099185" target="_blank" class="flex items-center gap-3 text-cyan-accent font-medium">
+                    <i class="fa-brands fa-whatsapp"></i> +7 (987) 409-**-**
+                </a>
+                <a href="https://yandex.ru/maps?..." target="_blank" class="px-8 py-3 mt-4 text-lg font-medium rounded-full bg-white/5 border border-white/10 hover:border-cyan-accent text-white transition-all">
+                    Построить маршрут
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-[90vh] flex items-center">
+        <!-- Abstract Background Elements -->
+        <div class="absolute top-1/4 left-0 w-96 h-96 bg-cyan-accent/10 rounded-full mix-blend-screen filter blur-[100px] opacity-60"></div>
+        <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full mix-blend-screen filter blur-[120px] opacity-50"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-8 border-cyan-accent/30 text-sm">
+                    <span class="w-2 h-2 rounded-full bg-cyan-accent animate-pulse"></span>
+                    <span class="text-slate-300">г. Альметьевск, ул. Защитников Отечества, 16Б</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-8 leading-tight">
+                    Инновации в уходе за <br>
+                    <span class="text-gradient">вашим автомобилем</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 mb-10 font-light max-w-2xl mx-auto leading-relaxed">
+                    Форум-Авто — это не просто сервис. Это высокотехнологичный центр заботы о вашем авто. Ремонт, оригинальные запчасти и премиальная автокосметика в одном месте.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-5">
+                    <a href="#contacts" class="w-full sm:w-auto px-8 py-4 text-base font-bold rounded-full bg-cyan-accent text-navy-900 hover:bg-cyan-hover hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all duration-300 transform hover:-translate-y-1">
+                        Записаться на сервис
+                    </a>
+                    <a href="#services" class="w-full sm:w-auto px-8 py-4 text-base font-medium rounded-full glass-panel text-white hover:border-cyan-accent/50 hover:bg-white/5 transition-all duration-300 group">
+                        Смотреть услуги <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="mt-16 pt-10 border-t border-white/10 flex flex-wrap justify-center gap-8 md:gap-16 opacity-70">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-star text-cyan-accent text-2xl"></i>
+                        <div class="text-left">
+                            <p class="text-2xl font-bold text-white leading-none">4.4</p>
+                            <p class="text-xs text-slate-400">Рейтинг Я.Карты</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-comment-dots text-cyan-accent text-2xl"></i>
+                        <div class="text-left">
+                            <p class="text-2xl font-bold text-white leading-none">140+</p>
+                            <p class="text-xs text-slate-400">Отзывов клиентов</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-screwdriver-wrench text-cyan-accent text-2xl"></i>
+                        <div class="text-left">
+                            <p class="text-2xl font-bold text-white leading-none">Комплекс</p>
+                            <p class="text-xs text-slate-400">Сервис & Магазин</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / Catalog Section -->
+    <section id="services" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Наш <span class="text-cyan-accent">Каталог</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Полный спектр профессиональных решений для вашего автомобиля. От точной диагностики до премиальной химии.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-accent/20 transition-all">
+                        <i class="fa-solid fa-car-wrench text-2xl text-cyan-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Автотехцентр</h3>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Современное оборудование для диагностики, сход-развала и полного технического обслуживания вашего авто.</p>
+                    <a href="#contacts" class="text-cyan-accent text-sm font-semibold hover:text-white transition-colors">Узнать подробнее &rarr;</a>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 transition-all duration-300 border-cyan-accent/30 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-accent/5 rounded-full blur-2xl"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-accent/20 transition-all relative z-10">
+                        <i class="fa-solid fa-gears text-2xl text-cyan-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 relative z-10">Автозапчасти</h3>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed relative z-10">Огромный ассортимент оригинальных запчастей и качественных аналогов в наличии прямо в здании сервиса.</p>
+                    <a href="#contacts" class="text-cyan-accent text-sm font-semibold hover:text-white transition-colors relative z-10">Подобрать деталь &rarr;</a>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-accent/20 transition-all">
+                        <i class="fa-solid fa-spray-can-sparkles text-2xl text-cyan-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Автокосметика</h3>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Профессиональная химия и аксессуары для ухода за кузовом и салоном. Верните автомобилю салонный вид.</p>
+                    <a href="#contacts" class="text-cyan-accent text-sm font-semibold hover:text-white transition-colors">Перейти к товарам &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section id="photos" class="py-20 bg-navy-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Жизнь <span class="text-cyan-accent">Сервиса</span></h2>
+                    <p class="text-slate-400 max-w-xl">Взгляните на нашу работу изнутри. Прозрачность и профессионализм в каждой детали.</p>
+                </div>
+                <a href="#" class="text-cyan-accent hover:text-white transition-colors font-medium text-sm whitespace-nowrap">Смотреть все фото <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Using provided images -->
+                <div class="aspect-square rounded-2xl overflow-hidden relative group">
+                    <img src="https://avatars.mds.yandex.net/get-yapic/26057/0t-7/islands-middle" alt="Фото сервиса" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden relative group md:col-span-2">
+                    <img src="https://avatars.mds.yandex.net/get-yapic/41409/SH5qllWyKxJPA1hINhfqPEcT1A-1/islands-middle" alt="Процесс работы" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Точная диагностика</p>
+                    </div>
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden relative group">
+                    <img src="https://avatars.mds.yandex.net/get-yapic/25358/0c-8/islands-middle" alt="Команда" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="rating" class="py-20 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-cyan-accent/5 rounded-full blur-[120px] -z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 flex flex-col items-center">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-star text-cyan-accent text-3xl"></i>
+                    <span class="text-4xl font-bold text-white">4.4</span>
+                    <span class="text-slate-400 ml-2">/ 141 отзыв на Яндекс Картах</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Нам <span class="text-cyan-accent">доверяют</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Review 1 -->
+                <div class="glass-panel p-6 sm:p-8 rounded-3xl relative">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-white/5"></i>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-cyan-accent/20 flex items-center justify-center text-cyan-accent font-bold text-xl">Ф</div>
+                        <div>
+                            <h4 class="text-white font-bold">Фарида Уразметова</h4>
+                            <p class="text-xs text-slate-500">7 июля</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed">«Сделали сход-развал после замены рулевой рейки (в другом автосервисе). Быстро и чётко.»</p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="glass-panel p-6 sm:p-8 rounded-3xl relative">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-white/5"></i>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-cyan-accent/20 flex items-center justify-center text-cyan-accent font-bold text-xl">Э</div>
+                        <div>
+                            <h4 class="text-white font-bold">Эдуард Шарипов</h4>
+                            <p class="text-xs text-slate-500">28 мая</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed">«Удобное расположение, заезд с двух сторон, автосервис+магазин запчастей в одном здании.»</p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="glass-panel p-6 sm:p-8 rounded-3xl relative">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-white/5"></i>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-cyan-accent/20 flex items-center justify-center text-cyan-accent font-bold text-xl">О</div>
+                        <div>
+                            <h4 class="text-white font-bold">Ольга Свиридова</h4>
+                            <p class="text-xs text-slate-500">27 июня</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed">«Цена качество соответствует. Персонал отличный!»</p>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="glass-panel p-6 sm:p-8 rounded-3xl relative">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-white/5"></i>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-cyan-accent/20 flex items-center justify-center text-cyan-accent font-bold text-xl">Э</div>
+                        <div>
+                            <h4 class="text-white font-bold">Эльвира Гарифуллина</h4>
+                            <p class="text-xs text-slate-500">9 июня</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed">«Отлично. Всё понравилось, рекомендую данный сервис.»</p>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <a href="#" class="inline-flex items-center text-sm font-semibold text-cyan-accent hover:text-white transition-colors border-b border-cyan-accent/30 hover:border-white pb-1">
+                    Показать ещё отзывы
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts & Form Section -->
+    <section id="contacts" class="py-20 bg-navy-900/80 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <!-- Contact Info -->
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Ждем вас в <span class="text-cyan-accent">Форуме</span></h2>
+                    <p class="text-slate-400 mb-10 text-lg">Свяжитесь с нами для записи на сервис или заказа запчастей. Мы всегда на связи.</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+                                <i class="fa-solid fa-location-dot text-cyan-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg mb-1">Адрес</h4>
+                                <p class="text-slate-400 text-sm">Республика Татарстан, Альметьевск,<br>улица Защитников Отечества, 16Б</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+                                <i class="fa-solid fa-phone text-cyan-accent"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg mb-1">Телефон</h4>
+                                <p class="text-slate-400 text-sm mb-2">+7 (987) 409-**-**</p>
+                                <a href="https://wa.me/79874099185" target="_blank" class="inline-flex items-center text-xs font-bold text-green-400 hover:text-green-300 transition-colors">
+                                    <i class="fa-brands fa-whatsapp mr-1"></i> Написать в WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="pt-6">
+                            <a href="https://yandex.ru/maps?ll=52.28813892806373786470430786721408367156982421875%2C54.8839749961407363798571168445050716400146484375&rtext=~54.8839749961407363798571168445050716400146484375%2C52.28813892806373786470430786721408367156982421875&mode=route&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D150235012174" 
+                               target="_blank"
+                               class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 border border-white/20 text-white font-semibold hover:bg-white/10 hover:border-cyan-accent transition-all">
+                                <i class="fa-solid fa-map-location-dot mr-2 text-cyan-accent"></i> Построить маршрут в Навигаторе
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="glass-panel p-8 sm:p-10 rounded-3xl">
+                    <h3 class="text-2xl font-bold text-white mb-2">Оставить заявку</h3>
+                    <p class="text-slate-400 text-sm mb-8">Оставьте свои данные, и наш менеджер свяжется с вами в течение 5 минут.</p>
+                    
+                    <form action="#" method="POST" class="space-y-5" onsubmit="event.preventDefault(); alert('Заявка успешно отправлена!');">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2 ml-1">Ваше имя</label>
+                            <input type="text" required placeholder="Иван Иванов" 
+                                   class="w-full bg-navy-900/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-accent focus:ring-1 focus:ring-cyan-accent transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2 ml-1">Телефон</label>
+                            <input type="tel" required placeholder="+7 (999) 000-00-00" 
+                                   class="w-full bg-navy-900/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-accent focus:ring-1 focus:ring-cyan-accent transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2 ml-1">Сообщение или вопрос (необязательно)</label>
+                            <textarea rows="3" placeholder="Интересует замена масла..." 
+                                      class="w-full bg-navy-900/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-accent focus:ring-1 focus:ring-cyan-accent transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" 
+                                class="w-full py-4 rounded-xl bg-cyan-accent text-navy-900 font-bold text-lg hover:bg-cyan-hover hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all transform hover:-translate-y-0.5 mt-4">
+                            Отправить заявку
+                        </button>
+                        <p class="text-[10px] text-slate-500 text-center mt-4">
+                            Нажимая кнопку, вы соглашаетесь с Политикой конфиденциальности.
+                        </p>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 pt-16 pb-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+                <div class="flex items-center gap-3">
+                    <img src="https://avatars.mds.yandex.net/get-yapic/25358/0d-5/islands-middle" alt="Лого" class="w-10 h-10 rounded-full border border-cyan-accent/30">
+                    <span class="text-xl font-bold text-white tracking-widest">ФОРУМ</span>
+                </div>
+                <div class="flex gap-6">
+                    <a href="https://wa.me/79874099185" target="_blank" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-cyan-accent hover:border-cyan-accent transition-all">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-cyan-accent hover:border-cyan-accent transition-all">
+                        <i class="fa-brands fa-vk"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <div class="flex flex-col md:flex-row gap-4 md:gap-8 items-center text-center md:text-left">
+                    <p>&copy; 2026 Форум-Авто. Все права защищены.</p>
+                    <a href="#" class="hover:text-cyan-accent transition-colors">Политика конфиденциальности</a>
+                    <a href="#" class="hover:text-cyan-accent transition-colors">Правовая информация</a>
+                </div>
+                <div class="text-center md:text-right">
+                    <p>ОГРН/ОГРНИП: 310168909700022</p>
+                    <p>ИНН: 164904757770</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            const container = document.getElementById('nav-container');
+            if (window.scrollY > 50) {
+                container.classList.remove('mt-4', 'mx-4');
+                container.classList.add('rounded-none', 'border-x-0', 'border-t-0', 'bg-navy-900/80');
+            } else {
+                container.classList.add('mt-4', 'mx-4');
+                container.classList.remove('rounded-none', 'border-x-0', 'border-t-0', 'bg-navy-900/80');
+            }
+        });
+
+        // Mobile Menu Toggle Logic
+        const btnOpen = document.getElementById('mobile-menu-btn');
+        const btnClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isClosed = mobileMenu.classList.contains('translate-x-full');
+            if (isClosed) {
+                mobileMenu.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        btnOpen.addEventListener('click', toggleMenu);
+        btnClose.addEventListener('click', toggleMenu);
+        
+        // Close menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    </script>
+</body>
+</html>
