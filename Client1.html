@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Санрено — Премиальный автосервис в Нижнем Новгороде</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#1A365D',     // Строгий синий акцентный
+                            light: '#E2E8F0',    // Светло-серый фон
+                            dark: '#1A202C',     // Темно-серый текст
+                            accent: '#2B6CB0'    // Акцентный синий для кнопок
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right bottom, rgba(26, 32, 44, 0.9), rgba(43, 108, 176, 0.8)), url('https://images.unsplash.com/photo-1613214149922-f1809c99b414?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Premium Glassmorphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .glass-dark {
+            background: rgba(26, 32, 44, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #2B6CB0; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1A365D; }
+    </style>
+</head>
+<body class="bg-gray-50 text-brand-dark antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-2">
+                        <img class="h-10 w-auto hover:scale-105 transition-transform" src="https://san-reno.ru/themes/custom/autolife_theme/logo.svg" alt="Санрено Автосервис">
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6 lg:space-x-8 items-center">
+                    <a href="https://san-reno.ru/about" class="text-sm font-medium text-brand-dark hover:text-brand-accent transition-colors">О компании</a>
+                    <a href="https://san-reno.ru/about/spetsialisty" class="text-sm font-medium text-brand-dark hover:text-brand-accent transition-colors">Специалисты</a>
+                    <a href="https://san-reno.ru/price" class="text-sm font-medium text-brand-dark hover:text-brand-accent transition-colors">Цены</a>
+                    <a href="https://san-reno.ru/to-calculator" class="text-sm font-medium text-brand-dark hover:text-brand-accent transition-colors">Калькулятор ТО</a>
+                    <a href="https://san-reno.ru/reviews" class="text-sm font-medium text-brand-dark hover:text-brand-accent transition-colors">Отзывы</a>
+                    
+                    <a href="https://t.me/Sanrenoassistantbot" target="_blank" class="glass bg-brand-accent/10 text-brand-accent px-5 py-2 rounded-full font-semibold hover:bg-brand-accent hover:text-white transition-all shadow-sm">
+                        <i class="fa-brands fa-telegram mr-2"></i>Записаться
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-dark hover:text-brand-accent focus:outline-none p-2 rounded-md">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden glass border-t border-gray-200">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="https://san-reno.ru/about" class="block px-3 py-2 rounded-md text-base font-medium text-brand-dark hover:bg-gray-50 hover:text-brand-accent">О компании</a>
+                <a href="https://san-reno.ru/about/spetsialisty" class="block px-3 py-2 rounded-md text-base font-medium text-brand-dark hover:bg-gray-50 hover:text-brand-accent">Наши специалисты</a>
+                <a href="https://san-reno.ru/vopros-otvet" class="block px-3 py-2 rounded-md text-base font-medium text-brand-dark hover:bg-gray-50 hover:text-brand-accent">Вопрос-ответ</a>
+                <a href="https://san-reno.ru/service/certificates" class="block px-3 py-2 rounded-md text-base font-medium text-brand-dark hover:bg-gray-50 hover:text-brand-accent">Сертификаты</a>
+                <a href="https://san-reno.ru/price" class="block px-3 py-2 rounded-md text-base font-medium text-brand-dark hover:bg-gray-50 hover:text-brand-accent">Цены</a>
+                <a href="https://san-reno.ru/actions" class="block px-3 py-2 rounded-md text-base font-medium text-brand-dark hover:bg-gray-50 hover:text-brand-accent">Акции и новости</a>
+                <a href="https://san-reno.ru/to-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-brand-dark hover:bg-gray-50 hover:text-brand-accent">Калькулятор ТО</a>
+                <a href="https://san-reno.ru/reviews" class="block px-3 py-2 rounded-md text-base font-medium text-brand-dark hover:bg-gray-50 hover:text-brand-accent">Отзывы</a>
+            </div>
+            <div class="px-4 pb-4">
+                <a href="https://t.me/Sanrenoassistantbot" class="block w-full text-center bg-brand-accent text-white px-5 py-3 rounded-xl font-semibold shadow-md">
+                    <i class="fa-brands fa-telegram mr-2"></i>Записаться через Telegram
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-hero-pattern bg-cover bg-center bg-no-repeat min-h-[90vh] flex items-center">
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/90 to-brand-blue/70"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white max-w-2xl">
+                    <div class="inline-block px-4 py-1.5 rounded-full glass-dark text-sm font-semibold mb-6 animate-pulse">
+                        <i class="fa-solid fa-clock mr-2"></i>Ежедневно 9:00 — 19:00
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                        Дилерское качество.<br> 
+                        <span class="text-blue-300">Честные цены.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
+                        Сеть премиальных автосервисов в Нижнем Новгороде. Ремонт, диагностика и послегарантийное обслуживание без очередей и переплат.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#booking" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all hover:scale-105 text-center">
+                            Оставить заявку
+                        </a>
+                        <a href="https://t.me/Sanrenoassistantbot" target="_blank" class="glass-dark hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all hover:scale-105 text-center flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-telegram text-xl"></i> Бот-ассистент
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Floating Info Card -->
+                <div class="hidden lg:block">
+                    <div class="glass-dark p-8 rounded-3xl border border-white/10 shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <h3 class="text-2xl font-bold text-white mb-6">Почему выбирают нас?</h3>
+                        <ul class="space-y-5">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30 mr-4">
+                                    <i class="fa-solid fa-wallet text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Выгода до 40%</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Стоимость работ и запчастей значительно ниже официальных дилеров.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30 mr-4">
+                                    <i class="fa-solid fa-shield-halved text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Гарантия до 2 лет</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Безусловная гарантия на работы и запчасти до 60 000 км.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30 mr-4">
+                                    <i class="fa-solid fa-boxes-stacked text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Свой склад запчастей</h4>
+                                    <p class="text-gray-400 text-sm mt-1">Более 4000 позиций в наличии. Среднее время ремонта — всего 2 часа.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Carousel (Static Representation) -->
+    <div class="glass border-b border-gray-200 py-6 relative z-20 -mt-10 mx-4 md:mx-auto max-w-6xl rounded-2xl shadow-lg">
+        <div class="px-6">
+            <p class="text-center text-sm font-semibold text-gray-500 uppercase tracking-widest mb-4">Обслуживаем популярные марки</p>
+            <div class="flex flex-wrap justify-center gap-4 md:gap-8 text-brand-dark/60 font-bold text-lg md:text-xl">
+                <span class="hover:text-brand-accent transition-colors cursor-default">RENAULT</span>
+                <span class="hover:text-brand-accent transition-colors cursor-default">NISSAN</span>
+                <span class="hover:text-brand-accent transition-colors cursor-default">KIA</span>
+                <span class="hover:text-brand-accent transition-colors cursor-default">HYUNDAI</span>
+                <span class="hover:text-brand-accent transition-colors cursor-default">INFINITI</span>
+                <span class="hover:text-brand-accent transition-colors cursor-default">SKODA</span>
+                <span class="hover:text-brand-accent transition-colors cursor-default">VW</span>
+                <span class="hover:text-brand-accent transition-colors cursor-default">HAVAL</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-4">Наши Услуги</h2>
+                <p class="text-lg text-gray-600">Комплексное обслуживание автомобилей: от регламентного ТО до сложного кузовного ремонта на дилерском оборудовании.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="glass hover-lift rounded-2xl overflow-hidden group cursor-pointer border border-gray-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-brand-blue/20 group-hover:bg-transparent transition-all z-10"></div>
+                        <img src="https://san-reno.ru/themes/custom/autolife_theme/images/service-menu/SANRENO_1.png" alt="Ремонт" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-brand-dark mb-3">Ремонт агрегатов</h3>
+                        <ul class="text-gray-600 space-y-2 text-sm">
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>Двигатель (бензин/дизель)</li>
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>Подвеска и АКПП</li>
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>Электроника и Тормоза</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass hover-lift rounded-2xl overflow-hidden group cursor-pointer border border-gray-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-brand-blue/20 group-hover:bg-transparent transition-all z-10"></div>
+                        <img src="https://san-reno.ru/themes/custom/autolife_theme/images/service-menu/SANRENO_2.png" alt="Техническое обслуживание" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-brand-dark mb-3">Регламентное ТО</h3>
+                        <ul class="text-gray-600 space-y-2 text-sm">
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>Замена масла и фильтров</li>
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>Замена ремня ГРМ</li>
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>Заправка кондиционера</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass hover-lift rounded-2xl overflow-hidden group cursor-pointer border border-gray-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-brand-blue/20 group-hover:bg-transparent transition-all z-10"></div>
+                        <img src="https://san-reno.ru/themes/custom/autolife_theme/images/service-menu/SANRENO_3.png" alt="Диагностика" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-brand-dark mb-3">Диагностика</h3>
+                        <ul class="text-gray-600 space-y-2 text-sm">
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>Компьютерная диагностика</li>
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>Осмотр ходовой части</li>
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>ГосТехосмотр</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass hover-lift rounded-2xl overflow-hidden group cursor-pointer border border-gray-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-brand-blue/20 group-hover:bg-transparent transition-all z-10"></div>
+                        <img src="https://san-reno.ru/themes/custom/autolife_theme/images/service-menu/SANRENO_4.png" alt="Шиномонтаж и Кузов" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-brand-dark mb-3">Шиномонтаж и Кузов</h3>
+                        <ul class="text-gray-600 space-y-2 text-sm">
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>Легковой шиномонтаж</li>
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>Правка дисков</li>
+                            <li><i class="fa-solid fa-check text-brand-accent mr-2"></i>Покраска и геометрия</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="https://san-reno.ru/price" class="inline-flex items-center justify-center px-8 py-3 border border-brand-accent text-brand-accent bg-transparent hover:bg-brand-accent hover:text-white rounded-xl font-semibold transition-all hover:shadow-lg">
+                    Смотреть полный прайс-лист <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-brand-dark transform -skew-y-2 scale-110 z-0"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Что говорят наши клиенты</h2>
+                <p class="text-lg text-gray-300">Более 15 лет честной работы на рынке автоуслуг</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Review 1 -->
+                <div class="glass-dark p-8 rounded-2xl hover-lift">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h4 class="text-xl font-bold text-white">Дмитрий Ноябрьский</h4>
+                            <p class="text-sm text-gray-400">05.03.2024 • Ниссан Х трейл</p>
+                        </div>
+                        <div class="text-yellow-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="inline-block bg-brand-blue/30 border border-brand-blue/50 text-blue-200 text-xs px-3 py-1 rounded-full mb-4">
+                        Диагностика подвески (Канавинский район)
+                    </div>
+                    <p class="text-gray-300 italic mb-4">"С благодарностью к сотрудникам «Санрено» на Литвинова. Мне все исправили и починили, что нужно было. Мастера профессионально решили свои задачи... Супер-команда. Доволен. Спасибо ребята!"</p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="glass-dark p-8 rounded-2xl hover-lift">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h4 class="text-xl font-bold text-white">Ирина Смирнова</h4>
+                            <p class="text-sm text-gray-400">30.01.2024 • Шевроле Лачетти</p>
+                        </div>
+                        <div class="text-yellow-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="inline-block bg-brand-blue/30 border border-brand-blue/50 text-blue-200 text-xs px-3 py-1 rounded-full mb-4">
+                        Ремонт выхлопной системы (Приокский район)
+                    </div>
+                    <p class="text-gray-300 italic mb-4">"В очередной раз хочу выразить свою благодарность автосервису на Ларина 13. Доброжелательное, позитивное отношение к клиентам! Профессионалы в своём деле! Так держать!"</p>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <a href="https://san-reno.ru/reviews" class="text-white hover:text-brand-accent font-medium transition-colors underline decoration-brand-accent underline-offset-4">Читать все отзывы</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map & Form Section -->
+    <section id="booking" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-5 gap-12">
+                <!-- Branches -->
+                <div class="lg:col-span-3 space-y-8">
+                    <div>
+                        <h2 class="text-3xl font-extrabold text-brand-dark mb-2">Наши автосервисы</h2>
+                        <p class="text-gray-600 mb-8">Найдите ближайший к вам филиал в Нижнем Новгороде</p>
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <!-- Branch Card -->
+                        <div class="glass p-5 rounded-xl border border-gray-200 hover-lift">
+                            <h4 class="font-bold text-brand-dark text-lg">Канавинский район</h4>
+                            <p class="text-gray-500 text-sm mb-3"><i class="fa-solid fa-location-dot mr-2 text-brand-accent"></i>ул. Литвинова, 87</p>
+                            <a href="tel:+78312809908" class="text-brand-accent font-semibold block text-lg">+7 (831) 280-99-08</a>
+                            <a href="tel:+79087250798" class="text-gray-600 text-sm mt-1 block"><i class="fa-brands fa-whatsapp text-green-500 mr-1"></i>+7 908 725-07-98</a>
+                        </div>
+                        
+                        <!-- Branch Card -->
+                        <div class="glass p-5 rounded-xl border border-gray-200 hover-lift">
+                            <h4 class="font-bold text-brand-dark text-lg">Приокский район</h4>
+                            <p class="text-gray-500 text-sm mb-3"><i class="fa-solid fa-location-dot mr-2 text-brand-accent"></i>ул. Ларина 13Б</p>
+                            <a href="tel:+78312809954" class="text-brand-accent font-semibold block text-lg">+7 (831) 280-99-54</a>
+                            <a href="tel:+79527798286" class="text-gray-600 text-sm mt-1 block"><i class="fa-brands fa-whatsapp text-green-500 mr-1"></i>+7 952 779-82-86</a>
+                        </div>
+
+                        <!-- Branch Card -->
+                        <div class="glass p-5 rounded-xl border border-gray-200 hover-lift">
+                            <h4 class="font-bold text-brand-dark text-lg">Автозаводский район</h4>
+                            <p class="text-gray-500 text-sm mb-3"><i class="fa-solid fa-location-dot mr-2 text-brand-accent"></i>ул. Переходникова, 1Б</p>
+                            <a href="tel:+78312601054" class="text-brand-accent font-semibold block text-lg">+7 (831) 260-10-54</a>
+                            <a href="tel:+79302780771" class="text-gray-600 text-sm mt-1 block"><i class="fa-brands fa-whatsapp text-green-500 mr-1"></i>+7 930 278-07-71</a>
+                        </div>
+
+                        <!-- Branch Card -->
+                        <div class="glass p-5 rounded-xl border border-gray-200 hover-lift">
+                            <h4 class="font-bold text-brand-dark text-lg">Московское шоссе</h4>
+                            <p class="text-gray-500 text-sm mb-3"><i class="fa-solid fa-location-dot mr-2 text-brand-accent"></i>Московское шоссе, 85В</p>
+                            <a href="tel:+78314206208" class="text-brand-accent font-semibold block text-lg">+7 (831) 420-62-08</a>
+                            <a href="tel:+79101056120" class="text-gray-600 text-sm mt-1 block"><i class="fa-brands fa-whatsapp text-green-500 mr-1"></i>+7 910 105-61-20</a>
+                        </div>
+
+                        <!-- Branch Card -->
+                        <div class="glass p-5 rounded-xl border border-gray-200 hover-lift sm:col-span-2 bg-gradient-to-br from-white to-blue-50">
+                            <div class="flex justify-between items-center flex-wrap gap-4">
+                                <div>
+                                    <span class="bg-brand-blue text-white text-xs px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block">Спецподразделение</span>
+                                    <h4 class="font-bold text-brand-dark text-xl">ВАГ-центр / Нижегородский р-н</h4>
+                                    <p class="text-gray-500 text-sm mb-1"><i class="fa-solid fa-location-dot mr-2 text-brand-accent"></i>ул. Яблоневая, 26</p>
+                                </div>
+                                <div class="text-right">
+                                    <a href="tel:+78312601037" class="text-brand-accent font-bold block text-xl">+7 (831) 260-10-37</a>
+                                    <a href="tel:+79047961818" class="text-gray-600 text-sm mt-1 block">+7 904 796-18-18</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <div class="lg:col-span-2">
+                    <div class="glass p-8 rounded-3xl border border-gray-200 shadow-xl h-full flex flex-col justify-center bg-white/60">
+                        <h3 class="text-2xl font-bold text-brand-dark mb-2">Запись на ремонт</h3>
+                        <p class="text-sm text-gray-500 mb-6">Оставьте заявку, и наш менеджер перезвонит для уточнения деталей.</p>
+                        
+                        <form action="#" method="POST" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Ваше имя</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-accent focus:border-brand-accent outline-none transition-all bg-white/80" placeholder="Иван Иванов" required>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Телефон</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-accent focus:border-brand-accent outline-none transition-all bg-white/80" placeholder="+7 (999) 000-00-00" required>
+                            </div>
+                            <div>
+                                <label for="car" class="block text-sm font-medium text-gray-700 mb-1">Марка авто и проблема</label>
+                                <textarea id="car" rows="3" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-accent focus:border-brand-accent outline-none transition-all bg-white/80 resize-none" placeholder="Renault Duster, нужно сделать ТО..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-accent hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all hover:shadow-lg mt-2">
+                                Оставить заявку
+                            </button>
+                            <p class="text-xs text-gray-400 text-center mt-4">Нажимая кнопку, вы даете согласие на <a href="#" class="underline">обработку персональных данных</a>.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white pt-16 pb-8 border-t-4 border-brand-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand col -->
+                <div>
+                    <img src="https://san-reno.ru/themes/custom/autolife_theme/logo.svg" alt="Санрено" class="h-10 mb-6 bg-white/10 p-2 rounded-lg">
+                    <p class="text-gray-400 text-sm mb-6">Диагностика, ремонт, обслуживание — автосервис Санрено. Физическим и юридическим лицам. Спецусловия компаниям с большим автопарком.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://t.me/Sanrenoassistantbot" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-accent transition-colors">
+                            <i class="fa-brands fa-telegram text-xl"></i>
+                        </a>
+                        <a href="https://vk.com/club_sanreno" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-accent transition-colors">
+                            <i class="fa-brands fa-vk text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Nav links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white uppercase tracking-wider">Информация</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://san-reno.ru/about" class="text-gray-400 hover:text-white transition-colors text-sm">О компании</a></li>
+                        <li><a href="https://san-reno.ru/price" class="text-gray-400 hover:text-white transition-colors text-sm">Прайс-лист</a></li>
+                        <li><a href="https://san-reno.ru/to-calculator" class="text-gray-400 hover:text-white transition-colors text-sm">Калькулятор ТО</a></li>
+                        <li><a href="https://san-reno.ru/actions" class="text-gray-400 hover:text-white transition-colors text-sm">Акции и спецпредложения</a></li>
+                        <li><a href="https://san-reno.ru/service/certificates" class="text-gray-400 hover:text-white transition-colors text-sm">Гарантии и сертификаты</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white uppercase tracking-wider">Услуги</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Плановое ТО по регламенту</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Слесарные работы</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Диагностика агрегатов</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Услуги шиномонтажа</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Ремонт коммерческого транспорта</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white uppercase tracking-wider">Telegram-боты</h4>
+                    <p class="text-gray-400 text-sm mb-4">Записаться в сервис, проконсультироваться и узнать цену ремонта:</p>
+                    <ul class="space-y-3">
+                        <li><a href="https://t.me/Sanrenoassistantbot" class="text-brand-accent hover:text-blue-300 transition-colors text-sm font-medium"><i class="fa-solid fa-robot mr-2"></i>@Sanrenoassistantbot</a></li>
+                        <li><a href="https://t.me/+79527798286" class="text-gray-400 hover:text-white transition-colors text-sm"><i class="fa-solid fa-paper-plane mr-2 text-gray-500"></i>Приокский</a></li>
+                        <li><a href="https://t.me/+79087250798" class="text-gray-400 hover:text-white transition-colors text-sm"><i class="fa-solid fa-paper-plane mr-2 text-gray-500"></i>Канавинский</a></li>
+                        <li><a href="https://t.me/+79027880779" class="text-gray-400 hover:text-white transition-colors text-sm"><i class="fa-solid fa-paper-plane mr-2 text-gray-500"></i>Нижегородский</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom footer -->
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 space-y-4 md:space-y-0">
+                <p>&copy; 2008-2025, ООО "САНРЕНО" — сеть автосервисов в Нижнем Новгороде.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition-colors">Политика конфиденциальности</a>
+                    <a href="#" class="hover:text-white transition-colors">Согласие на обработку данных</a>
+                </div>
+                <p class="max-w-xs text-right">Информация на сайте - не оферта. Уточняйте цены запчастей и работ по телефону.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = btn.querySelector('i');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                if (menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('shadow-md');
+                    navbar.classList.replace('bg-white/85', 'bg-white/95');
+                } else {
+                    navbar.classList.remove('shadow-md');
+                    navbar.classList.replace('bg-white/95', 'bg-white/85');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
