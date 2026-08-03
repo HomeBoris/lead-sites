@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Альпина | Премиальные автозапчасти и комплектующие</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#1B325F',
+                            blueDark: '#122345',
+                            gray: '#EFEFEF',
+                            sand: '#D4C2AB',
+                            light: '#FFFFFF'
+                        }
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(27, 50, 95, 0.1)',
+                        'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #EFEFEF;
+            background-image: radial-gradient(circle at top right, rgba(212, 194, 171, 0.2) 0%, transparent 40%),
+                              radial-gradient(circle at bottom left, rgba(27, 50, 95, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .glass-dark {
+            background: rgba(27, 50, 95, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(27, 50, 95, 0.05);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #EFEFEF; }
+        ::-webkit-scrollbar-thumb { background: #1B325F; border-radius: 4px; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased selection:bg-brand-sand selection:text-brand-blue relative min-h-screen flex flex-col">
+
+    <!-- Watermark -->
+    <a href="https://t.me/pootlord" target="_blank" class="fixed bottom-4 left-4 z-[100] glass-dark text-white px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide flex items-center gap-2 hover:scale-105 hover:bg-brand-blue transition-all duration-300 shadow-xl group border border-white/20">
+        <i class="fa-solid fa-code text-brand-sand group-hover:animate-pulse"></i>
+        <span>Заказать сайт</span>
+    </a>
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <a href="https://alpinashop.ru/" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-xl bg-brand-blue flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                            <img src="https://imgcdn.abcp.ru/p/015c5250c6c7f0fb6781fd6efe9f8376de.png" alt="Альпина Лого" class="w-7 h-7 object-contain brightness-0 invert">
+                        </div>
+                        <span class="font-bold text-2xl tracking-tight text-brand-blue">АЛЬПИНА</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="https://alpinashop.ru/" class="text-sm font-medium text-gray-700 hover:text-brand-blue transition-colors">Главная</a>
+                    <a href="https://alpinashop.ru/vinqu" class="text-sm font-medium text-gray-700 hover:text-brand-blue transition-colors flex items-center gap-1">
+                        <i class="fa-solid fa-car-side text-brand-sand"></i> VIN-запрос
+                    </a>
+                    <a href="#catalogs" class="text-sm font-medium text-gray-700 hover:text-brand-blue transition-colors">Каталоги</a>
+                    <a href="https://alpinashop.ru/offices" class="text-sm font-medium text-gray-700 hover:text-brand-blue transition-colors">Наши офисы</a>
+                    <a href="https://alpinashop.ru/contacts" class="text-sm font-medium text-gray-700 hover:text-brand-blue transition-colors">Контакты</a>
+                </nav>
+
+                <!-- Desktop Right Actions -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="tel:+73512111777" class="text-brand-blue font-semibold hover:text-brand-sand transition-colors">
+                        <i class="fa-solid fa-phone mr-1"></i> +7 (351) 2-111-777
+                    </a>
+                    <div class="h-6 w-px bg-gray-300"></div>
+                    <a href="https://alpinashop.ru/#modalFormLogin" class="text-brand-blue hover:text-brand-sand transition-colors relative group">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-brand-sand text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm group-hover:scale-110 transition-transform">0</span>
+                    </a>
+                    <a href="https://alpinashop.ru/#modalFormLogin" class="bg-brand-blue text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-brand-blueDark hover:shadow-lg transition-all duration-300">
+                        Вход / Гараж
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <a href="https://alpinashop.ru/#modalFormLogin" class="text-brand-blue relative">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-brand-sand text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+                    </a>
+                    <button id="mobile-menu-btn" class="text-brand-blue hover:text-brand-sand focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Glass) -->
+        <div id="mobile-menu" class="hidden md:hidden glass-dark absolute w-full border-t border-white/10 shadow-2xl origin-top transition-all duration-300">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="https://alpinashop.ru/" class="block px-3 py-3 text-base font-medium text-white hover:bg-white/10 rounded-lg transition-colors">Главная</a>
+                <a href="https://alpinashop.ru/vinqu" class="block px-3 py-3 text-base font-medium text-brand-sand hover:bg-white/10 rounded-lg transition-colors">
+                    <i class="fa-solid fa-magnifying-glass mr-2"></i> VIN-запрос
+                </a>
+                <a href="#catalogs" class="block px-3 py-3 text-base font-medium text-white hover:bg-white/10 rounded-lg transition-colors">Каталоги</a>
+                <a href="https://alpinashop.ru/offices" class="block px-3 py-3 text-base font-medium text-white hover:bg-white/10 rounded-lg transition-colors">Наши офисы</a>
+                <a href="https://alpinashop.ru/contacts" class="block px-3 py-3 text-base font-medium text-white hover:bg-white/10 rounded-lg transition-colors">Контакты</a>
+                
+                <div class="mt-4 pt-4 border-t border-white/10">
+                    <a href="tel:+73512111777" class="block px-3 py-3 text-base font-bold text-white text-center">
+                        +7 (351) 2-111-777
+                    </a>
+                    <a href="https://alpinashop.ru/#modalFormLogin" class="block w-full text-center mt-2 bg-brand-sand text-brand-blue px-5 py-3 rounded-lg text-base font-semibold hover:bg-white transition-colors">
+                        Личный кабинет
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-[90vh] flex items-center">
+        <!-- Background elements -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://cdn.abcp.ru/f/597303" alt="Фон Альпина" class="w-full h-full object-cover object-center opacity-30 mix-blend-multiply">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-blue/90 to-brand-blue/60 backdrop-blur-[2px]"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Hero Content -->
+                <div class="text-center lg:text-left">
+                    <div class="inline-block px-4 py-1.5 rounded-full glass-dark border-brand-sand/30 border mb-6 animate-fade-in-up">
+                        <span class="text-brand-sand text-sm font-semibold tracking-wide uppercase">Официальный интернет-магазин</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
+                        Премиальные <span class="text-brand-sand relative inline-block">
+                            запчасти
+                            <svg class="absolute w-full h-3 -bottom-1 left-0 text-brand-sand/50" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="none"/></svg>
+                        </span> <br class="hidden lg:block">для Вашего автомобиля
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Умный подбор, оригинальные каталоги и сверхбыстрая доставка. Все необходимое для ТО и ремонта в одном месте.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                        <a href="#catalogs" class="w-full sm:w-auto bg-brand-sand text-brand-blue px-8 py-3.5 rounded-xl font-semibold hover:bg-white hover:-translate-y-1 hover:shadow-xl transition-all duration-300 text-center">
+                            Перейти в каталог
+                        </a>
+                        <a href="https://alpinashop.ru/vinqu" class="w-full sm:w-auto glass-dark text-white border border-white/20 px-8 py-3.5 rounded-xl font-semibold hover:bg-white/20 hover:-translate-y-1 transition-all duration-300 text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-wrench"></i> Добавить в гараж
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Interactive VIN Search Glass Card -->
+                <div class="glass p-8 rounded-3xl shadow-glass relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-sand rounded-full mix-blend-multiply filter blur-3xl opacity-50 group-hover:scale-150 transition-transform duration-700"></div>
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-brand-blue rounded-full mix-blend-multiply filter blur-3xl opacity-30 group-hover:scale-150 transition-transform duration-700"></div>
+                    
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold text-brand-blue mb-2">Точный поиск деталей</h3>
+                        <p class="text-gray-600 mb-6 font-medium">Найдите 100% подходящую запчасть для вашего авто</p>
+                        
+                        <form action="https://alpinashop.ru/vinqu" method="GET" class="space-y-4">
+                            <div class="relative">
+                                <label for="vin" class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Код запчасти или VIN номер</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+                                    </div>
+                                    <input type="text" id="vin" name="vin" placeholder="Например: WBA5332..." 
+                                        class="w-full pl-11 pr-4 py-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all bg-white/80 backdrop-blur-sm text-gray-800 font-medium placeholder-gray-400 shadow-inner">
+                                </div>
+                            </div>
+                            <button type="submit" name="go" class="w-full bg-brand-blue text-white py-4 rounded-xl font-semibold text-lg hover:bg-brand-blueDark hover:shadow-lg hover:shadow-brand-blue/30 transition-all duration-300 flex items-center justify-center gap-2 group">
+                                Найти деталь <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </form>
+                        <div class="mt-4 text-center">
+                            <a href="https://alpinashop.ru/vinqu" class="text-sm text-brand-blue hover:text-brand-sand font-semibold underline decoration-2 decoration-brand-sand/30 underline-offset-4 transition-colors">
+                                Оформить подробный VIN-запрос
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats / Info Section -->
+    <section class="py-12 bg-white relative z-20 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center p-4 rounded-2xl hover:bg-gray-50 transition-colors">
+                    <div class="w-12 h-12 mx-auto bg-brand-blue/10 rounded-full flex items-center justify-center mb-3 text-brand-blue">
+                        <i class="fa-solid fa-box-open text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 text-lg">Оригинальные каталоги</h4>
+                    <p class="text-sm text-gray-500 mt-1">Только проверенные бренды</p>
+                </div>
+                <div class="text-center p-4 rounded-2xl hover:bg-gray-50 transition-colors">
+                    <div class="w-12 h-12 mx-auto bg-brand-blue/10 rounded-full flex items-center justify-center mb-3 text-brand-blue">
+                        <i class="fa-solid fa-credit-card text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 text-lg">Оплата картой</h4>
+                    <p class="text-sm text-gray-500 mt-1">Удобный и безопасный расчет</p>
+                </div>
+                <div class="text-center p-4 rounded-2xl hover:bg-gray-50 transition-colors">
+                    <div class="w-12 h-12 mx-auto bg-brand-blue/10 rounded-full flex items-center justify-center mb-3 text-brand-blue">
+                        <i class="fa-solid fa-warehouse text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 text-lg">Собственные офисы</h4>
+                    <p class="text-sm text-gray-500 mt-1">ул. Свободы 78 и другие</p>
+                </div>
+                <div class="text-center p-4 rounded-2xl hover:bg-gray-50 transition-colors">
+                    <div class="w-12 h-12 mx-auto bg-brand-blue/10 rounded-full flex items-center justify-center mb-3 text-brand-blue">
+                        <i class="fa-solid fa-car-shield text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900 text-lg">Личный гараж</h4>
+                    <p class="text-sm text-gray-500 mt-1">Удобный учет авто</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comprehensive Catalog Section -->
+    <section id="catalogs" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4">Полный каталог продукции</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">От базового ТО до сложного ремонта — у нас есть всё. Изучите наши категории.</p>
+            </div>
+
+            <!-- Categories Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Category 1: TO & Basic -->
+                <div class="glass-card rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
+                    <div class="flex items-center gap-4 mb-6 pb-4 border-b border-brand-blue/10">
+                        <div class="w-12 h-12 bg-brand-blue text-white rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fa-solid fa-gears text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue">Обслуживание (ТО)</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Запчасти для ТО</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Оригинальные каталоги</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Лампы автомобильные</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Ремни поликлиновые</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Щётки стеклоочистителя</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Гофры глушителя</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                    </ul>
+                </div>
+
+                <!-- Category 2: Oils & Fluids -->
+                <div class="glass-card rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
+                    <div class="flex items-center gap-4 mb-6 pb-4 border-b border-brand-blue/10">
+                        <div class="w-12 h-12 bg-brand-sand text-brand-blue rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fa-solid fa-oil-can text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue">Масла и Жидкости</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Моторные масла</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Трансмиссионные масла</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Охлаждающие жидкости</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Тормозные жидкости</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Жидкости стеклоомывателя</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Гидравлические и индустриальные</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Жидкости AdBlue</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                    </ul>
+                </div>
+
+                <!-- Category 3: Chemistry & Additives -->
+                <div class="glass-card rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
+                    <div class="flex items-center gap-4 mb-6 pb-4 border-b border-brand-blue/10">
+                        <div class="w-12 h-12 bg-white text-brand-blue border border-gray-200 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fa-solid fa-flask text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue">Автохимия</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Уход и очистка</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Присадки в масла</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Топливные присадки</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Присадки в систему охлаждения</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Смазки и Герметики</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-brand-blue font-medium flex justify-between items-center group"><span class="group-hover:translate-x-1 transition-transform">Бытовая химия</span> <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 text-brand-sand"></i></a></li>
+                    </ul>
+                </div>
+
+                <!-- Category 4: Accessories & Tools -->
+                <div class="glass-card rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300 md:col-span-2 lg:col-span-3">
+                    <div class="flex items-center gap-4 mb-6 pb-4 border-b border-brand-blue/10">
+                        <div class="w-12 h-12 bg-gray-800 text-white rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fa-solid fa-toolbox text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-blue">Инструменты и Аксессуары</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Аккумуляторы</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Компрессоры</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Домкраты</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Канистры и Воронки</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Наборы инструментов</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Ароматизаторы</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Провода для прикуривания</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Эл. предпусковые подогреватели</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Тросы буксировочные</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Аптечки медицинские</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Пылесосы автомобильные</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Автокресла и бустеры</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Наборы автомобилиста</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Органайзеры в багажник</a>
+                        <a href="#" class="block bg-white/50 p-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors">Пакеты, чехлы и колпачки шин</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Login / Registration / Garage Section -->
+    <section class="py-20 relative bg-brand-blue overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute inset-0 z-0 opacity-10">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/></pattern></defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-dark rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-white/10 flex flex-col md:flex-row gap-12 items-center">
+                
+                <div class="flex-1 text-white">
+                    <h2 class="text-3xl font-bold mb-4">Ваш Личный Кабинет</h2>
+                    <p class="text-gray-300 mb-8 font-light leading-relaxed">
+                        Добавьте автомобиль в виртуальный <span class="text-brand-sand font-semibold">Гараж</span>, чтобы моментально находить совместимые детали. Отслеживайте статусы заказов и получайте персональные предложения.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-sand">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span class="font-medium text-sm">История заказов и VIN-запросов</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-sand">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span class="font-medium text-sm">Удобное управление Гаражом</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Login Form -->
+                <div class="w-full md:w-[400px] glass p-8 rounded-3xl" id="modalFormLogin">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6">Вход в систему</h3>
+                    <form action="https://alpinashop.ru/#modalFormLogin" method="POST" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-600 mb-1">Логин (Email или Телефон)</label>
+                            <input type="text" name="login" required placeholder="Введите логин" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all bg-white/90">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-600 mb-1">Пароль</label>
+                            <input type="password" name="password" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all bg-white/90">
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <a href="https://alpinashop.ru/remindpass" class="text-sm text-brand-blue hover:text-brand-sand font-medium transition-colors">Забыли пароль?</a>
+                        </div>
+                        <button type="submit" name="go" class="w-full bg-brand-blue text-white py-3.5 rounded-xl font-bold text-lg hover:bg-brand-blueDark hover:shadow-lg transition-all duration-300">
+                            Войти
+                        </button>
+                    </form>
+                    
+                    <div class="mt-6 text-center border-t border-gray-200/50 pt-6">
+                        <p class="text-sm text-gray-600">Нет аккаунта?</p>
+                        <a href="https://alpinashop.ru/reg" class="inline-block mt-2 text-brand-blue font-bold hover:text-brand-sand transition-colors">
+                            Пройти регистрацию <i class="fa-solid fa-arrow-right-long ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Updates -->
+    <section class="py-16 bg-brand-gray relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-brand-blue">Новости компании</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- News 1 -->
+                <div class="glass-card p-6 rounded-2xl hover:shadow-lg transition-all duration-300 border-l-4 border-l-brand-sand group">
+                    <span class="text-sm font-bold text-gray-400 mb-2 block">31.12.2025</span>
+                    <h3 class="text-xl font-bold text-brand-blue mb-2 group-hover:text-brand-sand transition-colors">График работы в праздничные дни</h3>
+                    <p class="text-gray-600">Уважаемые клиенты, ознакомьтесь с изменениями в графике работы наших офисов и службы доставки в период новогодних праздников.</p>
+                </div>
+                
+                <!-- News 2 -->
+                <div class="glass-card p-6 rounded-2xl hover:shadow-lg transition-all duration-300 border-l-4 border-l-brand-blue group">
+                    <span class="text-sm font-bold text-gray-400 mb-2 block">01.12.2025</span>
+                    <h3 class="text-xl font-bold text-brand-blue mb-2 group-hover:text-brand-sand transition-colors">Оплата по карте</h3>
+                    <p class="text-gray-600">Теперь оплачивать заказы стало еще удобнее. Мы подключили новые шлюзы для безопасной оплаты банковскими картами онлайн.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-blueDark text-white pt-16 pb-8 border-t-4 border-brand-sand relative z-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                
+                <!-- Brand Info -->
+                <div>
+                    <a href="https://alpinashop.ru/" class="flex items-center gap-3 mb-6 group inline-flex">
+                        <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                            <img src="https://imgcdn.abcp.ru/p/015c5250c6c7f0fb6781fd6efe9f8376de.png" alt="Альпина" class="w-7 h-7 object-contain">
+                        </div>
+                        <span class="font-bold text-2xl tracking-tight text-white">АЛЬПИНА</span>
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Ваш надежный партнер в мире автозапчастей. Оригинальные каталоги, точный подбор по VIN и широчайший ассортимент.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://vk.com/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-sand hover:text-brand-blue transition-all duration-300">
+                            <i class="fa-brands fa-vk text-lg"></i>
+                        </a>
+                        <a href="https://youtube.com/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-sand hover:text-brand-blue transition-all duration-300">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-brand-sand uppercase tracking-wider text-sm">Навигация</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://alpinashop.ru/" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-brand-sand"></i> Главная</a></li>
+                        <li><a href="https://alpinashop.ru/vinqu" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-brand-sand"></i> VIN-запрос</a></li>
+                        <li><a href="#catalogs" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-brand-sand"></i> Каталоги</a></li>
+                        <li><a href="https://alpinashop.ru/offices" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-brand-sand"></i> Наши офисы</a></li>
+                        <li><a href="https://alpinashop.ru/contacts" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-brand-sand"></i> Контакты</a></li>
+                    </ul>
+                </div>
+
+                <!-- Client Zone -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-brand-sand uppercase tracking-wider text-sm">Клиентам</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://alpinashop.ru/#modalFormLogin" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-brand-sand"></i> Вход в кабинет</a></li>
+                        <li><a href="https://alpinashop.ru/reg" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-brand-sand"></i> Регистрация</a></li>
+                        <li><a href="https://alpinashop.ru/#modalFormLogin" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-brand-sand"></i> Гараж</a></li>
+                        <li><a href="https://alpinashop.ru/#modalFormLogin" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-brand-sand"></i> Корзина: 0 ₽</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contacts -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-brand-sand uppercase tracking-wider text-sm">Связь с нами</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-gray-300">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-sand"></i>
+                            <span>ул. Свободы 78</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-300">
+                            <i class="fa-solid fa-phone mt-1 text-brand-sand"></i>
+                            <a href="tel:+73512111777" class="hover:text-white font-bold text-lg transition-colors">+7 (351) 2-111-777</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-500">© 2026 Альпина, Все права защищены. Интернет-магазин запчастей.</p>
+                <div class="text-sm text-gray-500 flex items-center gap-2">
+                    Работает на <a href="https://abcp.ru" target="_blank" class="text-brand-sand hover:text-white transition-colors font-medium">Платформе abcp.ru</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+                nav.classList.replace('glass', 'glass-dark');
+                // Alter text colors for dark glass if needed, mostly kept transparent enough to read
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.replace('glass-dark', 'glass');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+    </script>
+</body>
+</html>
