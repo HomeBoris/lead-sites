@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автотехцентр Платинум | Урай - Честный автосервис</title>
+    <meta name="description" content="Автосервис Платинум в Урае. Честный ремонт, любые виды работ, запчасти в наличии и под заказ. Делаем качественно, быстро и недорого!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#1e40af',
+                        dark: '#0f172a',
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        fadein: "fadeIn 1s ease-in-out",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                        fadeIn: {
+                            "0%": { opacity: "0", transform: "translateY(20px)" },
+                            "100%": { opacity: "1", transform: "translateY(0)" },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .glass-input {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-input:focus {
+            border-color: #3b82f6;
+            outline: none;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-dark text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white">
+
+    <!-- Background Animated Blobs for Glass Effect -->
+    <div class="fixed inset-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-72 h-72 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob"></div>
+        <div class="absolute top-1/4 right-1/4 w-72 h-72 bg-purple-600 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-cyan-600 rounded-full mix-blend-screen filter blur-[120px] opacity-20 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Водяной знак разработчика -->
+    <a href="https://t.me/pootlord" target="_blank" class="fixed bottom-4 left-4 z-50 glass px-4 py-2 rounded-xl text-sm font-medium text-white hover:bg-white/10 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(0,0,0,0.5)] hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] group">
+        <i class="fa-brands fa-telegram text-blue-400 group-hover:scale-110 transition-transform"></i> 
+        <span>Заказать сайт</span>
+    </a>
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full top-0 z-40 glass border-b border-white/10 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                        <i class="fa-solid fa-gears text-white text-xl"></i>
+                    </div>
+                    <a href="#" class="font-heading font-bold text-2xl tracking-wide text-white">ПЛАТИНУМ</a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-sm font-medium hover:text-blue-400 transition-colors">О нас</a>
+                    <a href="#services" class="text-sm font-medium hover:text-blue-400 transition-colors">Услуги</a>
+                    <a href="#gallery" class="text-sm font-medium hover:text-blue-400 transition-colors">Фото</a>
+                    <a href="#reviews" class="text-sm font-medium hover:text-blue-400 transition-colors">Отзывы</a>
+                    <a href="#contacts" class="text-sm font-medium hover:text-blue-400 transition-colors">Контакты</a>
+                </nav>
+
+                <!-- Phone & CTA (Desktop) -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="tel:+79935762427" class="font-heading font-semibold text-lg hover:text-blue-400 transition-colors">
+                        <i class="fa-solid fa-phone text-blue-500 mr-2"></i>+7 (993) 576-24-27
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none p-2 rounded-md glass">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass border-t border-white/10 absolute w-full backdrop-blur-2xl bg-dark/90">
+            <div class="px-4 pt-2 pb-6 space-y-1 shadow-2xl">
+                <a href="#about" class="block px-3 py-3 text-base font-medium rounded-md hover:bg-white/5 transition-colors">О нас</a>
+                <a href="#services" class="block px-3 py-3 text-base font-medium rounded-md hover:bg-white/5 transition-colors">Услуги</a>
+                <a href="#gallery" class="block px-3 py-3 text-base font-medium rounded-md hover:bg-white/5 transition-colors">Фото</a>
+                <a href="#reviews" class="block px-3 py-3 text-base font-medium rounded-md hover:bg-white/5 transition-colors">Отзывы</a>
+                <a href="#contacts" class="block px-3 py-3 text-base font-medium rounded-md hover:bg-white/5 transition-colors">Контакты</a>
+                <div class="pt-4 mt-2 border-t border-white/10">
+                    <a href="tel:+79935762427" class="flex items-center justify-center w-full px-4 py-3 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
+                        <i class="fa-solid fa-phone mr-2"></i> Позвонить
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 w-full h-full z-[-1]">
+            <img src="https://avatars.mds.yandex.net/get-altay/19547275/2a0000019e62e021257ad88e815b3bce382a/XXXL" alt="Автосервис Платинум" class="w-full h-full object-cover object-center" />
+            <div class="absolute inset-0 bg-gradient-to-r from-dark via-dark/90 to-transparent"></div>
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-fadein">
+            <div class="max-w-2xl">
+                <div class="inline-block px-4 py-1.5 rounded-full glass border border-blue-500/30 text-blue-300 text-sm font-medium mb-6">
+                    <i class="fa-solid fa-map-location-dot mr-2"></i> Новый адрес: Урай, тер. Строитель-6, 75П
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-heading font-black text-white leading-tight mb-6">
+                    Честный ремонт<br>
+                    <span class="gradient-text">без лишних наценок</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 mb-8 font-light leading-relaxed">
+                    Новое руководство — новые стандарты. Мы не навязываем ненужные услуги, ремонтируем то, за что другие не берутся, и сами заказываем запчасти. Быстро, качественно и прозрачно.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#booking" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:-translate-y-1 transition-all duration-300">
+                        Записаться в сервис
+                    </a>
+                    <a href="#services" class="inline-flex justify-center items-center px-8 py-4 border border-white/20 glass text-lg font-medium rounded-xl text-white hover:bg-white/10 transition-all duration-300">
+                        Все услуги
+                    </a>
+                </div>
+                
+                <div class="mt-10 flex items-center gap-6 text-sm text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-star text-yellow-500"></i>
+                        <i class="fa-solid fa-star text-yellow-500"></i>
+                        <i class="fa-solid fa-star text-yellow-500"></i>
+                        <i class="fa-solid fa-star text-yellow-500"></i>
+                        <i class="fa-solid fa-star text-yellow-500"></i>
+                        <span class="ml-1 text-white">Высокий рейтинг</span>
+                    </div>
+                    <div class="hidden sm:flex items-center gap-2">
+                        <i class="fa-solid fa-wallet text-green-400"></i>
+                        <span class="text-white">Оплата картой</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Почему мы (About) -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-heading font-bold mb-4">Почему выбирают <span class="text-blue-500">Платинум?</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Мы полностью сменили подход к обслуживанию. Наша главная цель — помочь вам, а не просто заработать.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card rounded-2xl p-6 hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center mb-6 group-hover:bg-blue-500/40 transition-colors">
+                        <i class="fa-solid fa-handshake text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3">Честность 100%</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Не делаем ту работу, которая не нужна. Показываем реальную проблему и предлагаем оптимальное решение.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="glass-card rounded-2xl p-6 hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center mb-6 group-hover:bg-purple-500/40 transition-colors">
+                        <i class="fa-solid fa-box-open text-purple-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3">Всё в одном месте</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Вам не нужно бегать по магазинам. Мы сами подберем, закажем запчасти и масла по адекватным ценам.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card rounded-2xl p-6 hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/20 flex items-center justify-center mb-6 group-hover:bg-cyan-500/40 transition-colors">
+                        <i class="fa-solid fa-screwdriver-wrench text-cyan-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3">Беремся за сложное</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Не боимся трудностей. Ремонтируем сложные узлы (например, торсионные балки), от которых отказываются другие СТО.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card rounded-2xl p-6 hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center mb-6 group-hover:bg-green-500/40 transition-colors">
+                        <i class="fa-solid fa-user-tie text-green-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3">Новое руководство</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Полный контроль качества, отзывчивый владелец и приветливые мастера. Всегда проконсультируем в процессе ремонта.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги (Services) -->
+    <section id="services" class="py-24 bg-black/20 border-y border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-5xl font-heading font-bold mb-4">Наши услуги</h2>
+                    <p class="text-gray-400 text-lg">Выполняем полный спектр работ: от замены масла до капитального ремонта двигателя и кузовных работ.</p>
+                </div>
+                <a href="#booking" class="glass px-6 py-3 rounded-lg text-white hover:bg-white/10 transition-colors whitespace-nowrap">
+                    Запросить стоимость
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
+                <!-- Категория 1 -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-blue-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <i class="fa-solid fa-car-side text-2xl text-blue-400"></i>
+                        <h3 class="text-xl font-bold font-heading">Двигатель и ТО</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-500 mt-1 text-xs"></i> Ремонт двигателя и ГБЦ</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-500 mt-1 text-xs"></i> Замена масла и ремня ГРМ</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-500 mt-1 text-xs"></i> Эндоскопия и раскоксовка</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-500 mt-1 text-xs"></i> Водородная очистка</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-blue-500 mt-1 text-xs"></i> Ремонт турбокомпрессоров</li>
+                    </ul>
+                </div>
+
+                <!-- Категория 2 -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-purple-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <i class="fa-solid fa-cogs text-2xl text-purple-400"></i>
+                        <h3 class="text-xl font-bold font-heading">Ходовая и Трансмиссия</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-purple-500 mt-1 text-xs"></i> Ремонт ходовой части и мостов</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-purple-500 mt-1 text-xs"></i> Ремонт АКПП, МКПП, РКПП</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-purple-500 mt-1 text-xs"></i> Ремонт рулевых реек</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-purple-500 mt-1 text-xs"></i> Замена сцепления</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-purple-500 mt-1 text-xs"></i> Ремонт амортизаторов и пневмосистемы</li>
+                    </ul>
+                </div>
+
+                <!-- Категория 3 -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-cyan-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <i class="fa-solid fa-plug text-2xl text-cyan-400"></i>
+                        <h3 class="text-xl font-bold font-heading">Электрика и Топливная</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyan-500 mt-1 text-xs"></i> Компьютерная диагностика</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyan-500 mt-1 text-xs"></i> Ремонт автоэлектрики и генераторов</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyan-500 mt-1 text-xs"></i> Промывка инжектора и форсунок</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyan-500 mt-1 text-xs"></i> Установка сигнализаций и Webasto</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyan-500 mt-1 text-xs"></i> Ремонт автономных отопителей</li>
+                    </ul>
+                </div>
+
+                <!-- Категория 4 -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-green-500 md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center gap-4 mb-6">
+                        <i class="fa-solid fa-spray-can text-2xl text-green-400"></i>
+                        <h3 class="text-xl font-bold font-heading">Кузов и Эстетика</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 text-xs"></i> Кузовной ремонт и
