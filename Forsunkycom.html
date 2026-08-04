@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forsunky.com | Профессиональный ремонт дизельных форсунок в Ижевске</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        blue: { 600: '#2563eb', 700: '#1d4ed8' },
+                        slate: { 800: '#1e293b' },
+                        gray: { 100: '#f3f4f6' },
+                        amber: { 500: '#f59e0b' },
+                        red: { 600: '#dc2626' }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { background-color: #1e293b; color: #f3f4f6; }
+        .glass-panel {
+            background: rgba(243, 244, 246, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(243, 244, 246, 0.1);
+        }
+        .glass-card:hover {
+            background: rgba(243, 244, 246, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.3);
+        }
+        .glass-header {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(243, 244, 246, 0.05);
+        }
+        /* Gradient text using allowed colors */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #f3f4f6, #2563eb);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 4px; }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-600 selection:text-gray-100 overflow-x-hidden relative">
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 w-full z-50 glass-header transition-all duration-300">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-gray-100 group-hover:bg-blue-700 transition-colors shadow-[0_0_15px_rgba(37,99,235,0.5)]">
+                        <i class="fa-solid fa-gauge-high text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold tracking-wider text-gray-100">Forsunky<span class="text-blue-600">.com</span></span>
+                </a>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-8 font-medium">
+                    <a href="#about" class="text-gray-100/80 hover:text-blue-600 transition-colors">О нас</a>
+                    <a href="#services" class="text-gray-100/80 hover:text-blue-600 transition-colors">Услуги и цены</a>
+                    <a href="#stages" class="text-gray-100/80 hover:text-blue-600 transition-colors">Этапы работы</a>
+                    <a href="#reviews" class="text-gray-100/80 hover:text-blue-600 transition-colors">Отзывы</a>
+                    <a href="#contacts" class="text-gray-100/80 hover:text-blue-600 transition-colors">Контакты</a>
+                </nav>
+
+                <!-- Phone & CTA Desktop -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <div class="text-right">
+                        <a href="tel:+79828315074" class="block font-bold text-gray-100 hover:text-blue-600 transition-colors">+7(982) 831-50-74</a>
+                        <span class="text-xs text-amber-500"><i class="fa-solid fa-clock mr-1"></i> Пн-Пт 8:00-20:00</span>
+                    </div>
+                    <a href="#contact-form" class="bg-blue-600 hover:bg-blue-700 text-gray-100 px-6 py-2.5 rounded-lg font-semibold transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)] hover:shadow-[0_0_25px_rgba(37,99,235,0.6)]">
+                        Заказать звонок
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-100 focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t-0 border-x-0 absolute w-full top-20 left-0 flex flex-col px-6 py-8 gap-6 shadow-2xl">
+            <a href="#about" class="text-lg text-gray-100 hover:text-blue-600 font-medium mobile-link">О нас</a>
+            <a href="#services" class="text-lg text-gray-100 hover:text-blue-600 font-medium mobile-link">Услуги и цены</a>
+            <a href="#stages" class="text-lg text-gray-100 hover:text-blue-600 font-medium mobile-link">Этапы работы</a>
+            <a href="#reviews" class="text-lg text-gray-100 hover:text-blue-600 font-medium mobile-link">Отзывы</a>
+            <a href="#contacts" class="text-lg text-gray-100 hover:text-blue-600 font-medium mobile-link">Контакты</a>
+            <hr class="border-gray-100/10">
+            <a href="tel:+79828315074" class="text-xl font-bold text-gray-100 flex items-center gap-2"><i class="fa-solid fa-phone text-blue-600"></i> +7(982) 831-50-74</a>
+            <a href="#contact-form" class="bg-blue-600 text-center text-gray-100 py-3 rounded-lg font-bold shadow-lg mobile-link">Заказать звонок</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20">
+        <!-- BG Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://avatars.mds.yandex.net/get-altay/14763246/2a000001958a1eb6db01e951e9126ac736c0/XXXL" alt="Автосервис Forsunky" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-slate-800/80 bg-gradient-to-r from-slate-800 via-slate-800/90 to-slate-800/60 mix-blend-multiply"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="max-w-3xl pt-10">
+                <div class="inline-block glass-panel px-4 py-1 rounded-full text-blue-600 text-sm font-bold mb-6 tracking-wide border border-blue-600/30">
+                    <i class="fa-solid fa-star text-amber-500 mr-1"></i> Более 10 лет опыта в обслуживании
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-7xl font-extrabold leading-tight mb-6">
+                    <span class="text-gray-100">Профессиональный ремонт </span> 
+                    <span class="text-blue-600">дизельных форсунок</span>
+                    <span class="block text-3xl md:text-4xl mt-2 font-medium text-gray-100/90">в Ижевске</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-100/80 mb-10 max-w-xl font-light">
+                    Обслуживание форсунок любой сложности. Быстрые сроки. Диагностика, ремонт, промывка и кодирование с гарантией качества и доставкой по РФ.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact-form" class="bg-blue-600 hover:bg-blue-700 text-gray-100 text-center px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.7)] flex justify-center items-center gap-2">
+                        Записаться на ремонт
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#services" class="glass-panel hover:bg-gray-100/10 text-gray-100 text-center px-8 py-4 rounded-xl font-bold text-lg transition-all flex justify-center items-center">
+                        Узнать цены
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Features Mini Grid -->
+            <div class="hidden lg:grid grid-cols-2 gap-4">
+                <div class="glass-panel p-6 rounded-2xl glass-card transition-all">
+                    <i class="fa-solid fa-microscope text-3xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-100 mb-2">Точная диагностика</h3>
+                    <p class="text-gray-100/60 text-sm">Выявляем неисправности максимально точно на современных стендах.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl glass-card transition-all mt-8">
+                    <i class="fa-solid fa-money-bill-wave text-3xl text-amber-500 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-100 mb-2">Любые способы оплаты</h3>
+                    <p class="text-gray-100/60 text-sm">Наличный и безналичный расчет для вашего удобства.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl glass-card transition-all">
+                    <i class="fa-solid fa-gears text-3xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-100 mb-2">Топовые бренды</h3>
+                    <p class="text-gray-100/60 text-sm">Bosch, Delphi, Denso, Siemens и спецтехника.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl glass-card transition-all mt-8">
+                    <i class="fa-solid fa-medal text-3xl text-red-600 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-100 mb-2">Профессионалы</h3>
+                    <p class="text-gray-100/60 text-sm">Гарантия на все виды восстановительных работ.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Logo Marquee -->
+    <div class="bg-blue-600/10 border-y border-blue-600/20 py-8 overflow-hidden backdrop-blur-sm">
+        <div class="container mx-auto px-4">
+            <p class="text-center text-gray-100/60 text-sm uppercase tracking-widest font-bold mb-4">Мы работаем с форсунками ведущих производителей</p>
+            <div class="flex flex-wrap justify-center gap-10 md:gap-20 items-center opacity-70">
+                <span class="text-2xl md:text-3xl font-extrabold text-gray-100 tracking-wider">BOSCH</span>
+                <span class="text-2xl md:text-3xl font-extrabold text-gray-100 tracking-wider italic">DELPHI</span>
+                <span class="text-2xl md:text-3xl font-extrabold text-gray-100 tracking-wider">DENSO</span>
+                <span class="text-2xl md:text-3xl font-extrabold text-gray-100 tracking-wider">SIEMENS</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative">
+        <div class="absolute right-0 top-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-100 mb-6">Наши <span class="text-blue-600">Услуги и Цены</span></h2>
+                <p class="text-gray-100/70 text-lg">Выполняем полный комплекс работ по обслуживанию топливных систем дизельных двигателей.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="glass-panel p-8 rounded-2xl glass-card flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-600 text-2xl mb-6">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-3">Диагностика форсунок</h3>
+                        <p class="text-gray-100/60 mb-6">Проверка дизельных форсунок на современном стенде для выявления отклонений.</p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-100/10 pt-6 mt-4">
+                        <span class="text-2xl font-bold text-gray-100">500 ₽</span>
+                        <a href="#contact-form" class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2">Заказать <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                    </div>
+                </div>
+                <!-- Service 2 -->
+                <div class="glass-panel p-8 rounded-2xl glass-card flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-600 text-gray-100 text-xs font-bold px-3 py-1 rounded-bl-lg">ХИТ</div>
+                    <div>
+                        <div class="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-600 text-2xl mb-6">
+                            <i class="fa-solid fa-wrench"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-3">Ремонт форсунок</h3>
+                        <p class="text-gray-100/60 mb-6">Полное восстановление и замена изношенных деталей любых дизельных форсунок.</p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-100/10 pt-6 mt-4">
+                        <span class="text-xl text-gray-100/60">от <span class="text-2xl font-bold text-gray-100">3000 ₽</span></span>
+                        <a href="#contact-form" class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2">Заказать <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                    </div>
+                </div>
+                <!-- Service 3 -->
+                <div class="glass-panel p-8 rounded-2xl glass-card flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-600 text-2xl mb-6">
+                            <i class="fa-solid fa-screwdriver"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-3">Снятие и замена</h3>
+                        <p class="text-gray-100/60 mb-6">Демонтируем оборудование с применением специнструмента.</p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-100/10 pt-6 mt-4">
+                        <span class="text-xl text-gray-100/60">от <span class="text-2xl font-bold text-gray-100">1000 ₽</span></span>
+                        <a href="#contact-form" class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2">Заказать <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                    </div>
+                </div>
+                <!-- Service 4 -->
+                <div class="glass-panel p-8 rounded-2xl glass-card flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-600 text-2xl mb-6">
+                            <i class="fa-solid fa-pump-soap"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-3">Промывка форсунок</h3>
+                        <p class="text-gray-100/60 mb-6">Ультразвуковая и химическая очистка для восстановления распыла.</p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-100/10 pt-6 mt-4">
+                        <span class="text-xl text-gray-100/60">от <span class="text-2xl font-bold text-gray-100">500 ₽</span></span>
+                        <a href="#contact-form" class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2">Заказать <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                    </div>
+                </div>
+                <!-- Service 5 -->
+                <div class="glass-panel p-8 rounded-2xl glass-card flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-600 text-2xl mb-6">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-3">Регулировка</h3>
+                        <p class="text-gray-100/60 mb-6">Точная настройка дизельных форсунок под заводские параметры.</p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-100/10 pt-6 mt-4">
+                        <span class="text-2xl font-bold text-gray-100">3000 ₽</span>
+                        <a href="#contact-form" class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2">Заказать <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                    </div>
+                </div>
+                <!-- Service 6 -->
+                <div class="glass-panel p-8 rounded-2xl glass-card flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-600 text-2xl mb-6">
+                            <i class="fa-solid fa-truck-monster"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-3">Ремонт ТНВД</h3>
+                        <p class="text-gray-100/60 mb-6">Ремонт топливных насосов высокого давления дизельных двигателей.</p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-gray-100/10 pt-6 mt-4">
+                        <span class="text-xl text-gray-100/60">от <span class="text-2xl font-bold text-gray-100">3000 ₽</span></span>
+                        <a href="#contact-form" class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2">Заказать <i class="fa-solid fa-arrow-right text-sm"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#contact-form" class="inline-block bg-blue-600 hover:bg-blue-700 text-gray-100 px-8 py-3 rounded-lg font-bold transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)]">Диагностика дизельных двигателей от 500₽</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Process Section with BG -->
+    <section id="stages" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://avatars.mds.yandex.net/get-altay/15405132/2a000001958a06e8ea0a4ab377e126f56063/XXXL" class="w-full h-full object-cover opacity-20 filter grayscale" alt="Процесс работы">
+            <div class="absolute inset-0 bg-slate-800/80 backdrop-blur-[2px]"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-100 mb-4">Этапы <span class="text-blue-600">обслуживания</span></h2>
+                <p class="text-gray-100/70 text-lg max-w-2xl mx-auto">Мы соблюдаем строгий регламент работы, рекомендованный производителями топливных систем.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Step 1 -->
+                <div class="glass-panel p-6 rounded-2xl flex items-start gap-4">
+                    <div class="text-4xl font-extrabold text-blue-600 opacity-80">01</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-100 mb-2">Диагностика</h4>
+                        <p class="text-gray-100/60 text-sm">Максимально точно выявляем неисправности и причины поломки.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="glass-panel p-6 rounded-2xl flex items-start gap-4">
+                    <div class="text-4xl font-extrabold text-blue-600 opacity-80">02</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-100 mb-2">Демонтаж</h4>
+                        <p class="text-gray-100/60 text-sm">Аккуратное снятие оборудования и топливных систем с автомобиля.</p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="glass-panel p-6 rounded-2xl flex items-start gap-4">
+                    <div class="text-4xl font-extrabold text-blue-600 opacity-80">03</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-100 mb-2">Дефектовка</h4>
+                        <p class="text-gray-100/60 text-sm">Разборка, выявление степени физического износа и остаточного ресурса деталей.</p>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="glass-panel p-6 rounded-2xl flex items-start gap-4">
+                    <div class="text-4xl font-extrabold text-blue-600 opacity-80">04</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-100 mb-2">Ремонт</h4>
+                        <p class="text-gray-100/60 text-sm">Восстанавливаем агрегаты и заменяем критически изношенные детали.</p>
+                    </div>
+                </div>
+                <!-- Step 5 -->
+                <div class="glass-panel p-6 rounded-2xl flex items-start gap-4">
+                    <div class="text-4xl font-extrabold text-blue-600 opacity-80">05</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-100 mb-2">Сборка</h4>
+                        <p class="text-gray-100/60 text-sm">Монтаж и выполнение рекомендованных производителем операций.</p>
+                    </div>
+                </div>
+                <!-- Step 6 -->
+                <div class="glass-panel p-6 rounded-2xl flex items-start gap-4">
+                    <div class="text-4xl font-extrabold text-blue-600 opacity-80">06</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-100 mb-2">Тестирование</h4>
+                        <p class="text-gray-100/60 text-sm">Финальная проверка на стенде, кодирование и прописывание в систему.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery & Review -->
+    <section id="reviews" class="py-24 relative">
+        <div class="absolute left-0 bottom-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Images Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                    <img src="https://avatars.mds.yandex.net/get-altay/14763246/2a000001958a06e7e74f911776366dae07cd/XXXL" class="rounded-2xl w-full h-48 md:h-64 object-cover shadow-lg border border-gray-100/10" alt="Автосервис фото 1">
+                    <img src="https://avatars.mds.yandex.net/get-altay/14733519/2a000001958a06e97fe17b7ef37509f5d78f/XXXL" class="rounded-2xl w-full h-48 md:h-64 object-cover shadow-lg border border-gray-100/10 translate-y-6" alt="Автосервис фото 2">
+                </div>
+
+                <!-- Review & Info -->
+                <div class="glass-panel p-8 md:p-12 rounded-3xl mt-8 lg:mt-0">
+                    <div class="flex items-center gap-2 mb-6">
+                        <i class="fa-solid fa-star text-amber-500 text-xl"></i>
+                        <i class="fa-solid fa-star text-amber-500 text-xl"></i>
+                        <i class="fa-solid fa-star text-amber-500 text-xl"></i>
+                        <i class="fa-solid fa-star text-amber-500 text-xl"></i>
+                        <i class="fa-solid fa-star text-amber-500 text-xl"></i>
+                        <span class="text-gray-100 ml-2 font-bold">Яндекс Отзывы</span>
+                    </div>
+                    
+                    <blockquote class="text-xl md:text-2xl font-light text-gray-100 mb-8 italic leading-relaxed">
+                        "Веселый и отзывчивый мастер. Ему 5 баллов. Результатом я доволен, на мастера пойду сам и рекомендую остальным. Ставлю 5!"
+                    </blockquote>
+                    
+                    <div class="flex items-center gap-4 border-t border-gray-100/10 pt-6">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-gray-100 font-bold text-lg">М</div>
+                        <div>
+                            <h4 class="text-gray-100 font-bold">Михаил</h4>
+                            <p class="text-gray-100/60 text-sm">Знаток города, 30 мая</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts & Form Section -->
+    <section id="contacts" class="py-24 bg-slate-800 relative border-t border-gray-100/5">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-100 mb-4">Как нас <span class="text-blue-600">найти</span></h2>
+                <p class="text-gray-100/70 text-lg">Ищете качественный ремонт дизельных форсунок в Ижевске? Звоните нам!</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Contact Info -->
+                <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-8">Наши контакты</h3>
+                        
+                        <div class="flex items-start gap-4 mb-8">
+                            <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-600 text-xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-gray-100 font-bold text-lg">Адреса сервисов:</h5>
+                                <p class="text-gray-100/70 mt-1">г. Ижевск, ул. Салютовская 25Б</p>
+                                <p class="text-gray-100/70 mt-1">г. Ижевск, ул. Гагарина 1к1, этаж 1</p>
+                                <a href="#" class="inline-block mt-2 text-blue-600 text-sm font-semibold hover:underline">Показать на карте <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 mb-8">
+                            <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-600 text-xl shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-gray-100 font-bold text-lg">Телефоны:</h5>
+                                <a href="tel:+79828315074" class="block text-gray-100/90 mt-1 hover:text-blue-600 transition-colors">+7 (982) 831-50-74</a>
+                                <a href="tel:+79225037303" class="block text-gray-100/90 mt-1 hover:text-blue-600 transition-colors">+7 (922) 503-73-03</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center text-amber-500 text-xl shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-gray-100 font-bold text-lg">Режим работы:</h5>
+                                <p class="text-gray-100/70 mt-1">Пн-Пт: 8:00 - 20:00</p>
+                                <p class="text-red-600/90 text-sm mt-1 font-medium">Закрыто до завтра (в нерабочее время)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div id="contact-form" class="glass-panel p-8 rounded-3xl relative overflow-hidden">
+                    <div class="absolute -right-20 -top-20 w-40 h-40 bg-blue-600/30 rounded-full blur-[50px]"></div>
+                    <h3 class="text-2xl font-bold text-gray-100 mb-2">Оставьте сообщение</h3>
+                    <p class="text-gray-100/60 mb-8">и мы свяжемся с Вами в ближайшее время!</p>
+                    
+                    <form class="space-y-4">
+                        <input type="hidden" name="formservices" value="Форма заявки">
+                        <input type="hidden" name="tildaspec-formname" value="Заявка с сайта">
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-100/70 mb-1">Ваше имя</label>
+                            <input type="text" name="Name" required class="w-full bg-slate-800/60 border border-gray-100/10 text-gray-100 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all placeholder-gray-100/30" placeholder="Иван Иванов">
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-100/70 mb-1">Телефон</label>
+                                <input type="tel" name="Phone" required class="w-full bg-slate-800/60 border border-gray-100/10 text-gray-100 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all placeholder-gray-100/30" placeholder="+7 (999) 000-00-00">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-100/70 mb-1">Email</label>
+                                <input type="email" name="Email" class="w-full bg-slate-800/60 border border-gray-100/10 text-gray-100 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all placeholder-gray-100/30" placeholder="mail@example.com">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-100/70 mb-1">Комментарий</label>
+                            <textarea name="Комментарий" rows="3" class="w-full bg-slate-800/60 border border-gray-100/10 text-gray-100 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all placeholder-gray-100/30" placeholder="Опишите проблему..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-gray-100 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.6)] mt-4">
+                            Отправить заявку
+                        </button>
+                        
+                        <p class="text-xs text-gray-100/40 text-center mt-4">
+                            Нажимая кнопку, вы соглашаетесь с <a href="#" class="underline hover:text-gray-100">политикой конфиденциальности</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 border-t border-gray-100/10 py-12">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-gauge-high text-blue-600 text-2xl"></i>
+                <span class="text-xl font-bold text-gray-100">Forsunky<span class="text-blue-600">.com</span></span>
+            </div>
+            
+            <div class="flex items-center gap-6 text-gray-100/60 text-sm">
+                <a href="#" class="hover:text-blue-600 transition-colors">Политика конфиденциальности</a>
+                <a href="mailto:seo@forsunkycom.ru" class="hover:text-blue-600 transition-colors">seo@forsunkycom.ru</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <a href="https://www.youtube.com/@Forsunkycom/featured" target="_blank" class="w-10 h-10 rounded-full bg-gray-100/5 flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-gray-100 transition-all text-lg shadow-lg border border-gray-100/10">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-8 text-center text-xs text-gray-100/30">
+            &copy; 2026 Forsunky.com. Профессиональный ремонт дизельных форсунок в Ижевске.
+        </div>
+    </footer>
+
+    <!-- Developer Watermark -->
+    <a href="https://t.me/pootlord" target="_blank" class="fixed bottom-4 left-4 z-50 glass-panel px-4 py-2 rounded-full shadow-2xl flex items-center gap-2 group hover:bg-slate-800 transition-all border border-gray-100/20">
+        <i class="fa-solid fa-code text-blue-600 group-hover:text-amber-500 transition-colors text-sm"></i>
+        <span class="text-xs font-semibold text-gray-100/80 group-hover:text-gray-100 transition-colors tracking-wide">Заказать сайт</span>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+        const icon = btn.querySelector('i');
+
+        const toggleMenu = () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        };
+
+        btn.addEventListener('click', toggleMenu);
+        links.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Header Background on Scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg');
+                header.style.background = 'rgba(30, 41, 59, 0.95)';
+            } else {
+                header.classList.remove('shadow-lg');
+                header.style.background = 'rgba(30, 41, 59, 0.85)';
+            }
+        });
+    </script>
+</body>
+</html>
