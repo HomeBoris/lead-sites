@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регинас Сервис — Премиальное обслуживание автомобилей</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#1A1A1A',
+                        accent: '#2563EB',
+                        accentHover: '#1D4ED8',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #1A1A1A;
+            color: #F3F4F6;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        /* Glassmorphism Styles */
+        .glass-nav {
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(37, 99, 235, 0.3);
+            box-shadow: 0 12px 40px 0 rgba(37, 99, 235, 0.15);
+            background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+        }
+
+        .glass-input {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .glass-input:focus {
+            outline: none;
+            border-color: #3B82F6;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .glass-button {
+            background: rgba(37, 99, 235, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .glass-button:hover {
+            background: rgba(37, 99, 235, 1);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #60A5FA, #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4B5563;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-accent selection:text-white">
+
+    <!-- Watermark -->
+    <a href="https://t.me/pootlord" target="_blank" class="fixed bottom-4 left-4 z-50 glass-card px-4 py-2 rounded-full text-xs font-medium text-gray-300 hover:text-white flex items-center gap-2 group transition-all">
+        <i class="fa-brands fa-telegram text-accent group-hover:scale-110 transition-transform"></i>
+        Заказать сайт
+    </a>
+
+    <!-- Header / Navbar -->
+    <header class="fixed w-full top-0 z-40 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <img class="h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" src="https://service.reginas.ru/upload/medialibrary/886/k8bc2e0lgott2r4n4rfg3wr270h89t1s/service_logo.png" alt="Регинас Сервис Логотип">
+                </div>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="https://service.reginas.ru/uslugi/" class="text-gray-300 hover:text-white font-medium transition-colors text-sm uppercase tracking-wider">Услуги</a>
+                    <a href="#prices" class="text-gray-300 hover:text-white font-medium transition-colors text-sm uppercase tracking-wider">Цены</a>
+                    <a href="#promos" class="text-gray-300 hover:text-white font-medium transition-colors text-sm uppercase tracking-wider">Акции</a>
+                    <a href="#about" class="text-gray-300 hover:text-white font-medium transition-colors text-sm uppercase tracking-wider">Компания</a>
+                    <a href="#contacts" class="text-gray-300 hover:text-white font-medium transition-colors text-sm uppercase tracking-wider">Контакты</a>
+                </nav>
+                
+                <!-- Desktop CTA & Phone -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="tel:+73512395207" class="font-heading font-semibold text-lg hover:text-accent transition-colors">+7 351 239‒52‒07</a>
+                    <button onclick="document.getElementById('callback-modal').classList.remove('hidden')" class="glass-button text-white px-6 py-2.5 rounded-full font-medium text-sm">
+                        Заказать звонок
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden glass-nav absolute top-full left-0 w-full border-t border-white/5">
+            <div class="px-4 pt-4 pb-6 space-y-3 flex flex-col items-center text-center">
+                <a href="https://service.reginas.ru/uslugi/" class="block text-gray-300 hover:text-white font-medium text-lg w-full py-2">Услуги</a>
+                <a href="#prices" class="block text-gray-300 hover:text-white font-medium text-lg w-full py-2">Цены</a>
+                <a href="#promos" class="block text-gray-300 hover:text-white font-medium text-lg w-full py-2">Акции</a>
+                <a href="#about" class="block text-gray-300 hover:text-white font-medium text-lg w-full py-2">Компания</a>
+                <a href="#contacts" class="block text-gray-300 hover:text-white font-medium text-lg w-full py-2">Контакты</a>
+                
+                <div class="pt-4 mt-2 border-t border-white/10 w-full flex flex-col items-center gap-4">
+                    <a href="tel:+73512395207" class="font-heading font-semibold text-xl text-white">+7 351 239‒52‒07</a>
+                    <button onclick="document.getElementById('callback-modal').classList.remove('hidden'); document.getElementById('mobile-menu').classList.add('hidden');" class="glass-button text-white px-8 py-3 rounded-full font-medium w-full max-w-xs">
+                        Заказать звонок
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Abstract glowing orbs behind hero -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card border-accent/30 text-accent mb-6 text-sm font-medium">
+                        <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+                        Официальный автосервис
+                    </div>
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        Профессиональный <br>
+                        <span class="text-gradient">кузовной ремонт</span><br>
+                        и обслуживание
+                    </h1>
+                    <p class="text-lg text-gray-400 mb-8 font-light leading-relaxed max-w-xl">
+                        Опыт ремонтных работ более 10 лет. Квалифицированные специалисты, собственная база запчастей и строгое соблюдение всех сроков. Официальная гарантия на работы.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="document.getElementById('request-modal').classList.remove('hidden')" class="glass-button text-white px-8 py-4 rounded-xl font-medium text-lg flex items-center justify-center gap-3">
+                            Оставить заявку
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <a href="https://service.reginas.ru/uslugi/" class="glass-card text-white px-8 py-4 rounded-xl font-medium text-lg text-center hover:bg-white/5 transition-colors">
+                            Все услуги
+                        </a>
+                    </div>
+
+                    <!-- Trust indicators -->
+                    <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8 border-t border-white/10">
+                        <div>
+                            <div class="font-heading text-2xl font-bold text-white mb-1">10+ лет</div>
+                            <div class="text-sm text-gray-400">Опыта работы</div>
+                        </div>
+                        <div>
+                            <div class="font-heading text-2xl font-bold text-white mb-1">22+</div>
+                            <div class="text-sm text-gray-400">Марок авто</div>
+                        </div>
+                        <div class="hidden sm:block">
+                            <div class="font-heading text-2xl font-bold text-white mb-1">4.1 <i class="fa-solid fa-star text-accent text-sm"></i></div>
+                            <div class="text-sm text-gray-400">Рейтинг Яндекс</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Visual / Image Gallery (using old site images in a glass layout) -->
+                <div class="relative hidden lg:block">
+                    <div class="relative w-full h-[500px]">
+                        <img src="https://service.reginas.ru/upload/iblock/f5e/45he8bpf7cf4e19arl4l3m7eor33hmao/7c68a9f42f6648b51874d6788d2fc851.png" alt="Оборудование Регинас" class="absolute right-0 top-0 w-2/3 h-64 object-cover rounded-2xl glass-card shadow-2xl z-20">
+                        <img src="https://service.reginas.ru/upload/iblock/cef/nhntn0yw1f1ou9w01bw8a61uwyb6nvo3/188ce0e8e45b7a9b57f3c029752ad3f5.png" alt="Сервис Регинас" class="absolute left-0 bottom-10 w-2/3 h-64 object-cover rounded-2xl glass-card shadow-2xl z-10 opacity-80 hover:opacity-100 transition-opacity hover:z-30">
+                        
+                        <!-- Floating badge -->
+                        <div class="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 z-40 glass-card p-4 rounded-xl flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 text-xl">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-white">Высокое качество</div>
+                                <div class="text-xs text-gray-400">Гарантия на работы</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid Section -->
+    <section class="py-20 bg-black/20" id="services">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">Наши Услуги</h2>
+                <p class="text-gray-400">Профессиональное оборудование и качественные материалы. Мы оказываем услуги по ремонту автомобилей различных марок.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Service Card 1 -->
+                <a href="https://service.reginas.ru/uslugi/kuzovnoy-remont/" class="glass-card p-8 rounded-2xl group block">
+                    <div class="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center text-accent text-2xl mb-6 group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all">
+                        <i class="fa-solid fa-spray-can-sparkles"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold mb-3 text-white group-hover:text-accent transition-colors">Малярно-кузовной сервис</h3>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Профессиональный кузовной ремонт, покраска автомобиля, удаление вмятин и восстановление геометрии кузова.</p>
+                    <span class="text-accent text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+
+                <!-- Service Card 2 -->
+                <a href="https://service.reginas.ru/uslugi/zamena-masla/Zamenamaslavdvigatele/" class="glass-card p-8 rounded-2xl group block">
+                    <div class="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center text-accent text-2xl mb-6 group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all">
+                        <i class="fa-solid fa-oil-can"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold mb-3 text-white group-hover:text-accent transition-colors">Замена масла в двигателе</h3>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Быстрая и качественная замена моторного масла с использованием оригинальных расходников.</p>
+                    <span class="text-accent text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+
+                <!-- Service Card 3 -->
+                <a href="https://service.reginas.ru/uslugi/zamena-masla/ZamenamaslavAKPP/" class="glass-card p-8 rounded-2xl group block">
+                    <div class="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center text-accent text-2xl mb-6 group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold mb-3 text-white group-hover:text-accent transition-colors">Замена масла в АКПП</h3>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Аппаратная и частичная замена масла в автоматических коробках передач.</p>
+                    <span class="text-accent text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                
+                <!-- Service Card 4 -->
+                <a href="https://service.reginas.ru/uslugi/zamena-masla/Zamenatekhzhidkostey/" class="glass-card p-8 rounded-2xl group block">
+                    <div class="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center text-accent text-2xl mb-6 group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all">
+                        <i class="fa-solid fa-fill-drip"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold mb-3 text-white group-hover:text-accent transition-colors">Замена тех. жидкостей</h3>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Замена антифриза, тормозной жидкости, жидкости ГУР с прокачкой систем.</p>
+                    <span class="text-accent text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+
+                <!-- Service Card 5 -->
+                <a href="https://service.reginas.ru/uslugi/kuzovnoy-remont/Pokraskakuzova/" class="glass-card p-8 rounded-2xl group block">
+                    <div class="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center text-accent text-2xl mb-6 group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all">
+                        <i class="fa-solid fa-paintbrush"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold mb-3 text-white group-hover:text-accent transition-colors">Покраска кузова</h3>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-2">Полная и локальная покраска кузовных элементов в профессиональной камере с точным подбором цвета.</p>
+                    <span class="text-accent text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+
+                <!-- Service Card 6 (All services) -->
+                <a href="https://service.reginas.ru/uslugi/" class="glass-card p-8 rounded-2xl group block border-accent/30 flex flex-col items-center justify-center text-center">
+                    <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center text-white text-2xl mb-4 group-hover:border-accent group-hover:text-accent transition-all">
+                        <i class="fa-solid fa-list-ul"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold mb-2 text-white">Все услуги</h3>
+                    <p class="text-gray-400 text-sm">Полный спектр сервисного обслуживания</p>
+                </a>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <button onclick="document.getElementById('request-modal').classList.remove('hidden')" class="glass-button text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-accent/30 inline-block">Оставить заявку на ремонт</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promos / Акции Section -->
+    <section class="py-20 relative overflow-hidden" id="promos">
+        <div class="absolute inset-0 bg-[url('https://service.reginas.ru/upload/iblock/add/6delt97q6hk7tpcqcrwtml0y1lf7xcoe/a03f9de760cd0d434025a1d20406f372.png')] bg-cover bg-center opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div class="max-w-2xl">
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">Наши акции</h2>
+                    <p class="text-gray-400">Успейте приобрести товары и услуги на невероятно выгодных условиях. Накопительная система скидок.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Promo 1 -->
+                <div class="glass-card p-8 rounded-2xl border-l-4 border-l-accent relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-accent/10 text-9xl">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="font-heading text-2xl font-bold mb-2">Бесплатная замена масла</h3>
+                        <p class="text-gray-300 text-sm mb-6">При покупке масла и масляного фильтра в нашем сервисном центре.</p>
+                        <button onclick="document.getElementById('request-modal').classList.remove('hidden')" class="text-accent font-medium hover:text-white transition-colors">Записаться по акции &rarr;</button>
+                    </div>
+                </div>
+                
+                <!-- Promo 2 -->
+                <div class="glass-card p-8 rounded-2xl border-l-4 border-l-purple-500 relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-purple-500/10 text-9xl">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="font-heading text-2xl font-bold mb-2">Элементарное ТО</h3>
+                        <p class="text-gray-300 text-sm mb-6">Базовое сервисное обслуживание. Выгода до 8200 руб!</p>
+                        <button onclick="document.getElementById('request-modal').classList.remove('hidden')" class="text-accent font-medium hover:text-white transition-colors">Записаться по акции &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- Promo 3 -->
+                <div class="glass-card p-8 rounded-2xl border-l-4 border-l-red-500 relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-red-500/10 text-9xl">
+                        <i class="fa-solid fa-car-burst"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="font-heading text-2xl font-bold mb-2">+1 ГОД NISSAN ASSISTANCE</h3>
+                        <p class="text-gray-300 text-sm mb-6">При прохождении каждого регулярного ТО.</p>
+                        <button onclick="document.getElementById('request-modal').classList.remove('hidden')" class="text-accent font-medium hover:text-white transition-colors">Узнать подробности &rarr;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-black/30" id="about">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Text -->
+                <div>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">Всё, за что берётся компания «Регинас», делается серьезно</h2>
+                    <p class="text-gray-300 mb-6 font-light leading-relaxed">
+                        Мы работаем для вас уже <strong class="text-white">29 лет</strong>. Наши сервисные центры – это команда профессионалов, современное оборудование и широкий выбор дополнительных услуг. 
+                        Основная цель работы нашей компании – профессиональное исполнение любой поставленной задачи.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full glass-card flex items-center justify-center text-accent shrink-0 mt-1">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium">Работаем без выходных</h4>
+                                <p class="text-sm text-gray-400">С 8:00 до 20:00 ежедневно.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full glass-card flex items-center justify-center text-accent shrink-0 mt-1">
+                                <i class="fa-solid fa-cogs"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white
