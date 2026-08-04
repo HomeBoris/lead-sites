@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регинас | Премиальный Автосервис и Кузовной ремонт</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#1a1f26',
+                            gray: '#2d3748',
+                            blue: '#1e3a8a',
+                            lightBlue: '#3b82f6',
+                            accent: '#60a5fa'
+                        }
+                    },
+                    backgroundImage: {
+                        'glass-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        .glass-button {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(30, 58, 138, 0.9));
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .glass-button:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        /* Background Glows */
+        .glow-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+    </style>
+</head>
+<body class="bg-slate-900 text-white font-sans overflow-x-hidden relative min-h-screen">
+
+    <!-- Decorative Background Orbs -->
+    <div class="glow-blob bg-brand-blue w-96 h-96 top-0 left-0"></div>
+    <div class="glow-blob bg-brand-lightBlue w-96 h-96 bottom-0 right-0 opacity-30"></div>
+    <div class="glow-blob bg-indigo-600 w-80 h-80 top-1/2 left-1/3 opacity-20"></div>
+
+    <!-- Navigation Header -->
+    <header class="fixed w-full top-0 z-50 glass-panel border-b border-white/10 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="https://service.reginas.ru/upload/medialibrary/886/k8bc2e0lgott2r4n4rfg3wr270h89t1s/service_logo.png" alt="Регинас Логотип" class="h-10 w-auto group-hover:scale-105 transition-transform duration-300">
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#services" class="text-sm font-medium text-gray-300 hover:text-white hover:text-brand-accent transition-colors">Услуги</a>
+                    <a href="#prices" class="text-sm font-medium text-gray-300 hover:text-white hover:text-brand-accent transition-colors">Цены</a>
+                    <a href="#promo" class="text-sm font-medium text-gray-300 hover:text-white hover:text-brand-accent transition-colors">Акции</a>
+                    <a href="#about" class="text-sm font-medium text-gray-300 hover:text-white hover:text-brand-accent transition-colors">Компания</a>
+                    <a href="#contacts" class="text-sm font-medium text-gray-300 hover:text-white hover:text-brand-accent transition-colors">Контакты</a>
+                </nav>
+
+                <!-- Contact & CTA -->
+                <div class="hidden lg:flex items-center gap-6">
+                    <div class="text-right">
+                        <a href="tel:+73512395207" class="block text-lg font-bold hover:text-brand-accent transition-colors">+7 351 239‒52‒07</a>
+                        <span class="text-xs text-gray-400">с 8:00 до 20:00 Без выходных</span>
+                    </div>
+                    <button onclick="openModal('callModal')" class="glass-button text-white px-6 py-2.5 rounded-full font-medium text-sm">
+                        Заказать звонок
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="lg:hidden text-gray-300 hover:text-white focus:outline-none p-2">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Panel -->
+        <div id="mobileMenu" class="hidden lg:hidden glass-panel border-t border-white/10 absolute w-full left-0 top-20 flex flex-col">
+            <a href="#services" class="px-6 py-4 border-b border-white/5 text-gray-200 hover:bg-white/5 hover:text-brand-accent transition-colors mobile-link">Услуги</a>
+            <a href="#prices" class="px-6 py-4 border-b border-white/5 text-gray-200 hover:bg-white/5 hover:text-brand-accent transition-colors mobile-link">Цены</a>
+            <a href="#promo" class="px-6 py-4 border-b border-white/5 text-gray-200 hover:bg-white/5 hover:text-brand-accent transition-colors mobile-link">Акции</a>
+            <a href="#about" class="px-6 py-4 border-b border-white/5 text-gray-200 hover:bg-white/5 hover:text-brand-accent transition-colors mobile-link">Компания</a>
+            <a href="#contacts" class="px-6 py-4 border-b border-white/5 text-gray-200 hover:bg-white/5 hover:text-brand-accent transition-colors mobile-link">Контакты</a>
+            <div class="p-6">
+                <a href="tel:+73512395207" class="block text-xl font-bold mb-2">+7 351 239‒52‒07</a>
+                <button onclick="openModal('callModal')" class="w-full glass-button text-white px-6 py-3 rounded-xl font-medium text-sm mt-4">
+                    Заказать звонок
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 min-h-[90vh] flex items-center">
+        <div class="absolute inset-0 z-0">
+            <!-- Using one of the provided images as a stylistic hero background with overlay -->
+            <div class="absolute inset-0 bg-slate-900/80 z-10 backdrop-blur-sm"></div>
+            <img src="https://service.reginas.ru/upload/iblock/cef/nhntn0yw1f1ou9w01bw8a61uwyb6nvo3/188ce0e8e45b7a9b57f3c029752ad3f5.png" alt="Фон" class="w-full h-full object-cover opacity-40">
+        </div>
+
+        <div class="container mx-auto px-4 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-6 border-brand-accent/30 text-brand-accent text-sm font-medium">
+                    <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
+                    Регинас Профи — Опыт более 10 лет
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-gray-400">
+                    Кузовной ремонт и премиальный сервис
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl">
+                    Профессиональное оборудование, качественные материалы и строжайшее соблюдение всех сроков. Доверьте свой автомобиль команде экспертов.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <button onclick="openModal('requestModal')" class="glass-button text-white px-8 py-4 rounded-full font-semibold text-lg text-center flex justify-center items-center gap-2">
+                        Оставить заявку <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                    <a href="#services" class="glass-panel text-white px-8 py-4 rounded-full font-semibold text-lg text-center hover:bg-white/10 transition-colors border border-white/20">
+                        Наши услуги
+                    </a>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-8 border-t border-white/10">
+                    <div>
+                        <div class="text-2xl font-bold text-brand-accent mb-1">10+</div>
+                        <div class="text-sm text-gray-400">Лет опыта</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-brand-accent mb-1">29</div>
+                        <div class="text-sm text-gray-400">Лет компании</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-brand-accent mb-1">22+</div>
+                        <div class="text-sm text-gray-400">Марок авто</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-brand-accent mb-1">100%</div>
+                        <div class="text-sm text-gray-400">Соблюдение сроков</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 relative z-10">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">Наши Услуги</h2>
+                <p class="text-gray-400 text-lg">Мы оказываем услуги по ремонту автомобилей различных марок. Профессиональное обслуживание и гарантированное качество.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service Card 1 -->
+                <a href="https://service.reginas.ru/uslugi/zamena-masla/" class="group glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 block">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/30 flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-oil-can text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-brand-accent transition-colors">Замена масла</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Профессиональная замена масла с использованием сертифицированных материалов.</p>
+                    <span class="text-brand-accent text-sm font-medium flex items-center gap-2">Подробнее <i class="fas fa-arrow-right text-xs"></i></span>
+                </a>
+
+                <!-- Service Card 2 -->
+                <a href="https://service.reginas.ru/uslugi/zamena-masla/Zamenamaslavdvigatele/" class="group glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 block">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/30 flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-engine-warning text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-brand-accent transition-colors">Замена масла в двигателе</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Регламентное обслуживание двигателя для продления срока его службы.</p>
+                    <span class="text-brand-accent text-sm font-medium flex items-center gap-2">Подробнее <i class="fas fa-arrow-right text-xs"></i></span>
+                </a>
+
+                <!-- Service Card 3 -->
+                <a href="https://service.reginas.ru/uslugi/zamena-masla/ZamenamaslavAKPP/" class="group glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 block">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/30 flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-cogs text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-brand-accent transition-colors">Замена масла в АКПП</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Полная и частичная аппаратная замена жидкости в автоматических коробках передач.</p>
+                    <span class="text-brand-accent text-sm font-medium flex items-center gap-2">Подробнее <i class="fas fa-arrow-right text-xs"></i></span>
+                </a>
+
+                <!-- Service Card 4 -->
+                <a href="https://service.reginas.ru/uslugi/zamena-masla/Zamenatekhzhidkostey/" class="group glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 block">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/30 flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-tint text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-brand-accent transition-colors">Замена тех. жидкостей</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Антифриз, тормозная жидкость, жидкость ГУР и другие эксплуатационные составы.</p>
+                    <span class="text-brand-accent text-sm font-medium flex items-center gap-2">Подробнее <i class="fas fa-arrow-right text-xs"></i></span>
+                </a>
+
+                <!-- Service Card 5 -->
+                <a href="https://service.reginas.ru/uslugi/kuzovnoy-remont/" class="group glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 block md:col-span-2 lg:col-span-1">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/30 flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-car-crash text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-brand-accent transition-colors">Малярно-кузовной сервис</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Восстановление геометрии кузова, стапельные работы любой сложности.</p>
+                    <span class="text-brand-accent text-sm font-medium flex items-center gap-2">Подробнее <i class="fas fa-arrow-right text-xs"></i></span>
+                </a>
+
+                <!-- Service Card 6 -->
+                <a href="https://service.reginas.ru/uslugi/kuzovnoy-remont/Pokraskakuzova/" class="group glass-panel p-8 rounded-2xl hover:bg-white/5 transition-all duration-300 block md:col-span-2 lg:col-span-1">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/30 flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-spray-can text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-brand-accent transition-colors">Покраска кузова</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Компьютерный подбор цвета, локальная и полная покраска в профессиональной камере.</p>
+                    <span class="text-brand-accent text-sm font-medium flex items-center gap-2">Подробнее <i class="fas fa-arrow-right text-xs"></i></span>
+                </a>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="https://service.reginas.ru/uslugi/" class="inline-block border border-white/20 hover:bg-white/10 text-white px-8 py-3 rounded-full font-medium transition-colors">Все услуги</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions Section -->
+    <section id="promo" class="py-20 relative z-10 overflow-hidden">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="w-full lg:w-1/2">
+                    <div class="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-brand-accent text-sm font-bold tracking-wider mb-4 border border-blue-500/30">АКЦИИ И ПРЕДЛОЖЕНИЯ</div>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Успейте приобрести услуги на невероятно выгодных условиях.</h2>
+                    <p class="text-gray-400 text-lg mb-8">Накопительная система скидок. Постоянно обновляющиеся акции для наших клиентов.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-brand-accent flex items-start gap-4">
+                            <div class="bg-blue-500/20 p-3 rounded-xl text-brand-accent"><i class="fas fa-gift text-xl"></i></div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Бесплатная замена масла</h4>
+                                <p class="text-gray-400 text-sm">Элементарное ТО. Выгода до 8200 руб!</p>
+                            </div>
+                        </div>
+                        <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-white flex items-start gap-4">
+                            <div class="bg-white/10 p-3 rounded-xl text-white"><i class="fas fa-shield-alt text-xl"></i></div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">+1 ГОД NISSAN ASSISTANCE</h4>
+                                <p class="text-gray-400 text-sm">При каждом прохождении технического обслуживания.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-1/2 relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-brand-blue to-transparent rounded-3xl blur-2xl opacity-30"></div>
+                    <img src="https://service.reginas.ru/upload/iblock/f5e/45he8bpf7cf4e19arl4l3m7eor33hmao/7c68a9f42f6648b51874d6788d2fc851.png" alt="Акции" class="relative z-10 w-full h-auto rounded-3xl shadow-2xl border border-white/10 hover:scale-[1.02] transition-transform duration-500 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us / Advantages -->
+    <section class="py-20 relative z-10 bg-black/20 border-y border-white/5">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6 glass-panel rounded-2xl group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-brand-blue to-indigo-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30">
+                        <i class="fas fa-user-tie text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Квалифицированные специалисты</h4>
+                    <p class="text-gray-400 text-sm">Команда профессионалов с многолетним опытом</p>
+                </div>
+                
+                <div class="text-center p-6 glass-panel rounded-2xl group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-brand-blue to-indigo-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30">
+                        <i class="fas fa-warehouse text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Собственный склад</h4>
+                    <p class="text-gray-400 text-sm">Используем только оригинальные и контрактные запчасти</p>
+                </div>
+                
+                <div class="text-center p-6 glass-panel rounded-2xl group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-brand-blue to-indigo-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30">
+                        <i class="fas fa-clock text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Соблюдение сроков</h4>
+                    <p class="text-gray-400 text-sm">Работаем без выходных, выполняем работы строго в срок</p>
+                </div>
+                
+                <div class="text-center p-6 glass-panel rounded-2xl group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-brand-blue to-indigo-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30">
+                        <i class="fas fa-tools text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Современное оборудование</h4>
+                    <p class="text-gray-400 text-sm">Работа с автомобилями более 22 мировых марок</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Carousel / Grid -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-4 lg:px-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-10">Мы специализируемся на автомобилях марок:</h2>
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+                <!-- Using pills for brands to look premium -->
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Toyota</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Subaru</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Skoda</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Renault</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Peugeot</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Lexus</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Haval</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Genesis</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Geely</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Exeed</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Chery</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Opel</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Mazda</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Infiniti</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Hyundai</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Citroen</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Kia</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Mitsubishi</span>
+                <span class="glass-panel px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default border-brand-accent/20">Nissan</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="py-20 relative z-10">
+        <div class="container mx-auto px-4 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center">Отзывы клиентов</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Review 1 -->
+                <div class="glass-panel p-8 rounded-3xl relative">
+                    <i class="fas fa-quote-right absolute top-8 right-8 text-4xl text-white/10"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-400 to-brand-blue flex items-center justify-center text-xl font-bold">В</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Виктория Еремеева</h4>
+                            <p class="text-sm text-gray-400">Магнитогорск, Россия • 03 августа 2021</p>
+                        </div>
+                    </div>
+                    <h5 class="font-bold text-brand-accent mb-2">Лучший сервис в Магнитогорске!</h5>
+                    <p class="text-gray-300 italic text-sm leading-relaxed">
+                        "Недавно для родителей заказала ремонт автомобиля, включая покраску. Работы пока продолжаются, но уже видны отличные результаты. Сотрудники работают организованно, слаженно, в сроки вписываются, отношение к работе ответственное. В целом, я довольна..."
+                    </p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="glass-panel p-8 rounded-3xl relative">
+                    <i class="fas fa-quote-right absolute top-8 right-8 text-4xl text-white/10"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-400 to-purple-600 flex items-center justify-center text-xl font-bold">А</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Голубков Александр</h4>
+                            <p class="text-sm text-gray-400">Екатеринбург, Россия • 16 июля 2021</p>
+                        </div>
+                    </div>
+                    <h5 class="font-bold text-brand-accent mb-2">Все сделали быстро и качественно</h5>
+                    <p class="text-gray-300 italic text-sm leading-relaxed">
+                        "Фирму по автосервису рекомендовали друзья. Решил воспользоваться её услугами. В итоге остался доволен. Ребята работали слаженно со знанием дела, ремонт сделали без опозданий и в срок. Качество работ на “5”. Спасибо большое, буду рекомендовать..."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative z-10 border-t border-white/10 bg-slate-900/50">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2 relative group">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-brand-blue to-purple-600 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                    <img src="https://service.reginas.ru/upload/iblock/add/6delt97q6hk7tpcqcrwtml0y1lf7xcoe/a03f9de760cd0d434025a1d20406f372.png" alt="О компании" class="relative z-10 rounded-2xl w-full border border-white/10 shadow-2xl">
+                </div>
+                
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">О компании</h2>
+                    <div class="glass-panel p-8 rounded-3xl border-l-4 border-l-brand-blue">
+                        <p class="text-gray-300 leading-relaxed mb-6">
+                            Всё, за что берётся компания <strong class="text-white">«Регинас»</strong>, делается серьезно и обстоятельно. Наши сервисные центры – это команда профессионалов, современное оборудование и широкий выбор дополнительных услуг. 
+                        </p>
+                        <p class="text-gray-300 leading-relaxed mb-6">
+                            Основная цель работы нашей компании – профессиональное исполнение любой поставленной задачи. Мы работаем для вас уже <span class="text-brand-accent font-bold text-xl">29 лет</span>.
+                        </p>
+                        <p class="text-sm text-gray-400">
+                            Сервисное обслуживание своих автомобилей нам доверяют марки в Челябинске, Екатеринбурге, Магнитогорске и Миассе.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Partners -->
+            <div class="mt-20 text-center">
+                <h3 class="text-xl font-bold mb-8 text-gray-400 tracking-wider">НАШИ ПАРТНЕРЫ (СТРАХОВЫЕ КОМПАНИИ)</h3>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8 opacity-70">
+                    <span class="px-4 py-2 font-bold text-lg">ВСК</span>
+                    <span class="px-4 py-2 font-bold text-lg">Ингосстрах</span>
+                    <span class="px-4 py-2 font-bold text-lg">АСКО</span>
+                    <span class="px-4 py-2 font-bold text-lg">Zetta</span>
+                    <span class="px-4 py-2 font-bold text-lg">Ренессанс</span>
+                    <span class="px-4 py-2 font-bold text-lg">Югория</span>
+                    <span class="px-4 py-2 font-bold text-lg">ЭнергоГарант</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts / Contact Form Section -->
+    <section id="contacts" class="py-20 relative z-10">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="max-w-6xl mx-auto glass-panel rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
+                <div class="flex flex-col lg:flex-row">
+                    <!-- Contact Info -->
+                    <div class="w-full lg:w-5/12 bg-black/40 p-10 lg:p-16 flex flex-col justify-between">
+                        <div>
+                            <h2 class="text-3xl font-bold mb-4">Остались вопросы?</h2>
+                            <p class="text-gray-400 mb-10">Заполните форму и наши специалисты в ближайшее время свяжутся с вами для консультации.</p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-accent shrink-0">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Телефон</p>
+                                        <a href="tel:+73512395207" class="text-xl font-bold hover:text-brand-accent transition-colors">+7 351 239‒52‒07</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-accent shrink-0">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Адрес</p>
+                                        <p class="text-lg font-medium">г. Челябинск,<br>ул. Братьев Каширина 141А</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-accent shrink-0">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Режим работы</p>
+                                        <p class="text-lg font-medium">с 8:00 до 20:00<br>Без выходных</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Form -->
+                    <div class="w-full lg:w-7/12 p-10 lg:p-16 bg-white/5 relative">
+                        <!-- Decorative bg -->
+                        <img src="https://service.reginas.ru/upload/iblock/b61/vwauf1t6ei109zv54fqz4z4lsv7abcqu/82d48c21d74043dce0c96aad7bb6dc1a.png" class="absolute inset-0 w-full h-full object-cover opacity-10 mix-blend-overlay z-0" alt="Фон формы">
+                        
+                        <form class="relative z-10 flex flex-col gap-5" action="#" method="POST">
+                            <input type="hidden" name="type_vopros" value="contact">
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Ваше имя *</label>
+                                    <input type="text" name="name_vopros" required class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all" placeholder="Иван Иванов">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Ваш телефон *</label>
+                                    <input type="tel" name="phone" required class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all" placeholder="+7 (___) ___-__-__">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Ваш вопрос</label>
+                                <textarea name="text" rows="4" class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all resize-none" placeholder="Опишите вашу проблему или вопрос..."></textarea>
+                            </div>
+                            
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <div class="relative flex items-center justify-center">
+                                    <input type="checkbox" name="sogl_v" required checked class="peer sr-only">
+                                    <div class="w-5 h-5 rounded border border-white/30 bg-black/30 peer-checked:bg-brand-accent peer-checked:border-brand-accent transition-all"></div>
+                                    <i class="fas fa-check absolute text-xs text-white opacity-0 peer-checked:opacity-100"></i>
+                                </div>
+                                <span class="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">Я согласен на обработку персональных данных</span>
+                            </label>
+                            
+                            <button type="submit" name="submit" class="glass-button w-full sm:w-auto self-start text-white px-10 py-4 rounded-xl font-bold text-lg mt-2">
+                                Отправить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section (Visual representation placeholder) -->
+    <section class="h-[400px] w-full relative z-10 glass-panel border-y border-white/10 flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-slate-800/80 z-10 flex flex-col items-center justify-center text-center p-4">
+            <i class="fas fa-map-marked-alt text-5xl text-brand-accent mb-4 opacity-50"></i>
+            <h3 class="text-2xl font-bold mb-2">Наш автосервис на карте</h3>
+            <p class="text-gray-400 mb-6">г. Челябинск, ул. Братьев Каширина 141А</p>
+            <div class="flex gap-4">
+                <span class="px-4 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400">Схема</span>
+                <span class="px-4 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400">Спутник</span>
+                <span class="px-4 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400">Гибрид</span>
+            </div>
+            <p class="text-xs text-gray-500 mt-8">© Яндекс Условия использования</p>
+        </div>
+        <!-- Decorative map lines for premium feel -->
+        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at center, transparent 0, #0f172a 100%), repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.1) 40px, rgba(255,255,255,0.1) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.1) 40px, rgba(255,255,255,0.1) 41px);"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark pt-16 pb-8 border-t border-white/10 relative z-10">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12">
+                <div class="text-center md:text-left">
+                    <img src="https://service.reginas.ru/upload/medialibrary/886/k8bc2e0lgott2r4n4rfg3wr270h89t1s/service_logo.png" alt="Регинас" class="h-10 mb-4 mx-auto md:mx-0">
+                    <p class="text-gray-400 text-sm max-w-xs">Премиальный автосервис и кузовной ремонт. Качество, проверенное временем.</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+                    <a href="#services" class="text-gray-400 hover:text-brand-accent transition-colors">Услуги</a>
+                    <a href="#" class="text-gray-400 hover:text-brand-accent transition-colors">Наши работы</a>
+                    <a href="#prices" class="text-gray-400 hover:text-brand-accent transition-colors">Цены</a>
+                    <a href="#promo" class="text-gray-400 hover:text-brand-accent transition-colors">Акции</a>
+                    <a href="#about" class="text-gray-400 hover:text-brand-accent transition-colors">Компания</a>
+                    <a href="#contacts" class="text-gray-400 hover:text-brand-accent transition-colors">Контакты</a>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <a href="tel:+73512395207" class="block text-2xl font-bold mb-3 hover:text-brand-accent transition-colors">+7 351 239-52-07</a>
+                    <button onclick="openModal('callModal')" class="text-sm text-brand-accent border-b border-brand-accent border-dashed pb-1 hover:text-white hover:border-white transition-colors">
+                        Заказать обратный звонок
+                    </button>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>2023 © Регинас - Сервис. Все права защищены.</p>
+                <p>Продвижение – Урал Медиа.ру</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals (Popups) -->
+    <!-- Request Call Modal -->
+    <div id="callModal" class="fixed inset-0 z-[100] hidden items-center justify-center">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('callModal')"></div>
+        <!-- Modal Content -->
+        <div class="glass-panel p-8 rounded-3xl w-full max-w-md relative z-10 transform scale-95 opacity-0 transition-all duration-300 mx-4" id="callModalContent">
+            <button onclick="closeModal('callModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="text-2xl font-bold mb-2">Заказать звонок</h3>
+            <p class="text-sm text-gray-400 mb-6">Оставьте свои контактные данные, и наш менеджер свяжется с вами.</p>
+            
+            <form action="#" method="POST" class="flex flex-col gap-4">
+                <input type="hidden" name="type_vopros" value="callback">
+                <div>
+                    <input type="text" name="name_vopros" required class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent" placeholder="Ваше имя">
+                </div>
+                <div>
+                    <input type="tel" name="phone" required class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent" placeholder="Ваш телефон">
+                </div>
+                <label class="flex items-start gap-3 cursor-pointer group mt-2">
+                    <div class="relative flex items-center justify-center mt-1">
+                        <input type="checkbox" name="checkme" required checked class="peer sr-only">
+                        <div class="w-4 h-4 rounded border border-white/30 bg-black/30 peer-checked:bg-brand-accent peer-checked:border-brand-accent transition-all"></div>
+                        <i class="fas fa-check absolute text-[10px] text-white opacity-0 peer-checked:opacity-100"></i>
+                    </div>
+                    <span class="text-xs text-gray-400 leading-tight">Согласен на обработку персональных данных</span>
+                </label>
+                <div class="flex gap-3 mt-4">
+                    <button type="submit" class="glass-button flex-1 text-white py-3 rounded-xl font-bold text-sm">
+                        Отправить
+                    </button>
+                    <button type="button" onclick="closeModal('callModal')" class="flex-1 bg-white/5 border border-white/10 hover:bg-white/10 text-white py-3 rounded-xl font-bold text-sm transition-colors">
+                        Закрыть
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Request Service Modal -->
+    <div id="requestModal" class="fixed inset-0 z-[100] hidden items-center justify-center">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('requestModal')"></div>
+        <div class="glass-panel p-8 rounded-3xl w-full max-w-lg relative z-10 transform scale-95 opacity-0 transition-all duration-300 mx-4" id="requestModalContent">
+            <button onclick="closeModal('requestModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="text-2xl font-bold mb-2">Оставить заявку на ремонт</h3>
+            <p class="text-sm text-gray-400 mb-6">Заполните форму, чтобы мы могли рассчитать стоимость и сроки.</p>
+            
+            <form action="#" method="POST" class="flex flex-col gap-4">
+                <input type="hidden" name="title_vopros" value="Заявка на ремонт">
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" name="name_vopros" required class="col-span-2 sm:col-span-1 w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent" placeholder="Ваше имя">
+                    <input type="tel" name="phone" required class="col-span-2 sm:col-span-1 w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent" placeholder="Ваш телефон">
+                </div>
+                <div>
+                    <input type="text" name="articul_vopros" class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent" placeholder="Марка и модель авто (опционально)">
+                </div>
+                <div>
+                    <textarea name="text" rows="3" class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent resize-none" placeholder="Что нужно отремонтировать?"></textarea>
+                </div>
+                <label class="flex items-start gap-3 cursor-pointer group">
+                    <div class="relative flex items-center justify-center mt-1">
+                        <input type="checkbox" name="checkme" required checked class="peer sr-only">
+                        <div class="w-4 h-4 rounded border border-white/30 bg-black/30 peer-checked:bg-brand-accent peer-checked:border-brand-accent transition-all"></div>
+                        <i class="fas fa-check absolute text-[10px] text-white opacity-0 peer-checked:opacity-100"></i>
+                    </div>
+                    <span class="text-xs text-gray-400 leading-tight">Согласен на обработку персональных данных</span>
+                </label>
+                <div class="mt-2">
+                    <button type="submit" class="glass-button w-full text-white py-4 rounded-xl font-bold text-lg">
+                        Отправить заявку
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Developer Watermark -->
+    <a href="https://t.me/pootlord" target="_blank" class="fixed bottom-4 left-4 z-50 glass-panel bg-black/40 hover:bg-black/60 px-4 py-2 rounded-full text-xs text-white/80 hover:text-white flex items-center gap-2 border border-white/10 shadow-lg transition-all duration-300 hover:scale-105 group">
+        <i class="fas fa-code text-brand-accent group-hover:animate-pulse"></i> Заказать сайт
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-brand-dark/90', 'shadow-lg');
+                navbar.classList.remove('border-white/10');
+            } else {
+                navbar.classList.remove('bg-brand-dark/90', 'shadow-lg');
+                navbar.classList.add('border-white/10');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            if(mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Modals functionality
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            const content = document.getElementById(id + 'Content');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Trigger animation
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            const content = document.getElementById(id + 'Content');
+            
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
