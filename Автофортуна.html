@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автофортуна | Премиум Автосервис в Сургуте</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: { 500: '#F59E0B', 600: '#D97706' }, // Premium Amber
+                        dark: '#0f172a' // Slate 900
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        body { background-color: #0f172a; color: #f8fafc; }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-brand-500 selection:text-white">
+
+    <!-- Watermark -->
+    <a href="https://t.me/pootlord" target="_blank" class="fixed bottom-4 left-4 z-50 glass px-4 py-2 rounded-xl text-xs font-medium text-white/80 hover:text-brand-500 hover:scale-105 transition duration-300 shadow-lg flex items-center gap-2">
+        <i class="fa-brands fa-telegram"></i> Заказать сайт
+    </a>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-40 glass border-b-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="fa-solid fa-car-wrench text-brand-500 text-3xl"></i>
+                    <span class="font-bold text-2xl tracking-wide uppercase">Авто<span class="text-brand-500">фортуна</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#services" class="hover:text-brand-500 transition px-3 py-2 rounded-md text-sm font-medium">Услуги</a>
+                        <a href="#about" class="hover:text-brand-500 transition px-3 py-2 rounded-md text-sm font-medium">О нас</a>
+                        <a href="#reviews" class="hover:text-brand-500 transition px-3 py-2 rounded-md text-sm font-medium">Отзывы</a>
+                        <a href="#contacts" class="hover:text-brand-500 transition px-3 py-2 rounded-md text-sm font-medium">Контакты</a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="text-right">
+                        <p class="text-sm text-gray-400">До 20:00</p>
+                        <a href="tel:+73462648984" class="font-bold text-lg hover:text-brand-500 transition">+7 (3462) 64-89-84</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none glass transition">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass border-t border-white/10 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium hover:text-brand-500 hover:bg-white/5 transition">Услуги</a>
+                <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium hover:text-brand-500 hover:bg-white/5 transition">Отзывы</a>
+                <a href="#contacts" class="block px-3 py-2 rounded-md text-base font-medium hover:text-brand-500 hover:bg-white/5 transition">Контакты</a>
+                <a href="tel:+73462648984" class="block px-3 py-2 rounded-md text-base font-bold text-brand-500">+7 (3462) 64-89-84</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20">
+        <div class="absolute inset-0 z-0">
+            <img src="https://avatars.mds.yandex.net/get-altay/1886119/2a0000016af950f8f0affd968999424310be/XXXL" alt="Автосервис Автофортуна" class="w-full h-full object-cover object-center opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/50 to-dark"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="glass-card inline-block px-6 py-2 rounded-full mb-6 border-brand-500/30">
+                <span class="text-brand-500 font-bold"><i class="fa-solid fa-star mr-1"></i> 4.8</span>
+                <span class="text-gray-300 ml-2">Рейтинг на Яндекс Картах (128 отзывов)</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight drop-shadow-2xl">
+                Ваш автомобиль в руках <br><span class="text-brand-500">настоящих профессионалов</span>
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10 font-light">
+                Полное сервисное обслуживание, ремонт любой сложности и экспресс-замена масла в Сургуте. Гарантия качества от мастеров своего дела.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#booking" class="bg-brand-500 text-white font-bold px-8 py-4 rounded-xl hover:bg-brand-600 hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all duration-300 transform hover:-translate-y-1">
+                    Записаться на ремонт
+                </a>
+                <a href="#services" class="glass text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-all duration-300">
+                    Наши цены
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl -z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Популярные <span class="text-brand-500">Услуги</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Честные цены, прозрачная диагностика. Стоимость может варьироваться в зависимости от сложности работ.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-brand-500/50 transition-all duration-500 hover:shadow-[0_10px_30px_rgba(245,158,11,0.15)] hover:-translate-y-2">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://avatars.mds.yandex.net/get-altay/10637174/2a0000018a7e9a9a084186b5d96720ecd810/XXXL" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Замена масла">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Техническое обслуживание</h3>
+                        <p class="text-gray-400 text-sm mb-4">Промывка двигателя, замена масла в ДВС и КПП, замена фильтров.</p>
+                        <div class="flex justify-between items-end">
+                            <span class="text-2xl font-bold text-brand-500">от 800 ₽</span>
+                            <a href="#booking" class="text-sm font-medium hover:text-brand-500 transition"><i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-brand-500/50 transition-all duration-500 hover:shadow-[0_10px_30px_rgba(245,158,11,0.15)] hover:-translate-y-2">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://avatars.mds.yandex.net/get-altay/8072647/2a000001892390a39fff2ddbfc0f25e83f79/XXXL" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Ремонт двигателя">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Ремонт ходовой и ДВС</h3>
+                        <p class="text-gray-400 text-sm mb-4">Замена сальников (коленвала), ГРМ, ремонт рулевых реек, подвески.</p>
+                        <div class="flex justify-between items-end">
+                            <span class="text-2xl font-bold text-brand-500">от 1200 ₽</span>
+                            <a href="#booking" class="text-sm font-medium hover:text-brand-500 transition"><i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-brand-500/50 transition-all duration-500 hover:shadow-[0_10px_30px_rgba(245,158,11,0.15)] hover:-translate-y-2">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://avatars.mds.yandex.net/get-altay/1775373/2a0000016af950fe3cab7624f4a312e9455a/XXXL" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Автоэлектрика">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Автоэлектрика и Допы</h3>
+                        <p class="text-gray-400 text-sm mb-4">Компьютерная диагностика, установка сигнализаций (мастер Денис).</p>
+                        <div class="flex justify-between items-end">
+                            <span class="text-2xl font-bold text-brand-500">по запросу</span>
+                            <a href="#booking" class="text-sm font-medium hover:text-brand-500 transition"><i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 flex flex-wrap justify-center gap-4 text-sm text-gray-300">
+                <span class="glass px-4 py-2 rounded-full"><i class="fa-solid fa-check text-brand-500 mr-2"></i>Сход-развал</span>
+                <span class="glass px-4 py-2 rounded-full"><i class="fa-solid fa-check text-brand-500 mr-2"></i>Шиномонтаж</span>
+                <span class="glass px-4 py-2 rounded-full"><i class="fa-solid fa-check text-brand-500 mr-2"></i>Магазин запчастей</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-24 relative overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-500/5 rounded-full blur-3xl -z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Что говорят <span class="text-brand-500">Клиенты</span></h2>
+                <div class="flex justify-center items-center gap-2 mb-2">
+                    <div class="flex text-brand-500 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="font-bold text-xl">4.8</span>
+                </div>
+                <p class="text-gray-400">На основе 128 реальных отзывов с Яндекс Карт</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="glass-card p-8 rounded-3xl relative">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-6 text-4xl text-white/5"></i>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-500 flex items-center justify-center font-bold text-xl text-dark">М</div>
+                        <div>
+                            <h4 class="font-bold">Максим П.</h4>
+                            <div class="text-brand-500 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic text-sm leading-relaxed">
+                        "Первое, что поразило — доброжелательное отношение. Мастер Сергей очень порадовал своей работой. Быстро и качественно сделали диагностику и ремонт. Цены вполне разумные!"
+                    </p>
+                </div>
+                <!-- Review 2 -->
+                <div class="glass-card p-8 rounded-3xl relative">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-6 text-4xl text-white/5"></i>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-500 flex items-center justify-center font-bold text-xl text-dark">И</div>
+                        <div>
+                            <h4 class="font-bold">Ирина С.</h4>
+                            <div class="text-brand-500 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic text-sm leading-relaxed">
+                        "Устанавливала сигнализацию. Мастер Денис оказался профи, всё сделал быстро и качественно, внимателен к деталям. Объяснил всё грамотно. Всем довольна, спасибо!"
+                    </p>
+                </div>
+                <!-- Review 3 -->
+                <div class="glass-card p-8 rounded-3xl relative">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-6 text-4xl text-white/5"></i>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-500 flex items-center justify-center font-bold text-xl text-dark">А</div>
+                        <div>
+                            <h4 class="font-bold">Артемий Д.</h4>
+                            <div class="text-brand-500 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic text-sm leading-relaxed">
+                        "Качественно и быстро обслуживают автомобили любых марок. Мастера хорошо разбираются. Сервис предоставил скидку на полную диагностику электрики. Советую!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking / Contact Section -->
+    <section id="contacts" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 md:p-12 overflow-hidden relative shadow-2xl">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-500/20 rounded-full blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Info -->
+                    <div id="booking">
+                        <h2 class="text-3xl font-bold mb-6">Запишитесь на <span class="text-brand-500">обслуживание</span></h2>
+                        <p class="text-gray-300 mb-8">Оставьте заявку, и наш мастер-приемщик свяжется с вами для уточнения деталей и стоимости работ.</p>
+                        
+                        <form class="space-y-4">
+                            <div>
+                                <input type="text" placeholder="Ваше имя" class="w-full glass bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition">
+                            </div>
+                            <div>
+                                <input type="tel" placeholder="Телефон" class="w-full glass bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition">
+                            </div>
+                            <div>
+                                <textarea placeholder="Какая услуга вас интересует?" rows="3" class="w-full glass bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-500 text-white font-bold px-6 py-4 rounded-xl hover:bg-brand-600 hover:shadow-[0_0_15px_rgba(245,158,11,0.5)] transition duration-300">
+                                Отправить заявку
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contacts -->
+                    <div class="flex flex-col justify-center">
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 glass rounded-full flex items-center justify-center text-brand-500 text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm text-gray-400 font-medium">Наш адрес</h4>
+                                    <p class="text-lg font-bold">Сургут, ул. Гагарина, 7, стр. 4</p>
+                                    <p class="text-sm text-brand-500 mt-1">Ориентир: Мемориал Славы (149 м)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 glass rounded-full flex items-center justify-center text-brand-500 text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm text-gray-400 font-medium">Телефон мастера</h4>
+                                    <a href="tel:+73462648984" class="text-xl font-bold hover:text-brand-500 transition">+7 (3462) 64-89-84</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 glass rounded-full flex items-center justify-center text-brand-500 text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm text-gray-400 font-medium">Режим работы</h4>
+                                    <p class="text-lg font-bold">Открыто до 20:00</p>
+                                    <p class="text-sm text-gray-300 mt-1">Есть зона ожидания и Wi-Fi</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Image instead of map for premium look -->
+                        <div class="mt-8 rounded-2xl overflow-hidden h-40 border border-white/10 opacity-80 hover:opacity-100 transition duration-500">
+                             <img src="https://avatars.mds.yandex.net/get-altay/1881714/2a0000016af95104cb6463ce5b68d5eb1cb9/XXXL" class="w-full h-full object-cover" alt="Автосервис фасад">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 glass mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+            <div>&copy; 2026 Автофортуна. Все права защищены.</div>
+            <div class="flex gap-4">
+                <span><i class="fa-brands fa-cc-visa text-xl"></i></span>
+                <span><i class="fa-brands fa-cc-mastercard text-xl"></i></span>
+                <span><i class="fa-solid fa-qrcode text-xl"></i></span>
+                <span class="ml-2">Оплата картой, QR-код, наличные</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+        
+        // Form prevent default
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Заявка успешно отправлена! Мастер свяжется с вами в ближайшее время.');
+        });
+    </script>
+</body>
+</html>
