@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техпомощь Сургут — Премиальный автомобильный сервисный центр</title>
+    <meta name="description" content="Ремонт рулевых реек, стартеров, генераторов и АКПП в Сургуте. Высококвалифицированные специалисты и современное оборудование.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 30px rgba(15, 23, 42, 0.05);
+        }
+        .glass-dark {
+            background: rgba(51, 65, 85, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-slate-900">
+
+    <!-- Водяной знак разработчика -->
+    <a href="https://t.me/pootlord" target="_blank" rel="noopener noreferrer" class="fixed bottom-4 left-4 z-50 glass-dark text-white/90 px-4 py-2 rounded-2xl text-xs font-semibold tracking-wide hover:bg-slate-700/90 hover:scale-105 transition-all duration-300 shadow-lg flex items-center gap-2">
+        <i class="fa-solid fa-code"></i> Заказать сайт
+    </a>
+
+    <!-- Навигация -->
+    <header class="fixed w-full top-0 z-40 glass-panel transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-600/30">
+                        <i class="fa-solid fa-car-wrench text-xl"></i>
+                    </div>
+                    <a href="https://auto911.org/" class="font-bold text-xl md:text-2xl text-slate-800 tracking-tight leading-none">
+                        Техпомощь <br><span class="text-blue-600 text-sm md:text-base font-semibold">Сургут</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#services" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Услуги</a>
+                    <a href="#about" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">О нас</a>
+                    <a href="#reviews" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Отзывы</a>
+                    <a href="#contacts" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Контакты</a>
+                </nav>
+
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="tel:+7(3462)911-911" class="text-lg font-bold text-slate-700 hover:text-blue-600 transition-colors">
+                        <i class="fa-solid fa-phone text-amber-500 mr-1"></i> +7 (3462) 911-911
+                    </a>
+                    <a href="#contacts" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5">
+                        Записаться
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-blue-600 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-200/50 absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2 shadow-xl">
+                <a href="#services" class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100/50 rounded-xl transition-colors">Услуги</a>
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100/50 rounded-xl transition-colors">О нас</a>
+                <a href="#reviews" class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100/50 rounded-xl transition-colors">Отзывы</a>
+                <a href="#contacts" class="block px-3 py-3 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100/50 rounded-xl transition-colors">Контакты</a>
+                <div class="mt-4 pt-4 border-t border-slate-200/50">
+                    <a href="tel:+7(3462)911-911" class="block px-3 py-2 text-lg font-bold text-slate-800 text-center">
+                        +7 (3462) 911-911
+                    </a>
+                    <a href="#contacts" class="mt-2 block w-full text-center bg-amber-500 hover:bg-amber-400 text-slate-900 px-6 py-3 rounded-xl font-bold transition-all shadow-lg shadow-amber-500/30">
+                        Оставить заявку
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главный экран (Hero) -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Декоративный фон -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://avatars.mds.yandex.net/get-altay/10829645/2a0000018b0512e2d5a084d7f9ac7df7055e/XXXL" alt="Автосервис Сургут" class="w-full h-full object-cover object-center opacity-20 filter grayscale blur-sm">
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/80 to-slate-50"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border-blue-200/50 text-blue-600 font-semibold text-sm mb-6">
+                        <i class="fa-solid fa-star text-amber-500"></i>
+                        <span>Рейтинг 5.0 на Яндекс Картах</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-800 leading-tight mb-6">
+                        Профессиональный ремонт авто в <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-slate-700">Сургуте</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed font-light">
+                        Чёткая работа всех систем — важная составляющая безопасности на дороге. Обслуживанием вашей машины занимаются высококвалифицированные специалисты на современном оборудовании.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#services" class="bg-blue-600 hover:bg-blue-700 text-white text-center px-8 py-4 rounded-2xl font-bold transition-all duration-300 shadow-lg shadow-blue-600/30 hover:-translate-y-1">
+                            Наши услуги
+                        </a>
+                        <a href="tel:+7(3462)911-911" class="glass-panel hover:bg-white text-slate-800 text-center px-8 py-4 rounded-2xl font-bold transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone text-blue-600"></i> +7 (3462) 911-911
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative hidden lg:block">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-amber-500/20 rounded-3xl blur-3xl transform rotate-3"></div>
+                    <div class="glass-panel p-3 rounded-3xl relative z-10 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <img src="https://avatars.mds.yandex.net/get-altay/5098734/2a00000187e6d0d5f887c9061897e583825b/XXXL" alt="Ремонт автомобиля" class="rounded-2xl w-full h-[450px] object-cover shadow-inner">
+                    </div>
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-6 z-20 glass-panel p-4 rounded-2xl flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                        <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white text-xl shadow-lg shadow-amber-500/40">
+                            <i class="fa-solid fa-shield-check"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-slate-500 font-medium">Гарантия</p>
+                            <p class="text-lg font-bold text-slate-800">до 6 месяцев</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О нас / Преимущества -->
+    <section id="about" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Почему выбирают нас</h2>
+                <p class="text-slate-600 text-lg">Мы используем только оригинальные или рекомендованные производителем запасные части и расходные материалы.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="glass-panel p-6 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 group">
+                    <i class="fa-solid fa-gears text-4xl text-blue-600 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-slate-800 mb-2">Современное оборудование</h3>
+                    <p class="text-sm text-slate-500">Точная диагностика и качественный ремонт любой сложности</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 group">
+                    <i class="fa-solid fa-clock-rotate-left text-4xl text-amber-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-slate-800 mb-2">Оперативность</h3>
+                    <p class="text-sm text-slate-500">Соблюдаем оговоренные сроки, экономим ваше время</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 group">
+                    <i class="fa-solid fa-mug-hot text-4xl text-blue-600 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-slate-800 mb-2">Комфорт</h3>
+                    <p class="text-sm text-slate-500">Зона ожидания, бесплатный Wi-Fi, удобная парковка</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl text-center hover:-translate-y-2 transition-transform duration-300 group">
+                    <i class="fa-solid fa-credit-card text-4xl text-amber-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-slate-800 mb-2">Оплата картой</h3>
+                    <p class="text-sm text-slate-500">Принимаем наличные и банковские карты</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="py-20 relative bg-slate-50">
+        <!-- Background decor -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-600/5 to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Наши основные услуги</h2>
+                    <p class="text-slate-600 text-lg">Полный спектр работ по техническому обслуживанию и ремонту вашего автомобиля.</p>
+                </div>
+                <a href="#contacts" class="hidden md:inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-xl font-medium transition-colors">
+                    Все услуги <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-panel rounded-3xl overflow-hidden group hover:shadow-2xl hover:shadow-blue-600/10 transition-all duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-slate-800/20 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="https://avatars.mds.yandex.net/get-altay/11018317/2a0000018b0512e3caddaed1dae1489e1f52/XXXL" alt="Ремонт рулевых реек" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-slate-800">Ремонт рулевых реек</h3>
+                            <span class="bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full">Хит</span>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-6 flex-1">Ремонт гидравлических и электрических рулевых реек (Мерседес, Мазда, Форд, Тойота и др.). Снятие-установка, ремонт с гарантией 6 месяцев.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-blue-600 font-extrabold text-xl">от 4 500 ₽</span>
+                            <a href="tel:+7(3462)911-911" class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-panel rounded-3xl overflow-hidden group hover:shadow-2xl hover:shadow-blue-600/10 transition-all duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-slate-800/20 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="https://avatars.mds.yandex.net/get-altay/10175550/2a0000018b0512e09f4c35171c2a5fb41485/XXXL" alt="Компьютерная диагностика" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">Компьютерная диагностика</h3>
+                        <p class="text-slate-600 text-sm mb-6 flex-1">Быстрое определение проблем с автомобилем. Считывание и сброс ошибок, диагностика двигателя и электронных систем.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-blue-600 font-extrabold text-xl">По запросу</span>
+                            <a href="tel:+7(3462)911-911" class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-panel rounded-3xl overflow-hidden group hover:shadow-2xl hover:shadow-blue-600/10 transition-all duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-slate-800/20 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="https://avatars.mds.yandex.net/get-altay/9761215/2a0000018b0512e2e6a851b69b3f0f350bb2/XXXL" alt="Базовое сервисное обслуживание" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">Базовое обслуживание (ТО)</h3>
+                        <p class="text-slate-600 text-sm mb-6 flex-1">Замена масла, фильтров, проверка тормозной системы, свечей и ремней. Подготовка автомобиля к сезону.</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-blue-600 font-extrabold text-xl">По запросу</span>
+                            <a href="tel:+7(3462)911-911" class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 flex flex-wrap gap-3 justify-center">
+                <span class="px-4 py-2 glass-panel rounded-full text-sm font-medium text-slate-700">Ремонт карданных валов</span>
+                <span class="px-4 py-2 glass-panel rounded-full text-sm font-medium text-slate-700">Ремонт стартеров и генераторов</span>
+                <span class="px-4 py-2 glass-panel rounded-full text-sm font-medium text-slate-700">Эвакуатор</span>
+                <span class="px-4 py-2 glass-panel rounded-full text-sm font-medium text-slate-700">Ремонт насосов ГУР</span>
+                <span class="px-4 py-2 glass-panel rounded-full text-sm font-medium text-slate-700">Замена автостекол</span>
+                <span class="px-4 py-2 glass-panel rounded-full text-sm font-medium text-slate-700">Ремонт АКПП</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section id="reviews" class="py-20 relative bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Отзывы наших клиентов</h2>
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <div class="flex text-amber-500 text-xl">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-slate-800">5.0</span>
+                </div>
+                <p class="text-slate-500">На основе 113 оценок в Яндекс Картах</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="glass-panel p-8 rounded-3xl relative mt-4">
+                    <div class="absolute -top-6 left-8 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl shadow-lg shadow-blue-600/30">
+                        В
+                    </div>
+                    <div class="mb-4 mt-2">
+                        <h4 class="font-bold text-slate-800">Влад Тютин</h4>
+                        <div class="text-amber-500 text-xs mt-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">"Автосервис провел полное техническое обслуживание моего автомобиля, заменил масло и фильтры, проверил тормозную систему... Выровняли и покрасили царапины на кузове, благодаря чему мой автомобиль выглядит как новый."</p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="glass-panel p-8 rounded-3xl relative mt-4">
+                    <div class="absolute -top-6 left-8 w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center text-white text-xl shadow-lg shadow-slate-700/30">
+                        Л
+                    </div>
+                    <div class="mb-4 mt-2">
+                        <h4 class="font-bold text-slate-800">Ленар Г.</h4>
+                        <div class="text-amber-500 text-xs mt-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">"У кого проблемы с ЭУР то вам точно сюда!!! Многие сулили полную замену рулевой рейки... Как итог отремонтировали мою же рейку. Выполнили все качественно и быстро!!!! Результатом доволен!!! + дали гарантию."</p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="glass-panel p-8 rounded-3xl relative mt-4">
+                    <div class="absolute -top-6 left-8 w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white text-xl shadow-lg shadow-amber-500/30">
+                        Д
+                    </div>
+                    <div class="mb-4 mt-2">
+                        <h4 class="font-bold text-slate-800">Дарья Бихтулова</h4>
+                        <div class="text-amber-500 text-xs mt-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">"Нужна была срочная починка рулевых электрореек. Приветливый персонал, подробно объяснили, как ухаживать за техникой. Полностью довольна качеством работы, недочётов не наблюдаю."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="py-20 relative bg-slate-900 text-white">
+        <!-- Декоративный фон -->
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="https://avatars.mds.yandex.net/get-altay/10456159/2a0000018b0512e31ee8452013bf138c5237/XXXL" alt="Автосервис внутри" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-slate-900/80 z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16">
+                
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-8">Ждем вас в наших сервисных центрах</h2>
+                    <p class="text-slate-400 mb-10 text-lg">Оставьте заявку или позвоните нам. Мы проконсультируем вас и подберем удобное время для визита.</p>
+                    
+                    <div class="space-y-6">
+                        <!-- Филиал 1 -->
+                        <div class="glass-dark p-6 rounded-2xl">
+                            <div class="flex items-start gap-4">
+                                <div class="mt-1 w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 flex-shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white mb-2">ул. Профсоюзов, 9/1</h3>
+                                    <p class="text-sm text-slate-400 mb-3">бокс 1 (въезд справа по парковке ТРЦ “Агора”)</p>
+                                    <a href="tel:+7(3462)911-101" class="text-lg font-bold text-amber-400 hover:text-amber-300 transition-colors block mb-2">+7 (3462) 911-101</a>
+                                    <p class="text-sm text-slate-300"><i class="fa-regular fa-clock mr-1"></i> ПН - ПТ 9:00 - 19:00, СБ - ВС 10:00 - 18:00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Филиал 2 -->
+                        <div class="glass-dark p-6 rounded-2xl">
+                            <div class="flex items-start gap-4">
+                                <div class="mt-1 w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 flex-shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white mb-2">Нижневартовское шоссе, 4</h3>
+                                    <a href="tel:+7(3462)911-220" class="text-lg font-bold text-amber-400 hover:text-amber-300 transition-colors block mb-2">+7 (3462) 911-220</a>
+                                    <p class="text-sm text-slate-300"><i class="fa-regular fa-clock mr-1"></i> ПН - ПТ 9:00 - 19:00, СБ - ВС 10:00 - 18:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Форма заявки -->
+                <div class="glass-dark p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl">
+                    <h3 class="text-2xl font-bold text-white mb-6">Записаться на сервис</h3>
+                    <form onsubmit="event.preventDefault(); alert('Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');" class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Ваше имя</label>
+                            <input type="text" required class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder-slate-500" placeholder="Иван Иванов">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Телефон</label>
+                            <input type="tel" required class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder-slate-500" placeholder="+7 (999) 000-00-00">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Марка автомобиля и проблема</label>
+                            <textarea rows="3" class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder-slate-500" placeholder="Например: Toyota Camry, стук в рулевой рейке"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold text-lg py-4 rounded-xl transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:-translate-y-0.5">
+                            Оставить заявку
+                        </button>
+                        <p class="text-xs text-slate-500 text-center mt-4">Нажимая кнопку, вы даете согласие на обработку персональных данных</p>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-car-wrench text-slate-600"></i>
+                <span class="font-medium text-slate-300">Техпомощь Сургут &copy; 2026</span>
+            </div>
+            <div class="flex space-x-6">
+                <a href="https://auto911.org/" class="hover:text-blue-400 transition-colors">Главная</a>
+                <a href="#services" class="hover:text-blue-400 transition-colors">Услуги</a>
+                <a href="#contacts" class="hover:text-blue-400 transition-colors">Контакты</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS для мобильного меню -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+
+        // Закрывать меню при клике на ссылку
+        const menuLinks = menu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
